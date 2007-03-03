@@ -1,0 +1,58 @@
+Morcego Changelog
+------------------
+
+All developers are invited to add relevant changes in this file as they
+apply them to the SVN source. You can optionally include an identifer
+for the origin of the change (author, submitter, anyone involved) but
+that's not so useful as the cvs log knows who adds what when.
+
+Use the following tags to distinguish changes :
+* [NEW] apply if something new was added in morcego
+* [MOD] is an enhancement; not really new but makes things work better
+* [FIX] can be used for bug fixes of any sort
+
+Version 0.4.1
+
+[FIX] Node title was being ignored
+[NEW] Configurable node type. Default type defined by nodeDefaultType
+[NEW] "Text" node type, only show node title and no image
+
+Version 0.4.0
+-------------
+
+In this version code was extensively refactored. Greatest improvement is the
+new physical model that gives graph a much better visual impression.
+
+New configuration vars (check README for meaning):
+
+     - frictionConstant, new Float(0.4f));
+     - elasticConstant, new Float(0.5f));
+     - punctualElasticConstant, new Float(1f));
+     - eletrostaticConstant, new Float(1000f));
+     - springSize, new Float(100));
+     - nodeMass, new Float(5));
+     - nodeCharge, new Float(1));
+     - loadPageOnCenter, new Boolean(true));
+
+These are not used anymore:
+
+     - originX
+     - originY
+     - originZ
+     - universeRadius
+     - maxNodeSpeed
+     - linkedNodesDistance
+
+Changes:
+
+[ADD] physical model to balance graph
+[ADD] support for description box on mouse over
+[ADD] Morcego and Arca logs, optional
+[ADD] support for different transport layers, only XmlprcTransport available 
+      by now
+[ADD] option to have camera distance relative to nearest node instead of
+      center, default.
+[ADD] option to open target page on every navigation, default
+[MOD] nodes pop always behind center node, to avoid hanging while rendering
+      very big nodes
+[FIX] graph instability in some cases

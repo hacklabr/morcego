@@ -1,0 +1,63 @@
+<?xml version="1.0"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.arca.morcego</groupId>
+  <artifactId>morcego</artifactId>
+  <name>morcego</name>
+  <version>0.4.1-SNAPSHOT</version>
+  <description>Morcego 3D network browser is a java application to view graphs and networks in a 3D environment. 
+	It's currently integrated to TikiWiki to view the wiki structure.</description>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>xmlrpc</groupId>
+      <artifactId>xmlrpc</artifactId>
+      <version>1.2</version>
+	  <scope>compile</scope>
+	  <type>jar</type>
+    </dependency>
+
+  </dependencies>
+  
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>xmlrpc</groupId>
+                  <artifactId>xmlrpc</artifactId>
+                  <version>1.2</version>
+                  <type>jar</type>
+                  <outputDirectory>target/classes</outputDirectory>
+                  <overWrite>true</overWrite>
+                  <destFileName>/tmp/delme.now</destFileName> 
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build> 
+
+</project>
