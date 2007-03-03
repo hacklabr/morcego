@@ -1,0 +1,20 @@
+CREDITS: 2004/05/09
+
+This software is developed by Arca (http://arca.ime.usp.br), a Free Software
+development group from Brazil:
+  - Luis Fagundes: developer and mantainer
+  - Alexandre Freire and Christian Asmussen: the java masters! :-)
+  - Fernando Freire, physics modeling (not the universe radius)
+  - Fabio Mathias, learning java with Morcego
+  - Everybody from Arca who tests the software and sends sugestions
+  
+Special thanks for the TikiWiki community who inspired this software and tests it.
+
+There were also hired developers from www.rentacoder.com:
+ - Devapi D. wrote an initial code example from which I could start the project.
+ - Ales Pucelj fixed the problem with XmlRpcClient that wouldn't allow applet to run in browser.
+ 
+ Sponsors
+ - Carlos Seabra paid the initial code example from Devapi D.
+ - Sight Educacao & Comunicacao sponsored most of the development
+  
