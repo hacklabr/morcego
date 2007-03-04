@@ -45,6 +45,7 @@ public abstract class Link extends GraphElement {
 		super();
 	}
 	/**
+	 * @throws LinkingDifferentGraphs 
 	 *  
 	 */
 	public Link(Node n1, Node n2) {
@@ -55,13 +56,18 @@ public abstract class Link extends GraphElement {
 	
 	public void setup(Node n1, Node n2) {		
 		spring = new Spring(n1.getBody(), n2.getBody());
-
+		
 		node1 = n1;
 		node2 = n2;
 		
+		node1.addLink(node2, this);
+		node2.addLink(node1, this);
+		
+		n1.getGraph().addLink(this);	
+		
 	}
 	
-	public static Hashtable availableProperties() {
+	public Hashtable<String, Class> availableProperties() {
 		Hashtable<String, Class> prop = new Hashtable<String,Class>();
 		prop.put("type", String.class);
 		prop.put("color", Color.class);
@@ -190,6 +196,16 @@ public abstract class Link extends GraphElement {
 	}
 	public Node getNode2() {
 		return node2;
+	}
+	
+	public Node getOther(Node node) {
+		if (node1 == node) {
+			return node2;
+		}
+		if (node2 == node) {
+			return node1;
+		}
+		return null;
 	}
 	
 	public boolean visible() {

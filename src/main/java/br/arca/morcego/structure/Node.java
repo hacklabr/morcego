@@ -97,7 +97,7 @@ public class Node extends GraphElement implements PositionedObject {
 
 	}
 	
-	public static Hashtable availableProperties() {
+	public Hashtable<String, Class> availableProperties() {
 		Hashtable<String, Class> prop = new Hashtable<String,Class>();
 		prop.put("type", String.class);
 		prop.put("color", Color.class);
@@ -176,10 +176,10 @@ public class Node extends GraphElement implements PositionedObject {
 		return (int) ((Math.random() * 2 - 1) * 500);
 	}
 
-	public void addLink(String nodeId, Link link) {
-		links.put(nodeId, link);
+	public void addLink(Node node, Link link) {
+		links.put(node.getId(), link);
 	}
-
+	
 	public void paint(Graphics g) {
 		//TODO node shouldn't have to be paintable
 	}
@@ -193,14 +193,8 @@ public class Node extends GraphElement implements PositionedObject {
 
 
 
-	/*
-	 * /** @return Returns the lastSpeed.
-	 * 
-	 * public Vector3D getLastSpeed() { return lastSpeed; }
-	 */
-
-	public Enumeration getLinkList() {
-		return links.keys();
+	public Enumeration<Link> getLinks() {
+		return links.elements();
 	}
 
 	/*
@@ -223,9 +217,18 @@ public class Node extends GraphElement implements PositionedObject {
 	 *  
 	 */
 	public void init() {
+		super.init();
+		
 		if (getProperty("description") != null) {
 			setDescription((String) getProperty("description"));
 		}
+		if (getProperty("title") == null) {
+			setProperty("title", id);
+		}
+	}
+	
+	public boolean isVisible() {
+		return graph.isVisible(this);
 	}
 
 	/*
@@ -290,7 +293,7 @@ public class Node extends GraphElement implements PositionedObject {
 		// Get sphere of reachable universe, 5x the size of
 		// engulphing sphere
 		// maybe a better camera will avoid this limit
-		Enumeration el = graph.getNodes().elements();
+		Enumeration el = graph.getVisibleNodes().elements();
 		float reachableRadius = 0;
 		while (el.hasMoreElements()) {
 			Node node = (Node) el.nextElement();
@@ -377,5 +380,9 @@ public class Node extends GraphElement implements PositionedObject {
 	public boolean visible() {
 		float scale = getBody().getScale();
 		return true || (scale > 0 && scale < 0.9);
+	}
+	
+	public void detach() {
+		graph.removeNode(this);
 	}
 }

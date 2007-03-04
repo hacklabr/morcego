@@ -20,6 +20,8 @@ package br.arca.morcego.physics;
 
 import java.awt.Graphics;
 
+import java.util.Hashtable;
+
 /**
  * @author lfagundes
  *
@@ -27,6 +29,8 @@ import java.awt.Graphics;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public interface VisibleObject {
+	
+	public Hashtable<String, Class> availableProperties();
 	
 	public boolean visible();
 	

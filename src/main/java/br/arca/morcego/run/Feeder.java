@@ -19,10 +19,14 @@
 package br.arca.morcego.run;
 
 import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Vector;
 
 import br.arca.morcego.Config;
+import br.arca.morcego.exception.WrongDataFormat;
 import br.arca.morcego.structure.Graph;
+import br.arca.morcego.structure.GraphElementFactory;
+import br.arca.morcego.structure.Link;
 import br.arca.morcego.structure.Node;
 import br.arca.morcego.transport.Transport;
 
@@ -49,58 +53,61 @@ public class Feeder implements Runnable {
 		animator = new Animator(graph);
 	}
 
-	/*
-	 * Returns a Vector with all nodes contained in g1 but not in g2
-	 */
-	private Vector<Node> diffGraphs(Graph g1, Graph g2) {
-		Vector<Node> diff = new Vector<Node>();
-		for (Enumeration e = g1.getNodes().elements(); e.hasMoreElements();) {
-			Node node = (Node) e.nextElement();
-			if (g2.getNodeById(node.getId()) == null) {
-				diff.add(node);
-			}
-		}
-		return diff;
-	}
-
-	/*
-	 * Get a Vector with all nodes from g1 that is also in g2
-	 *  
-	 */
-	private Vector intersectGraphs(Graph g1, Graph g2) {
-		Vector<Node> intersection = new Vector<Node>();
-		for (Enumeration e = g1.getNodes().elements(); e.hasMoreElements();) {
-			Node node = (Node) e.nextElement();
-			if (g2.getNodeById(node.getId()) != null) {
-				intersection.add(node);
-			}
-		}
-		return intersection;
-	}
 
 	/*
 	 * Gets the new graph and feeds it's node to current graph
 	 */
-	public void feed(Graph newGraph) {
-		synchronized (newGraph) {
-			Vector<Node> removed = diffGraphs(graph, newGraph);
-			Vector<Node> added = diffGraphs(newGraph, graph);
-			Vector intersection = intersectGraphs(newGraph, graph);
+	public void feed(Hashtable graphData) throws WrongDataFormat {
+		
+		synchronized (graph) {
+			Vector<Node> nodes = extractNodes(graphData);
+			extractLinks(graphData);
+			animator.animate(nodes);
+		}
+	}
+	
+	public Vector<Node> extractNodes(Hashtable graphData) throws WrongDataFormat {
+		Vector<Node> nodes = new Vector<Node>();
+		Hashtable nodesData;
+		try {
+			nodesData = (Hashtable) graphData.get("nodes");
+		} catch (ClassCastException e) {
+			throw new WrongDataFormat();
+		}
+		for (Enumeration eN = nodesData.keys(); eN.hasMoreElements();) {
+			String nodeId = (String) eN.nextElement();
+			Hashtable<String, String> nodeData = (Hashtable<String, String>) nodesData.get(nodeId);		
+			Node node = GraphElementFactory.createNode(nodeId, graph, nodeData.get("type"));
+			node.setProperties(nodeData);
+			node.init();
 			
-			// Replace all nodes that remain in graph by fresh objects
-			for (Enumeration e = intersection.elements(); e.hasMoreElements();) {
-				Node newNode = (Node) e.nextElement();
-				Node oldNode = graph.getNodeById(newNode.getId());
-				newNode.setBody(oldNode.getBody());
-				graph.removeNode(oldNode);
-				graph.addNode(newNode);
-				
-				if (oldNode.centered()) {
-					graph.center(newNode);
-				}
-			}
+			nodes.add(node);
+		}
+		
+		return nodes;
+	}
 
-			animator.animate(added, removed);
+	public void extractLinks(Hashtable graphData) throws WrongDataFormat {
+		
+		Vector linksData;
+		try {
+			linksData = (Vector) graphData.get("links");
+		} catch (ClassCastException e) {
+			throw new WrongDataFormat();
+		}
+		for (Enumeration eN = linksData.elements(); eN.hasMoreElements();) {
+			
+			Hashtable<String, String> linkData = (Hashtable<String, String>) eN.nextElement();
+			
+			Node node1 = graph.getNodeById(linkData.get("from"));
+			Node node2 = graph.getNodeById(linkData.get("to"));
+			
+			if (node1 != null && node2 != null) {
+				Link link;
+				link = GraphElementFactory.createLink(node1, node2, linkData.get("type"));				
+				link.setProperties(linkData);
+				link.init();				
+			}
 		}
 	}
 
@@ -133,15 +140,20 @@ public class Feeder implements Runnable {
 				}
 			}
 
-			Graph newGraph;
+			Hashtable graphData;
 			try {
-				newGraph = transport.retrieveData(graph.getCenterNode(),
+				graphData = transport.retrieveData(graph.getCenterId(),
 						((Integer) Config.getValue(Config.navigationDepth)));
 			} catch (Exception e) {
 				e.printStackTrace();
 				break;
 			}
-			feed(newGraph);
+			try {
+				feed(graphData);
+			} catch (WrongDataFormat e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

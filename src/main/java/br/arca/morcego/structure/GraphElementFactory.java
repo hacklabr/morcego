@@ -31,8 +31,15 @@ public class GraphElementFactory {
 	 * @param node
 	 * @param neighbour
 	 * @return
+	 * @throws LinkingDifferentGraphs 
 	 */
 	public static Link createLink(Node node, Node neighbour, String type) {
+		if (node.isLinkedTo(neighbour)) {
+			return node.getLinkTo(neighbour);
+		}
+		if (type == null) {
+			type = Config.getString(Config.linkDefaultType);
+		}
 		Class linkClass = null;
 		Link link = null;
 		try {
@@ -54,9 +61,21 @@ public class GraphElementFactory {
 	 */
 	public static Node createNode(String nodeId, Graph graph, String type) {
 		Class nodeClass = null;
-		Node node = null;
+		Node node;
+		
+		if (type == null) {
+			type = Config.getString(Config.nodeDefaultType);
+		}
 		try {
 			nodeClass = Config.getNodeClass(type);
+			Node existingNode = graph.getNodeById(nodeId);
+			if (existingNode != null) {
+				if (existingNode.getClass() == nodeClass) {
+					return existingNode;
+				} else {
+					//existingNode.detach();
+				}
+			}
 			node = (Node) nodeClass.newInstance();
 			node.setup(nodeId, graph);
 		} catch (Exception e) {

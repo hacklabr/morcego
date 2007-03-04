@@ -43,7 +43,6 @@ public class XmlrpcTransport implements Transport {
 
 	private XmlRpcAppletClient client;
 	private String url;
-	private static Hashtable availableProperties = Node.availableProperties();
 	
 	public XmlrpcTransport() {
 	}
@@ -62,89 +61,10 @@ public class XmlrpcTransport implements Transport {
 		}
 
 	}
-
-	/**
-	 * 
-	 */
-
-	public Graph retrieveData(Node centerNode, Integer depth) {
-
-		Graph graph = new Graph();
-
-		Hashtable result = fetchData(centerNode, depth);
-
-		fillGraph(graph, result);
-		
-		return graph;
-	}
-
-	private void fillGraph(Graph graph, Hashtable result) {
-		Hashtable nodes = (Hashtable) result.get("nodes");
-
-		for (Enumeration eN = nodes.keys(); eN.hasMoreElements();) {
-			String nodeId = (String) eN.nextElement();
-			Hashtable<String, Object> nodeData = (Hashtable<String, Object>) nodes.get(nodeId);
-
-			if (nodeData.get("title") == null) {
-				nodeData.put("title", nodeId);
-			}
-			if (nodeData.get("type") == null) {
-				nodeData.put("type", Config.getString(Config.nodeDefaultType));
-			}
-			
-			Node node = GraphElementFactory.createNode(nodeId, graph, (String)nodeData.get("type"));
-
-			for (Enumeration<String> eP = nodeData.keys(); eP.hasMoreElements(); ) {
-				String key = eP.nextElement();
-				Class type = (Class) availableProperties.get(key);
-				if (type != null) {
-					node.setProperty(key, Config.decode((String) nodeData.get(key), type));
-				}
-			}
-			
-			node.init();
-		}
-		
-		Vector links = (Vector) result.get("links");
-
-		for (Enumeration eL = links.elements();
-			eL.hasMoreElements();
-			) {
-			
-			Hashtable<String, String> linkData = (Hashtable<String, String>) eL.nextElement();
-			
-			String type = linkData.get("type");
-			if (type == null) {
-				type = Config.getString(Config.linkDefaultType);
-			}				
-			
-			Node node1 = graph.getNodeById(linkData.get("from"));
-			Node node2 = graph.getNodeById(linkData.get("to"));
-			
-			if (node1 != null && node2 != null) {
-				Link link = GraphElementFactory.createLink(node1, node2, type);
-				
-				for (Enumeration<String> eP = linkData.keys(); eP.hasMoreElements(); ) {
-					String key = eP.nextElement();
-					Class propertyType = (Class) availableProperties.get(key);
-					if (propertyType != null) {
-						link.setProperty(key, Config.decode((String) linkData.get(key), propertyType));
-					}
-				}
-				
-				node1.addLink(node2.getId(), link);
-				node2.addLink(node1.getId(), link);
-			}
-			
-			
-
-		}
-
-	}
 	
-	private Hashtable fetchData(Node centerNode, Integer depth) {
+	public Hashtable retrieveData(String centerId, Integer depth) {
 		Vector<Comparable> params = new Vector<Comparable>();
-		params.add(centerNode.getId());
+		params.add(centerId);
 		params.add(depth);
 
 		Hashtable result = new Hashtable();
@@ -159,5 +79,4 @@ public class XmlrpcTransport implements Transport {
 		}
 		return result;
 	}
-
 }

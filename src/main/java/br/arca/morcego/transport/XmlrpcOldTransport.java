@@ -28,6 +28,7 @@ import org.apache.xmlrpc.XmlRpcAppletClient;
 import org.apache.xmlrpc.XmlRpcException;
 
 import br.arca.morcego.Config;
+import br.arca.morcego.exception.LinkingDifferentGraphs;
 import br.arca.morcego.structure.Graph;
 import br.arca.morcego.structure.GraphElementFactory;
 import br.arca.morcego.structure.Link;
@@ -43,7 +44,6 @@ public class XmlrpcOldTransport implements Transport {
 
 	private XmlRpcAppletClient client;
 	private String url;
-	private static Hashtable availableProperties = Node.availableProperties();
 	
 	public XmlrpcOldTransport() {
 	}
@@ -95,6 +95,8 @@ public class XmlrpcOldTransport implements Transport {
 			
 			Node node = GraphElementFactory.createNode(nodeId, graph, (String)nodeData.get("type"));
 			
+			Hashtable availableProperties = node.availableProperties();
+			
 			for (Enumeration<String> eP = nodeData.keys(); eP.hasMoreElements(); ) {
 				String key = eP.nextElement();
 				Class type = (Class) availableProperties.get(key);
@@ -119,9 +121,15 @@ public class XmlrpcOldTransport implements Transport {
 				if (!neighbourName.equals(node.getId())) {
 					Node neighbour = graph.getNodeById(neighbourName);
 					if (neighbour != null) {
-						Link link = GraphElementFactory.createLink(node, neighbour, Config.getString(Config.linkDefaultType));
-						node.addLink(neighbourName, link);
-						neighbour.addLink(node.getId(), link);
+						Link link;
+						try {
+							link = GraphElementFactory.createLink(node, neighbour, Config.getString(Config.linkDefaultType));
+						} catch (LinkingDifferentGraphs e1) {
+							e1.printStackTrace();
+							break;
+						}
+						node.addLink(graph.getNodeById(neighbourName), link);
+						neighbour.addLink(node, link);
 					}
 				}
 			}	

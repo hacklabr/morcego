@@ -12,6 +12,7 @@ import br.arca.morcego.Config;
 import br.arca.morcego.physics.PunctualBody;
 import br.arca.morcego.physics.Vector3D;
 import br.arca.morcego.run.Renderer;
+import br.arca.morcego.structure.Graph;
 import br.arca.morcego.structure.Link;
 import br.arca.morcego.structure.Node;
 
@@ -31,6 +32,7 @@ public class DashedLink extends Link {
 	/**
 	 * @param n1
 	 * @param n2
+	 * @throws LinkingDifferentGraphs 
 	 */
 	public DashedLink(Node n1, Node n2) {
 		super(n1, n2);

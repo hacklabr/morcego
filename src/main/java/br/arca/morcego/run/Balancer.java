@@ -243,12 +243,12 @@ public class Balancer implements Runnable {
 	}
 
 	private Vector getNodes() {
-		return graph.getNodes();
+		return graph.getVisibleNodes();
 	}
 	
 	
 	private Vector getLinks() {
-		return graph.getLinks();
+		return graph.getVisibleLinks();
 	}
 
 	private void waitUntilBalancingIsNeeded() throws InterruptedException {
@@ -264,7 +264,7 @@ public class Balancer implements Runnable {
 	 */
 	public void notifyBalanced(Node node) {
 		balancedCount++;
-		if (balancedCount == graph.getNodes().size()) {
+		if (balancedCount == graph.getVisibleNodes().size()) {
 			stop();
 		}
 	}

@@ -48,14 +48,15 @@ public class Graph extends Component implements MouseInputListener,
 	private static final long serialVersionUID = -4592004647118214474L;
 
 	
-	private Vector<Node> nodes;
-
-	private Vector<Link> links;
-
-	private Node centerNode;
+	private Vector<Node> visibleNodes;
+	private Vector<Link> visibleLinks;
+	private Vector<GraphElement> visibleElements;
+	private Vector<GraphElement> elements;
 
 	private Hashtable<String,Node> nodesFromId = new Hashtable<String,Node>();
 
+	private Node centerNode;
+	
 	private Rotator rotator;
 
 	private Vector3D orientation;
@@ -70,11 +71,8 @@ public class Graph extends Component implements MouseInputListener,
 
 	private boolean focusFixed = false;
 
-	private Vector<GraphElement> elements;
 
 	private GraphElement oldFocus;
-
-
 	private GraphElement focus;
 
 	private int previousX, previousY;
@@ -94,9 +92,11 @@ public class Graph extends Component implements MouseInputListener,
 
 	public Graph() {
 		elements = new Vector<GraphElement>();
+		
+		visibleElements = new Vector<GraphElement>();
 
-		nodes = new Vector<Node>();
-		links = new Vector<Link>();
+		visibleNodes = new Vector<Node>();
+		visibleLinks = new Vector<Link>();
 
 		//used for hierarchy
 		orientation = new Vector3D(1, 0, 0);
@@ -112,28 +112,77 @@ public class Graph extends Component implements MouseInputListener,
 
 		if (getNodeById(node.getId()) == null) {
 			addElement(node);
-			nodes.add(node);
 			nodesFromId.put(node.getId(), node);
-
-			for (Enumeration e = node.getLinkList(); e.hasMoreElements();) {
-				String neighbourName = (String) e.nextElement();
-				Node neighbour = getNodeById(neighbourName);
-				if (neighbour != null) {
-					// TODO
-					// here's the key for supporting properties on links
-					// the createLink must be removed, but this causes a balancing bug.
-					Link link = node.getLinkTo(neighbour);
-					link = GraphElementFactory.createLink(node, neighbour, Config.getString(Config.linkDefaultType));
-					addElement(link);
-					links.add(link);
+			
+			for (Enumeration<Link> e = node.getLinks(); e.hasMoreElements();) {
+				Link link = e.nextElement();
+				addLink(link);
+			}
+		}
+		
+		if (centerNode == null && node.getId() == getCenterId()) {
+			node.center();
+		}
+	}
+	
+	public void addLink(Link link) {
+		if (!elements.contains(link)) {
+			addElement(link);
+			if (link.getNode1().isVisible() && link.getNode2().isVisible()) {
+				visibleLinks.add(link);
+				visibleElements.add(link);
+			}
+		}
+	}
+	
+	public boolean isVisible(GraphElement element) {
+		return visibleElements.contains(element);
+	}
+	
+	public void showNode(Node node) {
+		if (!elements.contains(node)) {
+			addNode(node);
+		}
+		if (!isVisible(node)) {
+			visibleElements.add(node);
+			visibleNodes.add(node);
+			for (Enumeration<Link> e = node.getLinks(); e.hasMoreElements();) {
+				Link link = e.nextElement();
+				if (link.getOther(node).isVisible() &&  !isVisible(link)) {
+					visibleElements.add(link);
+					visibleLinks.add(link);
 				}
 			}
+		}
+	}
+	
+	public void hideNode(Node node) {
+		visibleElements.remove(node);
+		visibleNodes.remove(node);
+		for (Enumeration<Link> e = node.getLinks(); e.hasMoreElements();) {
+			Link link = e.nextElement();
+			visibleElements.remove(link);
+			visibleLinks.remove(link);
+		}
+	}
 
-			if (balancer != null) {
-				synchronized (balancer) {
-					balancer.awake();
-				}
-			}
+	public void removeNode(Node node) {
+		elements.remove(node);
+		
+		visibleElements.remove(node);
+		visibleNodes.remove(node);
+
+		nodesFromId.remove(node.getId());
+		
+		for (Enumeration<Link> e = node.getLinks(); e.hasMoreElements();) {
+			Link link = e.nextElement();
+			elements.remove(link);
+			visibleElements.remove(link);
+			visibleLinks.remove(link);
+		}
+		
+		if (focus == node) {
+			focus = null;
 		}
 	}
 
@@ -141,14 +190,15 @@ public class Graph extends Component implements MouseInputListener,
 	 *  
 	 */
 	synchronized private void order() {
-		Collections.sort(elements, new RenderingStrategy());
+		Collections.sort(visibleElements, new RenderingStrategy());
 	}
 
 	public void navigateTo(Node node) {
 		center(node);
 
-		//notifyBalancer();
 		notifyFeeder();
+		notifyBalancer();
+		
 	}
 
 	/**
@@ -163,32 +213,6 @@ public class Graph extends Component implements MouseInputListener,
 		newCenter.center();	
 	}
 
-	public void removeNode(Node node) {
-
-		elements.remove(node);
-		nodes.remove(node);
-
-		if (focus == node) {
-			focus = null;
-		}
-
-		nodesFromId.remove(node.getId());
-
-		Vector<Link> removedLinks = new Vector<Link>();
-		for (Enumeration<Link> e = links.elements(); e.hasMoreElements();) {
-			Link link = e.nextElement();
-			if (link.hasNode(node)) {
-				removedLinks.add(link);
-			}
-		}
-
-		for (Enumeration<Link> e = removedLinks.elements(); e.hasMoreElements();) {
-			Link link = e.nextElement();
-			elements.remove(link);
-			links.remove(link);
-		}
-
-	}
 
 	public Node getNodeById(String nodeId) {
 		Node node = nodesFromId.get(nodeId);
@@ -204,11 +228,11 @@ public class Graph extends Component implements MouseInputListener,
 
 	/**
 	 * @param node
-	 * @return
+	 * @return 
 	 */
 	public boolean connected(Node node) {
-		for (Enumeration e = node.getLinkList(); e.hasMoreElements();) {
-			if (getNodeById((String) e.nextElement()) != null) {
+		for (Enumeration e = node.getLinks(); e.hasMoreElements();) {
+			if (e.nextElement() != null) {
 				return true;
 			}
 		}
@@ -231,8 +255,8 @@ public class Graph extends Component implements MouseInputListener,
 		// get focus
 		order();
 		boolean contains = false;
-		for (int i = elements.size() - 1; i >= 0 && !contains; i--) {
-			GraphElement component = elements.elementAt(i);
+		for (int i = visibleElements.size() - 1; i >= 0 && !contains; i--) {
+			GraphElement component = visibleElements.elementAt(i);
 			if (component.visible() && component.contains(e)) {
 				oldFocus = focus;
 				focus = component;
@@ -265,11 +289,11 @@ public class Graph extends Component implements MouseInputListener,
 	 * @see br.arca.morcego.ScreenComponent#paint(java.awt.Graphics)
 	 */
 	public void paint(Graphics g) {
-		synchronized (elements) //Sync on elements so that they don't change
+		synchronized (visibleElements) //Sync on elements so that they don't change
 		// after order and during painting.
 		{
 			order();
-			for (Enumeration<GraphElement> e = elements.elements(); e.hasMoreElements();) {
+			for (Enumeration<GraphElement> e = visibleElements.elements(); e.hasMoreElements();) {
 				GraphElement element = e.nextElement();
 				if (element.visible()) {
 					element.paint(g);
@@ -383,12 +407,12 @@ public class Graph extends Component implements MouseInputListener,
 	/**
 	 * @return
 	 */
-	public Vector<Node> getNodes() {
-		return nodes;
+	public Vector<Node> getVisibleNodes() {
+		return visibleNodes;
 	}
 
-	public Vector<Link> getLinks() {
-		return links;
+	public Vector<Link> getVisibleLinks() {
+		return visibleLinks;
 	}
 
 	public void notifyFeeder() {
@@ -398,8 +422,10 @@ public class Graph extends Component implements MouseInputListener,
 	}
 
 	public void notifyBalancer() {
-		synchronized (balancer) {
-			balancer.awake();
+		if (balancer != null) {
+			synchronized (balancer) {
+				balancer.awake();
+			}
 		}
 	}
 
@@ -431,13 +457,10 @@ public class Graph extends Component implements MouseInputListener,
 
 		feedingThread.start();
 		spinningThread.start();
-
-		Node firstNode = Config.getNode(Config.startNode);
-
-		addNode(firstNode);
-		navigateTo(firstNode);
-
 		balanceThread.start();
+		
+		notifyFeeder();
+		notifyBalancer();
 	}
 
 	/**
@@ -461,7 +484,7 @@ public class Graph extends Component implements MouseInputListener,
 	}
 
 	synchronized public void rotate(float xTheta, float yTheta) {
-		Enumeration<Node> e = getNodes().elements();
+		Enumeration<Node> e = getVisibleNodes().elements();
 		while (e.hasMoreElements()) {
 			Node node = e.nextElement();
 			node.rotate(xTheta, yTheta);
@@ -479,7 +502,16 @@ public class Graph extends Component implements MouseInputListener,
 		return (Node) focus;
 	}
 
-	public Vector<GraphElement> getElements() {
-		return elements;
+	public Vector<GraphElement> getVisibleElements() {
+		return visibleElements;
 	}
+
+	public String getCenterId() {
+		if (centerNode != null) {
+			return centerNode.getId();
+		} else {
+			return Config.getString(Config.startNode);
+		}
+	}
+
 }

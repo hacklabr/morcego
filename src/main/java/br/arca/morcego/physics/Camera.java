@@ -54,7 +54,7 @@ public class Camera extends Vector3D {
 				int distance = (Config.getInteger(Config.cameraDistance));
 				z = distance;
 			
-				Enumeration en = graph.getNodes().elements();
+				Enumeration en = graph.getVisibleNodes().elements();
 				while (en.hasMoreElements()) {
 					Node node = (Node) en.nextElement();
 					if (node.getBody().z + distance > z) {

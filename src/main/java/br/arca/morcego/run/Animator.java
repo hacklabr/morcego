@@ -28,32 +28,29 @@ import br.arca.morcego.structure.Node;
 /**
  * @author lfagundes
  * 
- * Takes from Feeder nodes to be added and removed from graph and do this in a
+ * Takes from Feeder a list of nodes that should become visible and show them in a 
  * fancy way
  */
 public class Animator implements Runnable {
 
 	private Graph graph;
-	private Vector<Node> addedStack;
-	private Vector removedStack;
+	private Vector<Node> visible;
 
 	/**
 	 *  
 	 */
 	public Animator(Graph g) {
 		graph = g;
-		addedStack = new Vector<Node>();
-		removedStack = new Vector();
+		visible = new Vector<Node>();
 	}
 
 	/*
 	 * Takes a vector of nodes to be added and one to be removed
 	 * and notifies thread that is animating.	 
 	 */
-	public void animate(Vector<Node> add, Vector remove) {
+	public void animate(Vector<Node> visible) {
 		synchronized (this) {
-			addedStack = add;
-			removedStack = remove;
+			this.visible = visible;
 			this.notify();
 		}
 	}
@@ -72,7 +69,7 @@ public class Animator implements Runnable {
 
 		while (true) {
 			try {
-				if (addedStack.isEmpty() && removedStack.isEmpty()) {
+				if (visible.isEmpty()) {
 					synchronized (this) {
 						this.wait();
 					}
@@ -80,21 +77,22 @@ public class Animator implements Runnable {
 			} catch (InterruptedException e2) {				
 				e2.printStackTrace();
 			}
-			for (Enumeration e = removedStack.elements();
-				e.hasMoreElements();
-				) {
-				graph.removeNode((Node) e.nextElement());
+			for (Enumeration<Node> e = graph.getVisibleNodes().elements(); e.hasMoreElements();) {
+				Node node = e.nextElement();
+				if (!visible.contains(node)) {
+					graph.hideNode((Node) node);
+				}
 			}
 			
-			while (!addedStack.isEmpty()) {
-				Node node = (Node) addedStack.remove(0);
+			while (!visible.isEmpty()) {
+				Node node = (Node) visible.remove(0);
 				int i = 0;
-				while (i++ < addedStack.size() && !graph.connected(node)) {
-					addedStack.add(node);
-					node = (Node) addedStack.remove(0);
+				while (i++ < visible.size() && !graph.connected(node)) {
+					visible.add(node);
+					node = (Node) visible.remove(0);
 				}
 				
-				graph.addNode(node);
+				graph.showNode(node);
 
 				try {
 					Thread.sleep(
@@ -103,8 +101,7 @@ public class Animator implements Runnable {
 					e1.printStackTrace();
 				}
 			}
-			addedStack = new Vector<Node>();
-			removedStack = new Vector();
+			visible = new Vector<Node>();
 		}
 	}
 

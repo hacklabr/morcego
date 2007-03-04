@@ -190,7 +190,7 @@ public class Config {
 		// This should be set by application, from applet parameters
 		// They're set here for developing purposes
 		setValue(serverUrl,	"http://morcego.arca.ime.usp.br/tiki-wiki3d_xmlrpc.php");
-		setValue(startNode, new Node("HomePage"));
+		setValue(startNode, "HomePage");
 	}
 
 	public static void setValue(String var, Object value) {

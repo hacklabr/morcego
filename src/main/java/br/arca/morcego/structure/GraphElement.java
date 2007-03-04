@@ -8,10 +8,12 @@ package br.arca.morcego.structure;
 
 import java.awt.Component;
 import java.awt.event.MouseEvent;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 import javax.swing.event.MouseInputListener;
 
+import br.arca.morcego.Config;
 import br.arca.morcego.physics.VisibleObject;
 
 
@@ -31,6 +33,12 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 		properties = new Hashtable<String, Object>();
 	}
 	
+	public Hashtable<String, Class> availableProperties() {
+		Hashtable<String, Class> prop = new Hashtable<String,Class>();
+		prop.put("type", String.class);
+		return prop;
+	}
+	
 	public Object getProperty(String name) {
 		return properties.get(name);
 	}
@@ -39,12 +47,27 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 		properties.put(name, value);
 	}
 	
-	public Hashtable getProperties() {
+	public Hashtable<String, Object> getProperties() {
 		return properties;
 	}
-	public void setProperties(Hashtable<String, Object> properties) {
-		this.properties = properties;
+
+	public void setProperties(Hashtable<String, String> properties) {
+		
+		Hashtable available = availableProperties();
+		
+		for (Enumeration<String> eP = properties.keys(); eP.hasMoreElements(); ) {
+			String key = eP.nextElement();
+			Class type = (Class) available.get(key);
+			if (type != null) {
+				setProperty(key, Config.decode(properties.get(key), type));
+			}
+		}
 	}
+	
+	public void init() {
+		setProperty("type", this.getClass().getName());
+	}
+
 	public void setGraph(Graph g) {
 		graph = g;
 	}
@@ -61,6 +84,10 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 	public boolean contains(MouseEvent e) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public Graph getGraph() {
+		return graph;
 	}
 
 }

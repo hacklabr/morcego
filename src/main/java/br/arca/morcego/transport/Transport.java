@@ -18,7 +18,8 @@
  */
 package br.arca.morcego.transport;
 
-import br.arca.morcego.structure.Graph;
+import java.util.Hashtable;
+
 import br.arca.morcego.structure.Node;
 
 /**
@@ -27,7 +28,7 @@ import br.arca.morcego.structure.Node;
  */
 public interface Transport {
 	
-	public Graph retrieveData(Node centerNode, Integer depth);
+	public Hashtable retrieveData(String centerId, Integer depth);
 	public void setup();
 }
 
