@@ -239,20 +239,6 @@ public class Graph extends Component implements MouseInputListener,
 	}
 
 	/**
-	 * @param node
-	 * @return 
-	 */
-	public boolean connected(Node node) {
-		for (Enumeration e = node.getLinks(); e.hasMoreElements();) {
-			if (e.nextElement() != null) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * @param e
 	 */
 	private void savePosition(MouseEvent e) {
@@ -522,6 +508,19 @@ public class Graph extends Component implements MouseInputListener,
 		} else {
 			return Config.getString(Config.startNode);
 		}
+	}
+
+	public void hideFarNodes() {
+		for (Enumeration<Node> e = getNodes().elements(); e.hasMoreElements();) {
+			Node node = e.nextElement();
+			if (node.getCenterDistance().intValue() > Config.getInteger(Config.navigationDepth)) {
+				hideNode((Node) node);
+			}
+		}
+	}
+
+	private Vector<Node> getNodes() {
+		return nodes;
 	}
 
 }

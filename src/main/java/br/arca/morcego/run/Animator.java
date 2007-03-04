@@ -80,15 +80,9 @@ public class Animator implements Runnable {
 			} catch (InterruptedException e2) {				
 				e2.printStackTrace();
 			}
-			for (Enumeration<Node> e = graph.getVisibleNodes().elements(); e.hasMoreElements();) {
-				Node node = e.nextElement();
-				if (!visible.contains(node)) {
-					graph.hideNode((Node) node);
-				}
-			}
-			
 			
 			graph.calculateDistances();
+			graph.hideFarNodes();
 			Collections.sort(visible, new AnimationStrategy());
 			
 			while (!visible.isEmpty()) {
