@@ -79,4 +79,68 @@ public class XmlrpcTransport implements Transport {
 		}
 		return result;
 	}
+	
+	/*
+	 * Old code is here just to implement backward compatible transport 
+	 * 
+	private void fillGraph(Graph graph, Hashtable result) {
+		Hashtable nodes = (Hashtable) result.get("graph");
+		Hashtable<Node, Vector> neighbours = new Hashtable<Node, Vector>();
+
+		for (Enumeration eN = nodes.keys(); eN.hasMoreElements();) {
+			String nodeId = (String) eN.nextElement();
+			Hashtable<String, Object> nodeData = (Hashtable<String, Object>) nodes.get(nodeId);
+
+			if (nodeData.get("title") == null) {
+				nodeData.put("title", nodeId);
+			}
+			if (nodeData.get("type") == null) {
+				nodeData.put("type", Config.getString(Config.nodeDefaultType));
+			}
+			
+			Node node = GraphElementFactory.createNode(nodeId, graph, (String)nodeData.get("type"));
+			
+			Hashtable availableProperties = node.availableProperties();
+			
+			for (Enumeration<String> eP = nodeData.keys(); eP.hasMoreElements(); ) {
+				String key = eP.nextElement();
+				Class type = (Class) availableProperties.get(key);
+				if (type != null) {
+					node.setProperty(key, Config.decode((String) nodeData.get(key), type));
+				}
+			}
+			
+			node.init();
+			
+			neighbours.put(node, (Vector) nodeData.get("neighbours"));
+		}
+		
+		for (Enumeration e = neighbours.keys(); e.hasMoreElements();) {
+			Node node = (Node) e.nextElement();
+			Vector nodeNeighbours = neighbours.get(node);
+			
+			for (Enumeration eL = nodeNeighbours.elements();
+				eL.hasMoreElements();
+				) {
+				String neighbourName = (String) eL.nextElement();
+				if (!neighbourName.equals(node.getId())) {
+					Node neighbour = graph.getNodeById(neighbourName);
+					if (neighbour != null) {
+						Link link;
+						try {
+							link = GraphElementFactory.createLink(node, neighbour, Config.getString(Config.linkDefaultType));
+						} catch (LinkingDifferentGraphs e1) {
+							e1.printStackTrace();
+							break;
+						}
+						node.addLink(graph.getNodeById(neighbourName), link);
+						neighbour.addLink(node, link);
+					}
+				}
+			}	
+		}
+		
+		
+	}
+	*/
 }

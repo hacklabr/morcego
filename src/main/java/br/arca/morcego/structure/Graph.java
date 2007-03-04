@@ -52,6 +52,7 @@ public class Graph extends Component implements MouseInputListener,
 	private Vector<Link> visibleLinks;
 	private Vector<GraphElement> visibleElements;
 	private Vector<GraphElement> elements;
+	private Vector<Node> nodes;
 
 	private Hashtable<String,Node> nodesFromId = new Hashtable<String,Node>();
 
@@ -92,9 +93,9 @@ public class Graph extends Component implements MouseInputListener,
 
 	public Graph() {
 		elements = new Vector<GraphElement>();
+		nodes = new Vector<Node>();
 		
 		visibleElements = new Vector<GraphElement>();
-
 		visibleNodes = new Vector<Node>();
 		visibleLinks = new Vector<Link>();
 
@@ -112,6 +113,7 @@ public class Graph extends Component implements MouseInputListener,
 
 		if (getNodeById(node.getId()) == null) {
 			addElement(node);
+			nodes.add(node);
 			nodesFromId.put(node.getId(), node);
 			
 			for (Enumeration<Link> e = node.getLinks(); e.hasMoreElements();) {
@@ -120,9 +122,10 @@ public class Graph extends Component implements MouseInputListener,
 			}
 		}
 		
-		if (centerNode == null && node.getId() == getCenterId()) {
-			node.center();
+		if (centerNode == null && node.getId().equals(getCenterId())) {
+			center(node);
 		}
+		
 	}
 	
 	public void addLink(Link link) {
@@ -154,6 +157,7 @@ public class Graph extends Component implements MouseInputListener,
 				}
 			}
 		}
+		notifyBalancer();
 	}
 	
 	public void hideNode(Node node) {
@@ -168,6 +172,7 @@ public class Graph extends Component implements MouseInputListener,
 
 	public void removeNode(Node node) {
 		elements.remove(node);
+		nodes.remove(node);
 		
 		visibleElements.remove(node);
 		visibleNodes.remove(node);
@@ -197,8 +202,7 @@ public class Graph extends Component implements MouseInputListener,
 		center(node);
 
 		notifyFeeder();
-		notifyBalancer();
-		
+		notifyBalancer();		
 	}
 
 	/**
@@ -210,7 +214,15 @@ public class Graph extends Component implements MouseInputListener,
 		}
 
 		centerNode = newCenter;
-		newCenter.center();	
+		newCenter.center();
+	}
+	
+	public void calculateDistances() {
+		for (Enumeration<Node> e = nodes.elements(); e.hasMoreElements();) {
+			e.nextElement().setCenterDistance(null);
+		}
+		centerNode.setCenterDistance(new Integer(0));	
+		centerNode.propagateCenterDistance();
 	}
 
 
@@ -458,9 +470,7 @@ public class Graph extends Component implements MouseInputListener,
 		feedingThread.start();
 		spinningThread.start();
 		balanceThread.start();
-		
-		notifyFeeder();
-		notifyBalancer();
+
 	}
 
 	/**

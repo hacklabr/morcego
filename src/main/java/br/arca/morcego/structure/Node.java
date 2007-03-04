@@ -26,6 +26,7 @@ import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import br.arca.morcego.Config;
 import br.arca.morcego.Morcego;
@@ -57,18 +58,11 @@ public class Node extends GraphElement implements PositionedObject {
 	// Maximum module node's position can have when being dragged
 	// by user
 	private float maxModule;
+	
+	private Integer centerDistance = null;
 
 	public Node() {
 		super();
-	}
-	/**
-	 * Same as calling new Node( <code>name</code>, new Graph());
-	 * 
-	 * @param name
-	 * @param graph
-	 */
-	public Node(String name) {
-		this(name, new Graph());
 	}
 
 	public Node(String name, Graph graph) {
@@ -83,7 +77,6 @@ public class Node extends GraphElement implements PositionedObject {
 
 		this.id = name;
 
-		this.graph.addNode(this);
 
 		int x = randomLength();
 		int y = randomLength();
@@ -93,8 +86,9 @@ public class Node extends GraphElement implements PositionedObject {
 		// also put center node in evidence during start
 		z = -1 * Math.abs(z);
 		
-		body = new PunctualBody(x, y, z);
+		body = new PunctualBody(x, y, z);		
 
+		this.graph.addNode(this);
 	}
 	
 	public Hashtable<String, Class> availableProperties() {
@@ -197,6 +191,33 @@ public class Node extends GraphElement implements PositionedObject {
 		return links.elements();
 	}
 
+	public Integer getCenterDistance() {
+		return centerDistance;
+	}
+
+	public void setCenterDistance(Integer centerDistance) {
+		this.centerDistance = centerDistance;
+	}
+	
+	public void propagateCenterDistance() {
+		if (centerDistance != null) {
+			Vector<Node> neighbourStack = new Vector<Node>();
+			
+			Integer neighbourDistance = new Integer(centerDistance.intValue()+1);
+			
+			for (Enumeration<Link> e = getLinks(); e.hasMoreElements();) {
+				Node neighbour = e.nextElement().getOther(this);
+				if (neighbour.getCenterDistance() == null) {
+					neighbour.setCenterDistance(neighbourDistance);
+					neighbourStack.add(neighbour);
+				}
+			}
+			for (Enumeration<Node> e = neighbourStack.elements(); e.hasMoreElements();) {
+				e.nextElement().propagateCenterDistance();
+			}
+		}
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -380,9 +401,5 @@ public class Node extends GraphElement implements PositionedObject {
 	public boolean visible() {
 		float scale = getBody().getScale();
 		return true || (scale > 0 && scale < 0.9);
-	}
-	
-	public void detach() {
-		graph.removeNode(this);
 	}
 }

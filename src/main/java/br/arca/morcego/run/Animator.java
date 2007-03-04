@@ -18,11 +18,14 @@
  */
 package br.arca.morcego.run;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.Vector;
 
 import br.arca.morcego.Config;
 import br.arca.morcego.structure.Graph;
+import br.arca.morcego.structure.GraphElement;
 import br.arca.morcego.structure.Node;
 
 /**
@@ -35,7 +38,7 @@ public class Animator implements Runnable {
 
 	private Graph graph;
 	private Vector<Node> visible;
-
+	
 	/**
 	 *  
 	 */
@@ -84,16 +87,15 @@ public class Animator implements Runnable {
 				}
 			}
 			
+			
+			graph.calculateDistances();
+			Collections.sort(visible, new AnimationStrategy());
+			
 			while (!visible.isEmpty()) {
 				Node node = (Node) visible.remove(0);
-				int i = 0;
-				while (i++ < visible.size() && !graph.connected(node)) {
-					visible.add(node);
-					node = (Node) visible.remove(0);
-				}
 				
 				graph.showNode(node);
-
+				
 				try {
 					Thread.sleep(
 						Config.getInteger(Config.feedAnimationInterval));
@@ -102,6 +104,22 @@ public class Animator implements Runnable {
 				}
 			}
 			visible = new Vector<Node>();
+		}
+	}
+	
+
+	private final class AnimationStrategy implements Comparator {
+		public int compare(Object o1, Object o2) {
+			Node n1 = (Node) o1;
+			Node n2 = (Node) o2;
+			
+			if (n1.getCenterDistance().intValue() < n2.getCenterDistance().intValue()) {
+				return -1;
+			}
+			if (n1.getCenterDistance().intValue() > n2.getCenterDistance().intValue()) {
+				return 1;
+			}
+			return 0;			
 		}
 	}
 

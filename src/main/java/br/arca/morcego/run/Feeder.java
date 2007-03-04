@@ -44,7 +44,7 @@ public class Feeder implements Runnable {
 
 	private Animator animator;
 
-	private boolean shouldWait = true;
+	private boolean shouldWait = false;
 
 	public Feeder(Graph g, Transport t) {
 		graph = g;

@@ -154,7 +154,7 @@ public class Config {
 
 		setValue(minNodeSize, new Integer(0));
 		setValue(navigationDepth, new Integer(3));
-		setValue(feedAnimationInterval, new Integer(100));
+		setValue(feedAnimationInterval, new Integer(200));
 		setValue(balancingStepInterval, new Integer(50));
 		setValue(fontSizeInterval, new Integer(5));
 
@@ -164,7 +164,7 @@ public class Config {
 		// Delay between each frame of animation
 		setValue(renderingFrameInterval, new Integer(50));
 
-		setValue(transportClass,"XmlrpcOldTransport");
+		setValue(transportClass,"XmlrpcTransport");
 
 		// Position of the camera
 		setValue(cameraDistance, new Integer(200));
@@ -246,10 +246,6 @@ public class Config {
 		return ((Float)getValue(var)).floatValue();
 	}
 	
-	public static Node getNode(String var) {
-		return (Node)getValue(var);
-	}
-
 	public static Enumeration listConfigVars() {
 		return config.keys();
 	}
@@ -258,8 +254,6 @@ public class Config {
 
 		if (type.equals(Integer.class)) {
 			return Integer.valueOf(value);
-		} else if (type.equals(Node.class)) {
-			return new Node(value);
 		} else if (type.equals(Float.class)) {
 			return Float.valueOf(value);
 		} else if (type.equals(String.class)) {
