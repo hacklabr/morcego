@@ -197,9 +197,11 @@ public class Node extends GraphElement implements PositionedObject {
 
 	public void setCenterDistance(Integer centerDistance) {
 		this.centerDistance = centerDistance;
+		/* debug stuff
 		if (centerDistance != null) {
 			setDescription(centerDistance.toString());
 		}
+		*/
 	}
 	
 	public void propagateCenterDistance() {
