@@ -49,8 +49,8 @@ public class DashedLink extends Link {
 		
 		int sections = parts * 2 - 1;
 
-		Vector3D start = body1.clone();
-		Vector3D inc = body2.getVectorFrom(start);
+		Vector3D start = new Vector3D(body1.projection.x, body1.projection.y, 0);
+		Vector3D inc = new Vector3D(body2.projection.x, body2.projection.y, 0).getVectorFrom(start);
 		Vector3D end = start.clone();
 		
 		inc.resize((float)1/sections);
@@ -61,8 +61,8 @@ public class DashedLink extends Link {
 				start.proj();
 				end.proj();
 				
-				g.drawLine(start.projection.x, start.projection.y, 
-						   end.projection.x, end.projection.y);
+				g.drawLine((int)start.x, (int)start.y, 
+						   (int)end.x, (int)end.y);
 			}
 			start.add(inc);
 			end.add(inc);

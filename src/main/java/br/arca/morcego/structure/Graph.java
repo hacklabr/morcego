@@ -195,7 +195,9 @@ public class Graph extends Component implements MouseInputListener,
 	 *  
 	 */
 	synchronized private void order() {
-		Collections.sort(visibleElements, new RenderingStrategy());
+		synchronized(visibleElements) {
+			Collections.sort(visibleElements, new RenderingStrategy());
+		}
 	}
 
 	public void navigateTo(Node node) {
@@ -511,8 +513,10 @@ public class Graph extends Component implements MouseInputListener,
 	}
 
 	public void hideFarNodes() {
+		// TODO we should use getVisibleNodes(), but this is causing detached nodes sometime
 		for (Enumeration<Node> e = getNodes().elements(); e.hasMoreElements();) {
 			Node node = e.nextElement();
+			//TODO bug: nodes are being hidden and then shown again in same request
 			if (node.getCenterDistance().intValue() > Config.getInteger(Config.navigationDepth)) {
 				hideNode((Node) node);
 			}
