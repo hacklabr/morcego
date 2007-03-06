@@ -43,12 +43,14 @@ public class XmlrpcTransport implements Transport {
 
 	private XmlRpcAppletClient client;
 	private String url;
+	private int protocolVersion = 1;
 	
 	public XmlrpcTransport() {
 	}
 	
 	public void setup() {
 		this.setServerUrl(Config.getString(Config.serverUrl));
+		protocolVersion = fetchVersion();
 	}
 	
 	public void setServerUrl(String server_url) {
@@ -59,17 +61,16 @@ public class XmlrpcTransport implements Transport {
 			System.out.println("Bad URL " + url);
 			e.printStackTrace();
 		}
-
 	}
 	
-	public Hashtable retrieveData(String centerId, Integer depth) {
-		Vector<Comparable> params = new Vector<Comparable>();
-		params.add(centerId);
-		params.add(depth);
-
+	/**
+	 * @param params
+	 * @return
+	 */
+	private Hashtable fetch(String method, Vector<Comparable> params) {
 		Hashtable result = new Hashtable();
 		try {
-			result = (Hashtable) client.execute("getSubGraph", params);
+			result = (Hashtable) client.execute(method, params);
 		} catch (XmlRpcException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,68 +80,61 @@ public class XmlrpcTransport implements Transport {
 		}
 		return result;
 	}
+
+	public Hashtable retrieveData(String centerId, Integer depth) {
+		float protocolVersion = fetchVersion();
+		if (protocolVersion >= 2) {
+			return fetchGraph(centerId, depth);
+		} else {
+			return oldFetchGraph(centerId, depth);
+		}
+	}
+	
+	private int fetchVersion() {
+		Integer version;
+		try {
+			version = (Integer) client.execute("getVersion", new Vector());
+		} catch (XmlRpcException e) {
+			version = 1;
+		} catch (IOException e) {
+			e.printStackTrace();
+			version = 1;
+		}
+		return version.intValue();
+	}
+
+	public Hashtable fetchGraph(String centerId, Integer depth) {
+		Vector<Comparable> params = new Vector<Comparable>();
+		params.add(centerId);
+		params.add(depth);
+
+		Hashtable result = fetch("getSubGraph",params);
+		return result;
+	}
+
 	
 	/*
-	 * Old code is here just to implement backward compatible transport 
-	 * 
-	private void fillGraph(Graph graph, Hashtable result) {
-		Hashtable nodes = (Hashtable) result.get("graph");
-		Hashtable<Node, Vector> neighbours = new Hashtable<Node, Vector>();
-
-		for (Enumeration eN = nodes.keys(); eN.hasMoreElements();) {
-			String nodeId = (String) eN.nextElement();
-			Hashtable<String, Object> nodeData = (Hashtable<String, Object>) nodes.get(nodeId);
-
-			if (nodeData.get("title") == null) {
-				nodeData.put("title", nodeId);
+	 * v0.4 backward compatibility
+	 */
+	private Hashtable oldFetchGraph(String centerId, Integer depth) {
+		Hashtable graph = fetchGraph(centerId, depth);
+		Hashtable<String, Hashtable> nodes = (Hashtable<String, Hashtable>) graph.get("graph");
+		Vector<Hashtable> links = new Vector<Hashtable>();
+		
+		for (Enumeration<String> e = nodes.keys(); e.hasMoreElements();) {
+			String nodeId = e.nextElement();
+			Hashtable node = nodes.get(nodeId);
+			
+			Vector<String> neighbours = (Vector<String>) node.get("neighbours");
+			for (Enumeration<String> eN = neighbours.elements(); eN.hasMoreElements();) {
+				Hashtable<String, String> link = new Hashtable<String, String>();
+				link.put("to", nodeId);
+				link.put("from", eN.nextElement());
+				links.add(link);
 			}
-			if (nodeData.get("type") == null) {
-				nodeData.put("type", Config.getString(Config.nodeDefaultType));
-			}
-			
-			Node node = GraphElementFactory.createNode(nodeId, graph, (String)nodeData.get("type"));
-			
-			Hashtable availableProperties = node.availableProperties();
-			
-			for (Enumeration<String> eP = nodeData.keys(); eP.hasMoreElements(); ) {
-				String key = eP.nextElement();
-				Class type = (Class) availableProperties.get(key);
-				if (type != null) {
-					node.setProperty(key, Config.decode((String) nodeData.get(key), type));
-				}
-			}
-			
-			node.init();
-			
-			neighbours.put(node, (Vector) nodeData.get("neighbours"));
 		}
-		
-		for (Enumeration e = neighbours.keys(); e.hasMoreElements();) {
-			Node node = (Node) e.nextElement();
-			Vector nodeNeighbours = neighbours.get(node);
-			
-			for (Enumeration eL = nodeNeighbours.elements();
-				eL.hasMoreElements();
-				) {
-				String neighbourName = (String) eL.nextElement();
-				if (!neighbourName.equals(node.getId())) {
-					Node neighbour = graph.getNodeById(neighbourName);
-					if (neighbour != null) {
-						Link link;
-						try {
-							link = GraphElementFactory.createLink(node, neighbour, Config.getString(Config.linkDefaultType));
-						} catch (LinkingDifferentGraphs e1) {
-							e1.printStackTrace();
-							break;
-						}
-						node.addLink(graph.getNodeById(neighbourName), link);
-						neighbour.addLink(node, link);
-					}
-				}
-			}	
-		}
-		
-		
+		graph.put("links", links);
+		graph.put("nodes", nodes);
+		return graph;
 	}
-	*/
 }
