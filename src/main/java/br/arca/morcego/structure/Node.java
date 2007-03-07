@@ -204,25 +204,6 @@ public class Node extends GraphElement implements PositionedObject {
 		*/
 	}
 	
-	public void propagateCenterDistance() {
-		if (centerDistance != null) {
-			Vector<Node> neighbourStack = new Vector<Node>();
-			
-			Integer neighbourDistance = new Integer(centerDistance.intValue()+1);
-			
-			for (Enumeration<Link> e = getLinks(); e.hasMoreElements();) {
-				Node neighbour = e.nextElement().getOther(this);
-				if (neighbour.getCenterDistance() == null) {
-					neighbour.setCenterDistance(neighbourDistance);
-					neighbourStack.add(neighbour);
-				}
-			}
-			for (Enumeration<Node> e = neighbourStack.elements(); e.hasMoreElements();) {
-				e.nextElement().propagateCenterDistance();
-			}
-		}
-	}
-	
 	/*
 	 * (non-Javadoc)
 	 * 

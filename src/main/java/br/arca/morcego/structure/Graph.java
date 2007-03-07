@@ -223,8 +223,26 @@ public class Graph extends Component implements MouseInputListener,
 		for (Enumeration<Node> e = nodes.elements(); e.hasMoreElements();) {
 			e.nextElement().setCenterDistance(null);
 		}
-		centerNode.setCenterDistance(new Integer(0));	
-		centerNode.propagateCenterDistance();
+		
+		//fifo queue of nodes
+		Vector<Node> nodeQueue = new Vector<Node>();
+		nodeQueue.add(centerNode);
+		int distance = 0;
+		
+		while (!nodeQueue.isEmpty()) {
+			int size = nodeQueue.size();
+			for (int i=0; i<size; i++) {
+				Node node = nodeQueue.remove(0);
+				node.setCenterDistance(new Integer(distance));
+				for (Enumeration<Link> e = node.getLinks(); e.hasMoreElements();) {
+					Node neighbour = e.nextElement().getOther(node);
+					if (!nodeQueue.contains(neighbour) && neighbour.getCenterDistance() == null) {
+						nodeQueue.add(neighbour);
+					}
+				}
+			}
+			distance++;
+		}
 	}
 
 
