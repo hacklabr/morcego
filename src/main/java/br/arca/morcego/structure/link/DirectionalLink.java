@@ -16,11 +16,14 @@ import br.arca.morcego.structure.Node;
  * To change the template for this generated type comment go to Window -
  * Preferences - Java - Code Generation - Code and Comments
  */
-public class OrientedLink extends Link {
+public class DirectionalLink extends Link {
 
-	private Integer parts = 10;
-	
-	public OrientedLink() {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5189503975335282448L;
+
+	public DirectionalLink() {
 		super();
 	}
 	/**
@@ -28,7 +31,7 @@ public class OrientedLink extends Link {
 	 * @param n2
 	 * @throws LinkingDifferentGraphs 
 	 */
-	public OrientedLink(Node n1, Node n2) {
+	public DirectionalLink(Node n1, Node n2) {
 		super(n1, n2);
 	}
 	
