@@ -53,8 +53,6 @@ public class Node extends GraphElement implements PositionedObject {
 
 	private boolean isCentered;
 
-	private DescriptionBox description;
-
 	// Maximum module node's position can have when being dragged
 	// by user
 	private float maxModule;
@@ -213,12 +211,6 @@ public class Node extends GraphElement implements PositionedObject {
 		return Morcego.getCamera().getDistanceTo(body);
 	}
 
-	/**
-	 * @param nodeDescription
-	 */
-	public void setDescription(String nodeDescription) {
-		description = new DescriptionBox(nodeDescription);
-	}
 
 	/**
 	 *  
@@ -226,9 +218,6 @@ public class Node extends GraphElement implements PositionedObject {
 	public void init() {
 		super.init();
 		
-		if (getProperty("description") != null) {
-			setDescription((String) getProperty("description"));
-		}
 		if (getProperty("title") == null) {
 			setProperty("title", id);
 		}

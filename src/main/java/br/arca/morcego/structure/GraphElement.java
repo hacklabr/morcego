@@ -14,6 +14,7 @@ import java.util.Hashtable;
 import javax.swing.event.MouseInputListener;
 
 import br.arca.morcego.Config;
+import br.arca.morcego.component.DescriptionBox;
 import br.arca.morcego.physics.VisibleObject;
 
 
@@ -28,6 +29,8 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 	
 	private Hashtable<String, Object> properties;
 	protected Graph graph;
+	
+	protected DescriptionBox description;
 	
 	public GraphElement() {
 		properties = new Hashtable<String, Object>();
@@ -66,6 +69,17 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 	
 	public void init() {
 		setProperty("type", this.getClass().getName());
+		
+		if (getProperty("description") != null) {
+			setDescription((String) getProperty("description"));
+		}
+	}
+
+	/**
+	 * @param nodeDescription
+	 */
+	public void setDescription(String nodeDescription) {
+		description = new DescriptionBox(nodeDescription);
 	}
 
 	public void setGraph(Graph g) {
