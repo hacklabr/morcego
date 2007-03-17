@@ -122,7 +122,7 @@ public class Graph extends Component implements MouseInputListener,
 			}
 		}
 		
-		if (centerNode == null && node.getId().equals(getCenterId())) {
+		if (centerNode == null && (node.getId().equals(getCenterId()))) {
 			center(node);
 		}
 		
@@ -161,10 +161,12 @@ public class Graph extends Component implements MouseInputListener,
 	}
 	
 	public void hideNode(Node node) {
+		node.hideDescription();
 		visibleElements.remove(node);
 		visibleNodes.remove(node);
 		for (Enumeration<Link> e = node.getLinks(); e.hasMoreElements();) {
 			Link link = e.nextElement();
+			link.hideDescription();
 			visibleElements.remove(link);
 			visibleLinks.remove(link);
 		}
@@ -243,6 +245,7 @@ public class Graph extends Component implements MouseInputListener,
 			}
 			distance++;
 		}
+		
 	}
 
 

@@ -143,6 +143,13 @@ import br.arca.morcego.physics.Vector3D;
 		 */
 		public void mouseEntered(MouseEvent e) {
 			Morcego.setHandCursor();
+			showDescription();
+			e.consume();
+		}
+		/**
+		 * 
+		 */
+		private void showDescription() {
 			if (description != null) {
 				int x = (node1.getBody().projection.x + node2.getBody().projection.x)/2;
 				int y = (node1.getBody().projection.y + node2.getBody().projection.y)/2;
@@ -150,7 +157,6 @@ import br.arca.morcego.physics.Vector3D;
 				Morcego application = Morcego.getApplication();
 				application.add(description);
 				description.setVisible(true);
-				e.consume();
 				Morcego.notifyRenderer();
 			}
 		}
@@ -162,11 +168,9 @@ import br.arca.morcego.physics.Vector3D;
 		 */
 		public void mouseExited(MouseEvent e) {
 			Morcego.setDefaultCursor();
-			if (description != null) {
-				Morcego.getApplication().remove(description);
-				Morcego.notifyRenderer();
-			}
+			hideDescription();
 		}
+
 	
 		/*
 		 * (non-Javadoc)

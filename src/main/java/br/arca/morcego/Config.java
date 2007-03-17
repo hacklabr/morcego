@@ -154,7 +154,7 @@ public class Config {
 
 		setValue(minNodeSize, new Integer(0));
 		setValue(navigationDepth, new Integer(3));
-		setValue(feedAnimationInterval, new Integer(200));
+		setValue(feedAnimationInterval, new Integer(100));
 		setValue(balancingStepInterval, new Integer(50));
 		setValue(fontSizeInterval, new Integer(5));
 

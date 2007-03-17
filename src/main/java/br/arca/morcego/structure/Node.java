@@ -257,12 +257,19 @@ public class Node extends GraphElement implements PositionedObject {
 	 */
 	public void mouseEntered(MouseEvent e) {
 		Morcego.setHandCursor();
+		showDescription();
+		e.consume();
+	}
+
+	/**
+	 * 
+	 */
+	private void showDescription() {
 		if (description != null) {
 			description.setPosition(body.projection.x, body.projection.y);
 			Morcego application = Morcego.getApplication();
 			application.add(description);
 			description.setVisible(true);
-			e.consume();
 			Morcego.notifyRenderer();
 		}
 	}
@@ -274,11 +281,9 @@ public class Node extends GraphElement implements PositionedObject {
 	 */
 	public void mouseExited(MouseEvent e) {
 		Morcego.setDefaultCursor();
-		if (description != null) {
-			Morcego.getApplication().remove(description);
-			Morcego.notifyRenderer();
-		}
+		hideDescription();
 	}
+
 
 	/*
 	 * (non-Javadoc)
