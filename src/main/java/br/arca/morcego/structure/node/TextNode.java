@@ -44,11 +44,13 @@ public class TextNode extends Node {
 		textSize =
 			(int) Math.round(
 				(double) Config.getInteger(Config.textSize)
-					* getBody().getScale());
+					* getScale());
 	
+		/*
 		if (this.centered()) {
 			textSize = (int) (textSize * 1.5);
 		}
+		*/
 		
 	}
 	

@@ -11,11 +11,30 @@ Use the following tags to distinguish changes :
 * [MOD] is an enhancement; not really new but makes things work better
 * [FIX] can be used for bug fixes of any sort
 
+Version 0.5.0
+
+In this version graph internal structure and xmlrpc transport were refactored so that
+links can have properties as nodes do. Now it's possible to represent different kinds
+of nodes and relations and have its physical properties to reflect some real world value.
+
+Visualization impression also got better with a more flexible camera adjustment.
+
+[NEW] Xmlrpc transport version 2, supporting properties for links
+[NEW] Configurable node and link types
+[NEW] Types "Dashed", "Directional" and "Bidirectional" for links
+[NEW] Types "Text" and "Image" for nodes
+[NEW] Mouse over on link shows description
+[MOD] More flexible camera adjustment system, controlled by minCameraDistance option
+[NEW] Configuration option centerNodeScale
+[MOD] Config variable linkColor renamed to defaultLinkColor and transportClass renamed to transport
+[MOD] New default values for windowWidth, elasticConstant, punctualElasticConstant and feedAnimationInterval
+[MOD] Configuration options adjustCameraDistance removed, viewHeight and viewWidth got obsolete
+[FIX] Balancer would not awake if it stops while user holds a node
+[NEW] Navigation controlled by javascript
+
 Version 0.4.1
 
 [FIX] Node title was being ignored
-[NEW] Configurable node type. Default type defined by nodeDefaultType
-[NEW] "Text" node type, only show node title and no image
 
 Version 0.4.0
 -------------

@@ -50,6 +50,9 @@ public class BalancerTest extends TestCase {
 		particle1 = GraphElementFactory.createNode("1", universe, "Round");
 		particle2 = GraphElementFactory.createNode("2", universe, "Round");
 		
+		universe.showNode(particle1);
+		universe.showNode(particle2);
+		
 		float distanceBefore = particle1.getBody().getDistanceTo(particle2.getBody());
 		
 		balancer.runBalancingEngine();

@@ -386,6 +386,9 @@ public class Morcego extends Applet {
 		return origin;
 	}
 
+	public void navigateTo(String nodeId) {
+		graph.navigateTo(graph.getNodeById(nodeId));
+	}
 
 
 }

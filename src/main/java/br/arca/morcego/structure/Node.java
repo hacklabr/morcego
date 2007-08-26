@@ -37,6 +37,11 @@ import br.arca.morcego.physics.Vector3D;
 
 public class Node extends GraphElement implements PositionedObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4471920873578042527L;
+
 	protected String id;
 
 	protected PunctualBody body;
@@ -323,7 +328,8 @@ public class Node extends GraphElement implements PositionedObject {
 			releasePosition();
 		}
 		mouseExited(e);
-		graph.releaseFocus();		
+		graph.releaseFocus();	
+		graph.notifyBalancer();
 	}
 
 	/*
@@ -381,5 +387,13 @@ public class Node extends GraphElement implements PositionedObject {
 	public boolean visible() {
 		float scale = getBody().getScale();
 		return true || (scale > 0 && scale < 0.9);
+	}
+	
+	public float getScale() {
+		float scale = body.getScale();
+		if (centered()) {
+			scale *= Config.getFloat(Config.centerNodeScale);
+		}
+		return scale;
 	}
 }

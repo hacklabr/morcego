@@ -42,10 +42,7 @@ public class DashedLink extends Link {
 		Vector3D body1 = node1.getBody();
 		Vector3D body2 = node2.getBody();
 
-		g.setColor(
-				Renderer.fadeColor(
-					Config.getColor(Config.linkColor),
-					Math.min(body1.getScale(), body2.getScale())));
+		g.setColor(Renderer.fadeColor(color, Math.min(body1.getScale(), body2.getScale())));
 		
 		int sections = parts * 2 - 1;
 

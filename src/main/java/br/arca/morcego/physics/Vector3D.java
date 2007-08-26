@@ -85,8 +85,10 @@ public class Vector3D implements PositionedObject {
 	public void proj() {
 		Camera camera = Morcego.getCamera();
 		
-		//scale = FOV / Morcego.getCamera().getDistanceTo(this);
-
+		if (camera == null) {
+			return;
+		}
+		
 		scale = camera.getDistanceTo(new Vector3D(0,0,z));
 		if (scale > 0) {
 			scale = FOV / scale;

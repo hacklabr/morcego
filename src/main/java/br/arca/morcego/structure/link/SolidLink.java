@@ -39,10 +39,8 @@ public class SolidLink extends Link {
 		PunctualBody body1 = node1.getBody();
 		PunctualBody body2 = node2.getBody();
 			
-		g.setColor(
-			Renderer.fadeColor(
-				Config.getColor(Config.linkColor),
-				Math.min(body1.getScale(), body2.getScale())));
+		g.setColor(Renderer.fadeColor(color, Math.min(body1.getScale(), body2.getScale())));
+		
 		g.drawLine(body1.projection.x, body1.projection.y, 
 				   body2.projection.x, body2.projection.y);
 	}	

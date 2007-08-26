@@ -460,7 +460,7 @@ public class Graph extends Component implements MouseInputListener,
 		Class transportClass = null;
 		Transport transport = null;
 		try {
-			transportClass = Config.getTransportClass(Config.transportClass);
+			transportClass = Config.getTransportClass();
 			transport = (Transport) transportClass.newInstance();
 			transport.setup();
 		} catch (Exception e) {

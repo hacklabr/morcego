@@ -38,7 +38,7 @@ public class Config {
 	private static Hashtable<String, Object> config = new Hashtable<String, Object>();
 
 	public static final String backgroundColor = "morcego.backgroundColor";
-	public static final String linkColor = "morcego.linkColor";
+	public static final String linkDefaultColor = "morcego.linkColor";
 	public static final String nodeDefaultType = "morcego.nodeDefaultType";
 	public static final String nodeDefaultColor = "morcego.nodeDefaultColor";
     public static final String nodeDefaultImage = "morcego.nodeDefaultImage";
@@ -57,9 +57,9 @@ public class Config {
 	public static final String textSize = "morcego.textSize";
 
 	public static final String cameraDistance = "morcego.cameraDistance";
+	public static final String minCameraDistance = "morcego.minCameraDistance";
 	public static final String fieldOfView = "morcego.fieldOfView";
-	public static String adjustCameraPosition = "morcego.adjustCameraPosition";
-
+	
 	public static final String windowWidth = "morcego.windowWidth";
 	public static final String windowHeight = "morcego.windowHeight";
 
@@ -71,7 +71,7 @@ public class Config {
 
 	public static final String maxTheta = "morcego.maxTheta";
 	public static final String minTheta = "morcego.minTheta";
-	//TODO rename to minNodeSize
+	
 	public static final String minNodeSize = "morcego.minNodeSize";
 	public static final String navigationDepth = "morcego.navigationDepth";
 	public static final String feedAnimationInterval = "morcego.feedAnimationInterval";
@@ -84,7 +84,7 @@ public class Config {
 
 	public static final String serverUrl = "morcego.serverUrl";
 
-	public static final String transportClass = "morcego.transportClass";
+	public static final String transport = "morcego.transportClass";
 
 	public static final String startNode = "morcego.startNode";
 
@@ -108,35 +108,49 @@ public class Config {
 	public static String punctualElasticConstant = "morcego.punctualElasticConstant";
 
 	public static String loadPageOnCenter = "morcego.loadPageOnCenter";
+
+	public static String centerNodeScale = "morcego.centerNodeScale";
 	
 	/*
 	 * Sets all configuration, edit here to modify config
 	 */
 	public static void init() {
 
+		// These should be set by application, from applet parameters
+		// They're set here for developing purposes
+		setValue(serverUrl,	"http://morcego.arca.ime.usp.br/tiki-wiki3d_xmlrpc.php");
+		setValue(startNode, "HomePage");
+
+		// Colors and layout settings
+		
+		setValue(showMorcegoLogo, new Boolean("true"));
+		setValue(logoX, new Integer(10));
+		setValue(logoY, new Integer(10));
+		
+		setValue(showArcaLogo, new Boolean("true"));
+		setValue(arcaX, new Integer(480));
+		setValue(arcaY, new Integer(460));
+		
 		setValue(backgroundColor, new Color(255, 255, 255));
 
-		setValue(linkColor, new Color(120, 120, 120));
+		setValue(linkDefaultType, new String("Solid"));
+		setValue(linkDefaultColor, new Color(120, 120, 120));
+		
+		setValue(nodeDefaultType, new String("Round"));
 		setValue(nodeDefaultColor, new Color(255, 0, 0));
         setValue(nodeDefaultImage, new String("default.gif"));
-        
-		setValue(nodeDefaultType, new String("Round"));
-		setValue(linkDefaultType, new String("Solid"));
 		
-		setValue(_imageLocation, new String("br/arca/morcego/image/"));
-		
+        setValue(textSize, new Integer(25));
+		setValue(nodeSize, new Integer(15));
+		setValue(minNodeSize, new Integer(0));
+		setValue(centerNodeScale, new Float(2));
+
 		setValue(nodeBorderColor, new Color(0,0,0));
 		setValue(descriptionColor, new Color(40,40,40));
 		setValue(descriptionBackground, new Color(200,200,200));
 		setValue(descriptionBorder, new Color(0,0,0));
 		setValue(descriptionMargin, new Integer(4));
 		
-		setValue(showMorcegoLogo, new Boolean("true"));
-		setValue(showArcaLogo, new Boolean("true"));
-		setValue(logoX, new Integer(10));
-		setValue(logoY, new Integer(10));
-		setValue(arcaX, new Integer(480));
-		setValue(arcaY, new Integer(460));
 		
 		// Window definition
 		setValue(windowWidth, new Integer(600));
@@ -145,52 +159,44 @@ public class Config {
 		// View area definition
 		setValue(viewStartX, new Integer(0));
 		setValue(viewStartY, new Integer(0));
-		setValue(viewHeight, new Integer(500));
-		setValue(viewWidth, new Integer(600));
-
-		// rotation angle limits
-		setValue(maxTheta, new Float(20.0f));
-		setValue(minTheta, new Float(1.0f));
-
-		setValue(minNodeSize, new Integer(0));
-		setValue(navigationDepth, new Integer(3));
-		setValue(feedAnimationInterval, new Integer(100));
-		setValue(balancingStepInterval, new Integer(50));
-		setValue(fontSizeInterval, new Integer(5));
-
-		// Name of window in which URLs should be loaded
-		setValue(controlWindowName, "morcegoController");
-
-		// Delay between each frame of animation
-		setValue(renderingFrameInterval, new Integer(50));
-
-		setValue(transportClass,"XmlrpcTransport");
+		setValue(viewHeight, getValue(windowHeight));
+		setValue(viewWidth, getValue(windowWidth));
 
 		// Position of the camera
-		setValue(cameraDistance, new Integer(200));
-		setValue(adjustCameraPosition, new Boolean(true));
-
+		setValue(cameraDistance, new Integer(500));
+		setValue(minCameraDistance, new Integer(150));
 		setValue(fieldOfView, new Integer(250));
-		setValue(nodeSize, new Integer(15));
-		setValue(textSize, new Integer(25));
 
+		// Physical model
 		setValue(frictionConstant, new Float(0.4f));
-		setValue(elasticConstant, new Float(0.5f));
-		setValue(punctualElasticConstant, new Float(1f));
+		setValue(elasticConstant, new Float(0.3f));
+		setValue(punctualElasticConstant, new Float(0.8f));
 		setValue(eletrostaticConstant, new Float(1000f));
 		setValue(springSize, new Float(100));
 		setValue(nodeMass, new Float(5));
 		setValue(nodeCharge, new Float(1));
-
+		
+		// rotation angle limits (mouse sensitiveness)
+		setValue(maxTheta, new Float(20.0f));
+		setValue(minTheta, new Float(1.0f));
+		
+		setValue(renderingFrameInterval, new Integer(50));
+		setValue(balancingStepInterval, new Integer(50));
+		setValue(fontSizeInterval, new Integer(5));
+		
+		setValue(transport,"Xmlrpc");
+		setValue(feedAnimationInterval, new Integer(100));
 		setValue(loadPageOnCenter, new Boolean(true));
+		setValue(navigationDepth, new Integer(3));
+
+		// Name of window in which URLs should be loaded
+		setValue(controlWindowName, "morcegoController");
+
 
 		// Private configuration vars, set by application
 		setValue(_implementsHierarchy, new Boolean(false));
-
-		// This should be set by application, from applet parameters
-		// They're set here for developing purposes
-		setValue(serverUrl,	"http://morcego.arca.ime.usp.br/tiki-wiki3d_xmlrpc.php");
-		setValue(startNode, "HomePage");
+		setValue(_imageLocation, new String("br/arca/morcego/image/"));
+		
 	}
 
 	public static void setValue(String var, Object value) {
@@ -218,8 +224,8 @@ public class Config {
 	}
 	
 
-	public static Class getTransportClass(String var) {
-		return getClass("br.arca.morcego.transport.", Config.getString(var));
+	public static Class getTransportClass() {
+		return getClass("br.arca.morcego.transport.", getString(transport).concat("Transport"));
 	}
 	public static Class getNodeClass(String nodeType) {
 		return getClass("br.arca.morcego.structure.node.",

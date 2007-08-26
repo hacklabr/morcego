@@ -50,7 +50,7 @@ public class RoundNode extends Node {
 	public void proj() {
 
 		nodeSize = (int) Math.round((double) Config.getInteger(Config.nodeSize)
-				* getBody().getScale());
+				* getScale());
 
 		if (nodeSize < Config.getInteger(Config.minNodeSize))
 			nodeSize = Config.getInteger(Config.minNodeSize);
@@ -65,11 +65,13 @@ public class RoundNode extends Node {
 		textSize =
 			(int) Math.round(
 				(double) Config.getInteger(Config.textSize)
-					* getBody().getScale());
+					* getScale());
 	
+		/*
 		if (this.centered()) {
 			textSize = (int) (textSize * 1.5);
 		}
+		*/
 		
 	}
 
@@ -79,13 +81,13 @@ public class RoundNode extends Node {
 		Graphics2D graphic = (Graphics2D) g;
 
 		graphic.setColor(
-			Renderer.fadeColor((Color) getProperty("color"), getBody().getScale()));
+			Renderer.fadeColor((Color) getProperty("color"), getScale()));
 
 		graphic.fillOval(boundRectangle.x, boundRectangle.y, nodeSize, nodeSize);
 		graphic.setColor(
 			Renderer.fadeColor(
 				Config.getColor(Config.nodeBorderColor),
-				getBody().getScale()));
+				getScale()));
 		graphic.drawOval(boundRectangle.x, boundRectangle.y, nodeSize, nodeSize);
 
 		AffineTransform at = new AffineTransform(40, 0, 0, 4, 00, 0);

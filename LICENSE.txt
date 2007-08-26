@@ -1,5 +1,5 @@
 Morcego - 3D network browser
-Copyright (C) 2004 Luis Fagundes - Arca <lfagundes@arca.ime.usp.br> 
+Copyright (C) 2007 Luis Fagundes - Arca <lfagundes@arca.ime.usp.br> 
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public

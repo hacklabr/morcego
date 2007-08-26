@@ -49,7 +49,8 @@ public class Camera extends Vector3D {
 	}
 	
 	public void adjustPosition(Graph graph) {
-		if (Config.getBoolean(Config.adjustCameraPosition)) {
+		int minDistance = Config.getInteger(Config.minCameraDistance);
+		if (minDistance > 0) {
 			synchronized (this) {
 				int distance = (Config.getInteger(Config.cameraDistance));
 				z = distance;
@@ -57,8 +58,8 @@ public class Camera extends Vector3D {
 				Enumeration en = graph.getVisibleNodes().elements();
 				while (en.hasMoreElements()) {
 					Node node = (Node) en.nextElement();
-					if (node.getBody().z + distance > z) {
-						z = node.getBody().z + distance;
+					if (node.getBody().z + minDistance > z) {
+						z = node.getBody().z + minDistance;
 					}
 				}
 			}

@@ -28,6 +28,7 @@ import java.awt.geom.Rectangle2D;
 	import java.net.URL;
 	import java.util.Hashtable;
 	
+import br.arca.morcego.Config;
 	import br.arca.morcego.Morcego;
 import br.arca.morcego.component.DescriptionBox;
 	import br.arca.morcego.physics.Spring;
@@ -47,6 +48,7 @@ import br.arca.morcego.physics.Vector3D;
 		
 		protected Node node1, node2;
 
+		protected Color color = Config.getColor(Config.linkDefaultColor);
 
 		public Link() {
 			super();
@@ -79,8 +81,8 @@ import br.arca.morcego.physics.Vector3D;
 			prop.put("type", String.class);
 			prop.put("color", Color.class);
 			prop.put("description", String.class);
-			prop.put("size", Float.class);
-			prop.put("elasticity", Float.class);
+			prop.put("springSize", Float.class);
+			prop.put("sprintElasticConstant", Float.class);
 			return prop;
 		}
 	
@@ -215,6 +217,9 @@ import br.arca.morcego.physics.Vector3D;
 			}
 			if (name.equals("springElasticConstant")) {
 				spring.setElasticConstant(((Float)value).floatValue());
+			}
+			if (name.equals("color")) {
+				color = (Color) value;
 			}
 			super.setProperty(name, value);
 		}

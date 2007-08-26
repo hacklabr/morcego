@@ -3,7 +3,7 @@
   <groupId>br.arca.morcego</groupId>
   <artifactId>morcego</artifactId>
   <name>morcego</name>
-  <version>0.4.1-SNAPSHOT</version>
+  <version>0.5.0RC1</version>
   <description>Morcego 3D network browser is a java application to view graphs and networks in a 3D environment. 
 	It's currently integrated to TikiWiki to view the wiki structure.</description>
   <url>http://maven.apache.org</url>
@@ -29,7 +29,16 @@
   
   <build>
     <plugins>
-
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -57,7 +66,18 @@
         </executions>
       </plugin>
 
+	  <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptors>
+            <descriptor>src/assemble/binary.xml</descriptor>
+            <descriptor>src/assemble/source.xml</descriptor>
+          </descriptors>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build> 
+
 
 </project>

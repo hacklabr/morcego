@@ -55,7 +55,7 @@ public class ImageNode extends Node {
 
 	public void proj() {
 		nodeSize = (int) Math.round((double) Config.getInteger(Config.nodeSize)
-				* getBody().getScale());
+				* getScale());
 
 		if (nodeSize < Config.getInteger(Config.minNodeSize))
 			nodeSize = Config.getInteger(Config.minNodeSize);
@@ -70,11 +70,13 @@ public class ImageNode extends Node {
 		textSize =
 			(int) Math.round(
 				(double) Config.getInteger(Config.textSize)
-					* getBody().getScale());
+					* getScale());
 	
+		/*
 		if (this.centered()) {
 			textSize = (int) (textSize * 1.5);
 		}
+		*/
 		
 	}
 

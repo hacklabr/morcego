@@ -16,14 +16,14 @@ import br.arca.morcego.structure.Node;
  * To change the template for this generated type comment go to Window -
  * Preferences - Java - Code Generation - Code and Comments
  */
-public class DirectionalLink extends Link {
+public class BidirectionalLink extends Link {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5189503975335282448L;
 
-	public DirectionalLink() {
+	public BidirectionalLink() {
 		super();
 	}
 	/**
@@ -31,7 +31,7 @@ public class DirectionalLink extends Link {
 	 * @param n2
 	 * @throws LinkingDifferentGraphs 
 	 */
-	public DirectionalLink(Node n1, Node n2) {
+	public BidirectionalLink(Node n1, Node n2) {
 		super(n1, n2);
 	}
 	
@@ -43,24 +43,27 @@ public class DirectionalLink extends Link {
 		
 		Vector3D start = new Vector3D(body1.projection.x, body1.projection.y, 0);
 		Vector3D inc = new Vector3D(body2.projection.x, body2.projection.y, 0).getVectorFrom(start);
+		start.add(inc.multiplyByScalar((float)0.1));
 		Vector3D end = start.clone();
-		end.add(inc.multiplyByScalar((float)0.9));
+		end.add(inc.multiplyByScalar((float)0.8));
 		
 		g.drawLine((int)start.x, (int)start.y, (int)end.x, (int)end.y);
 		
-		Vector3D arrow = inc.opposite().multiplyByScalar((float)0.06);
+		Vector3D arrow = inc.opposite().multiplyByScalar((float)0.07);
 		
 		double angle = Math.PI/6;
 		
 		float newX = (float) (arrow.x * Math.cos(angle) + arrow.y * Math.sin(angle));
 		float newY = (float) (arrow.y * Math.cos(angle) - arrow.x * Math.sin(angle));
 		g.drawLine((int)end.x, (int)end.y, (int)(end.x+newX), (int)(end.y+newY));
+		g.drawLine((int)start.x, (int)start.y, (int)(start.x-newX), (int)(start.y-newY));
 		
 		angle *= -1;
 		
 		newX = (float) (arrow.x * Math.cos(angle) + arrow.y * Math.sin(angle));
 		newY = (float) (arrow.y * Math.cos(angle) - arrow.x * Math.sin(angle));
 		g.drawLine((int)end.x, (int)end.y, (int)(end.x+newX), (int)(end.y+newY));
+		g.drawLine((int)start.x, (int)start.y, (int)(start.x-newX), (int)(start.y-newY));
 		
 		
 	}
