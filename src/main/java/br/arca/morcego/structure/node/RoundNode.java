@@ -27,53 +27,9 @@ import br.arca.morcego.structure.Node;
  * To change the template for this generated type comment go to Window -
  * Preferences - Java - Code Generation - Code and Comments
  */
-public class RoundNode extends Node { 
+public class RoundNode extends FancyNode { 
 	
-	protected int textSize;
 
-	// relative size of ball and text
-	protected int nodeSize;
-
-
-	public RoundNode() {
-		super();
-	}
-
-	/**
-	 * @param id
-	 * @param graph
-	 */
-	public RoundNode(String id, Graph graph) {
-		super(id, graph);
-	}
-
-	public void proj() {
-
-		nodeSize = (int) Math.round((double) Config.getInteger(Config.nodeSize)
-				* getScale());
-
-		if (nodeSize < Config.getInteger(Config.minNodeSize))
-			nodeSize = Config.getInteger(Config.minNodeSize);
-
-		int c = nodeSize / 2;
-
-		int cornerU = body.projection.x - c;
-		int cornerV = body.projection.y - c;
-
-		boundRectangle = new Rectangle(cornerU, cornerV, nodeSize, nodeSize);
-	
-		textSize =
-			(int) Math.round(
-				(double) Config.getInteger(Config.textSize)
-					* getScale());
-	
-		/*
-		if (this.centered()) {
-			textSize = (int) (textSize * 1.5);
-		}
-		*/
-		
-	}
 
 	public void paint(Graphics g) {
 		proj();

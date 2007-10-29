@@ -80,7 +80,11 @@ public class GraphElementFactory {
 			node.setup(nodeId, graph);
 		} catch (Exception e) {
 			e.printStackTrace();
-			node = new RoundNode(nodeId, graph);
+			if (!type.equals("Round")) {
+				node = createNode(nodeId, graph, "Round");
+			} else {
+				node = new Node(nodeId, graph);
+			}
 		}
 		
 		return node;
