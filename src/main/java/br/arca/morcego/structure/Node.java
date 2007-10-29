@@ -95,8 +95,7 @@ public class Node extends GraphElement implements PositionedObject {
 	}
 	
 	public Hashtable<String, Class> availableProperties() {
-		Hashtable<String, Class> prop = new Hashtable<String,Class>();
-		prop.put("type", String.class);
+		Hashtable<String, Class> prop = super.availableProperties();
 		prop.put("color", Color.class);
 		prop.put("actionUrl", URL.class);
 		prop.put("hierarchy", Integer.class);
@@ -104,6 +103,9 @@ public class Node extends GraphElement implements PositionedObject {
 		prop.put("title", String.class);
 		prop.put("mass", Float.class);
 		prop.put("charge", Float.class);
+		prop.put("onmouseover", String.class);
+		prop.put("onmouseout", String.class);
+		prop.put("onclick", String.class);
 		return prop;
 	}
 
@@ -253,6 +255,7 @@ public class Node extends GraphElement implements PositionedObject {
 						Config.getString(Config.controlWindowName));
 			}
 		}
+		this.callJsEvent("onclick");
 	}
 
 	/*
@@ -264,8 +267,10 @@ public class Node extends GraphElement implements PositionedObject {
 		Morcego.setHandCursor();
 		showDescription();
 		e.consume();
+		this.callJsEvent("onmouseover");
 	}
 
+	
 	/**
 	 * 
 	 */
@@ -287,6 +292,7 @@ public class Node extends GraphElement implements PositionedObject {
 	public void mouseExited(MouseEvent e) {
 		Morcego.setDefaultCursor();
 		hideDescription();
+		this.callJsEvent("onmouseout");
 	}
 
 

@@ -115,5 +115,11 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 	public Graph getGraph() {
 		return graph;
 	}
+	
+	public void callJsEvent(String eventName) {
+		if (this.getProperty(eventName) != null) {
+			Morcego.JSCall((String) this.getProperty(eventName));
+		}
+	}
 
 }

@@ -36,6 +36,11 @@ import br.arca.morcego.structure.Node;
 public class Config {
 
 	private static Hashtable<String, Object> config = new Hashtable<String, Object>();
+	
+	/*
+	 * For documentation purpose, keep development version variables separated
+	 * v0.5.0 - stable
+	 */
 
 	public static final String backgroundColor = "morcego.backgroundColor";
 	public static final String linkDefaultColor = "morcego.linkColor";
@@ -112,6 +117,12 @@ public class Config {
 	public static String centerNodeScale = "morcego.centerNodeScale";
 	
 	/*
+	 * v0.5.1 - development
+	 */
+	
+	
+	
+	/*
 	 * Sets all configuration, edit here to modify config
 	 */
 	public static void init() {
@@ -186,13 +197,12 @@ public class Config {
 		
 		setValue(transport,"Xmlrpc");
 		setValue(feedAnimationInterval, new Integer(100));
-		setValue(loadPageOnCenter, new Boolean(true));
+		setValue(loadPageOnCenter, new Boolean(true)); // will get obsolete with onNavigateJSFunction
 		setValue(navigationDepth, new Integer(3));
 
 		// Name of window in which URLs should be loaded
 		setValue(controlWindowName, "morcegoController");
-
-
+		
 		// Private configuration vars, set by application
 		setValue(_implementsHierarchy, new Boolean(false));
 		setValue(_imageLocation, new String("br/arca/morcego/image/"));

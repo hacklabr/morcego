@@ -19,6 +19,7 @@
 
 package br.arca.morcego;
 
+import netscape.javascript.*;
 import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -388,6 +389,13 @@ public class Morcego extends Applet {
 
 	public void navigateTo(String nodeId) {
 		graph.navigateTo(graph.getNodeById(nodeId));
+	}
+	
+	public static void JSCall(String jsCommand) {
+		JSObject win = JSObject.getWindow(application);
+		if (win != null) {
+			win.eval(jsCommand);
+		}
 	}
 
 

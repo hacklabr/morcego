@@ -11,6 +11,10 @@ Use the following tags to distinguish changes :
 * [MOD] is an enhancement; not really new but makes things work better
 * [FIX] can be used for bug fixes of any sort
 
+Version 0.5.1
+
+[NEW] Better integration with HTML page by generating JS events from Morcego, through "onmouseover", "onmouseout" and "onclick" node properties
+
 Version 0.5.0
 
 In this version graph internal structure and xmlrpc transport were refactored so that
