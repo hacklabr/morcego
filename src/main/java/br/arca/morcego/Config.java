@@ -20,6 +20,7 @@
 package br.arca.morcego;
 
 import java.awt.Color;
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
@@ -286,5 +287,33 @@ public class Config {
 			}
 		}
 		return value;
+	}
+
+	/*
+	 * Tests if a given config var exists, needs introspection
+	 */
+	public static boolean exists(String varName) {
+		Class<?> configClass;
+		try {
+			configClass = Class.forName("br.arca.morcego.Config");
+		} catch (ClassNotFoundException e) {
+			// SHOULD NEVER HAPPEN
+			e.printStackTrace();
+			return false;
+		}
+		
+		Field field;
+		
+		try {
+			field = configClass.getDeclaredField(varName);
+		} catch (Exception e) {
+			return false;
+		} 
+				
+		try {
+			return config.contains(field.get(null));
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

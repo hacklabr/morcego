@@ -118,9 +118,9 @@ public class Morcego extends Applet {
 				}
 	
 				if (value != null) {
-	
+
 					Class type = Config.getValue(varName).getClass();
-	
+
 					try {
 						Config.setValue(varName, Config.decode(value, type));
 					} catch (Exception e) {
@@ -387,6 +387,10 @@ public class Morcego extends Applet {
 		return origin;
 	}
 
+	/*
+	 * Public interface for javascript access
+	 */
+	
 	public void navigateTo(String nodeId) {
 		graph.navigateTo(graph.getNodeById(nodeId));
 	}
@@ -396,6 +400,25 @@ public class Morcego extends Applet {
 		if (win != null) {
 			win.eval(jsCommand);
 		}
+	}
+	
+	public void refresh() {
+		graph.notifyFeeder();
+	}
+	
+	// Does not work yet
+	public void changeParam(String varName, String value) {
+		if (value != null && Config.exists(varName)) {
+
+			Class type = Config.getValue(varName).getClass();
+
+			try {
+				Config.setValue(varName, Config.decode(value, type));
+			} catch (Exception e) {
+				// Ignore malformed parameters
+			}
+		}
+		refresh();
 	}
 
 
