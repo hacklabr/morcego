@@ -135,6 +135,7 @@ import br.arca.morcego.physics.Vector3D;
 		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 		 */
 		public void mouseClicked(MouseEvent e) {
+			this.callJsEvent("onclick");
 		}
 	
 		/*
@@ -146,6 +147,7 @@ import br.arca.morcego.physics.Vector3D;
 			Morcego.setHandCursor();
 			showDescription();
 			e.consume();
+			this.callJsEvent("onmouseover");
 		}
 		/**
 		 * 
@@ -170,6 +172,7 @@ import br.arca.morcego.physics.Vector3D;
 		public void mouseExited(MouseEvent e) {
 			Morcego.setDefaultCursor();
 			hideDescription();
+			this.callJsEvent("onmouseout");
 		}
 
 	

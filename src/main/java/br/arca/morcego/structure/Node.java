@@ -103,9 +103,6 @@ public class Node extends GraphElement implements PositionedObject {
 		prop.put("title", String.class);
 		prop.put("mass", Float.class);
 		prop.put("charge", Float.class);
-		prop.put("onmouseover", String.class);
-		prop.put("onmouseout", String.class);
-		prop.put("onclick", String.class);
 		return prop;
 	}
 

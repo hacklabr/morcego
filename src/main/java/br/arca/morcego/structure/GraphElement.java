@@ -40,6 +40,10 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 	public Hashtable<String, Class> availableProperties() {
 		Hashtable<String, Class> prop = new Hashtable<String,Class>();
 		prop.put("type", String.class);
+		prop.put("onmouseover", String.class);
+		prop.put("onmouseout", String.class);
+		prop.put("onclick", String.class);
+		
 		return prop;
 	}
 	
