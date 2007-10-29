@@ -15,6 +15,8 @@ Version 0.5.1
 
 [NEW] Better integration with HTML page by generating JS events from Morcego, through "onmouseover", "onmouseout" and "onclick" node properties
 [NEW] Types "Square" and "Triangle" for nodes
+[NEW] refresh() method to be called by javascript
+[NEW] changeParam() method to be called by javascript (not working yet)
 
 Version 0.5.0
 
