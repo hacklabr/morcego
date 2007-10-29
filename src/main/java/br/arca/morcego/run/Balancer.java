@@ -83,7 +83,7 @@ public class Balancer implements Runnable {
 	/*
 	 *  
 	 */
-	public void forceToLevel(Node node) {
+	public void blow(Node node) {
 
 		PunctualBody body = node.getBody();
 		
@@ -210,14 +210,9 @@ public class Balancer implements Runnable {
 
 		for (int j = 0; j < getNodes().size(); j++) {
 			Node node1 = (Node) getNodes().elementAt(j);
-			
-			/*
-			if (node1.centered()) {
-				forceToCenter(node1);
-			}
-			*/			
+					
 			if (implementsHierarchy) {
-				forceToLevel(node1);
+				blow(node1);
 			}
 
 			for (int k = j + 1; k < getNodes().size(); k++) {
