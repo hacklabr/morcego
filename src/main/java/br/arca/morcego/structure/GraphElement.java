@@ -48,11 +48,11 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 	}
 	
 	public Object getProperty(String name) {
-		return properties.get(name);
+		return properties.get(name.toLowerCase());
 	}
 	
 	public void setProperty(String name, Object value) {
-		properties.put(name, value);
+		properties.put(name.toLowerCase(), value);
 	}
 	
 	public Hashtable<String, Object> getProperties() {
@@ -61,11 +61,11 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 
 	public void setProperties(Hashtable<String, String> properties) {
 		
-		Hashtable available = availableProperties();
+		Hashtable<String, Class> available = availableProperties();
 		
 		for (Enumeration<String> eP = properties.keys(); eP.hasMoreElements(); ) {
 			String key = eP.nextElement();
-			Class type = (Class) available.get(key);
+			Class type = available.get(key.toLowerCase());
 			if (type != null) {
 				setProperty(key, Config.decode(properties.get(key), type));
 			}

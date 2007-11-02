@@ -80,8 +80,8 @@ import br.arca.morcego.physics.Vector3D;
 			Hashtable<String, Class> prop = super.availableProperties();
 			prop.put("color", Color.class);
 			prop.put("description", String.class);
-			prop.put("springSize", Float.class);
-			prop.put("sprintElasticConstant", Float.class);
+			prop.put("springsize", Float.class);
+			prop.put("springelasticconstant", Float.class);
 			return prop;
 		}
 	

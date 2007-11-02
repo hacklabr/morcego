@@ -89,7 +89,7 @@ public class Node extends GraphElement implements PositionedObject {
 		// also put center node in evidence during start
 		z = -1 * Math.abs(z);
 		
-		body = new PunctualBody(x, y, z);		
+		body = new PunctualBody(x, y, z);
 
 		this.graph.addNode(this);
 	}
@@ -97,7 +97,7 @@ public class Node extends GraphElement implements PositionedObject {
 	public Hashtable<String, Class> availableProperties() {
 		Hashtable<String, Class> prop = super.availableProperties();
 		prop.put("color", Color.class);
-		prop.put("actionUrl", URL.class);
+		prop.put("actionurl", URL.class);
 		prop.put("hierarchy", Integer.class);
 		prop.put("description", String.class);
 		prop.put("title", String.class);
@@ -224,6 +224,10 @@ public class Node extends GraphElement implements PositionedObject {
 		
 		if (getProperty("title") == null) {
 			setProperty("title", id);
+		}
+		
+		if (getProperty("color") == null) {
+			setProperty("color", Config.getColor(Config.nodeDefaultColor));
 		}
 	}
 	
