@@ -1,1 +1,5 @@
-Needs XML_RPC (http://pear.php.net/package/XML_RPC) and XML_Parser (http://pear.php.net/package/XML_Parser) libs at XML/ dir
+
+Needs some external libs to work. They will be distributed with binary version, but for now you can run ./install_libs.sh to do the job.
+
+Then copy the compiled morcego-0.6.0-dev.jar to here.
+

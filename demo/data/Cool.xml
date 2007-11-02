@@ -2,6 +2,7 @@
   <node id="Cool">
     <color>#00FF00</color>
     <type>Square</type>
+    <onclick>xajax_loadNode('Cool');</onclick>
   </node>
 
   <node id="h1" />

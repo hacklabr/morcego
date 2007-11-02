@@ -1,0 +1,36 @@
+body
+{ 
+  text-align: center;
+ }
+#all
+{ 
+  position: relative;
+  
+ }
+
+#title
+{ 
+  width: 700px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  margin: 20px;
+ }
+
+#morcego
+{ 
+  position: absolute;
+  top: 40px;
+  width: 350px;
+  left: 0;
+ }
+
+#content
+{ 
+  position: absolute;
+  top: 40px;
+  left: 360px;
+  width: 350px;
+  height: 350px;
+ }
+
