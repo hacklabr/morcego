@@ -1,0 +1,28 @@
+<morcegoData>
+  <node id="Cool">
+    <color>#00FF00</color>
+    <type>Square</type>
+  </node>
+
+  <node id="h1" />
+  <node id="h2" />
+  <node id="h3" />
+  <node id="h4" />
+  <node id="h5" />
+  <node id="h6" />
+
+  <link from="Cool" to="h1" />
+  <link from="Cool" to="h2" />
+  <link from="Cool" to="h3" />
+  <link from="Cool" to="h4" />
+  <link from="Cool" to="h5" />
+  <link from="Cool" to="h6" />
+
+  <link from="h1" to="h6" />
+  <link from="h2" to="h1" />
+  <link from="h3" to="h2" />
+  <link from="h4" to="h3" />
+  <link from="h5" to="h4" />
+  <link from="h6" to="h5" />
+
+</morcegoData>

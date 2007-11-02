@@ -1,0 +1,7 @@
+<morcegoData>
+  <node>
+    <color>#00FF00</color>
+    <type>Square</type>
+  </node>
+  <link from="Cool" type="Directional" />
+</morcegoData>
