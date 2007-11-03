@@ -66,14 +66,8 @@ public class Config {
 	public static final String minCameraDistance = "morcego.minCameraDistance";
 	public static final String fieldOfView = "morcego.fieldOfView";
 	
-	public static final String windowWidth = "morcego.windowWidth";
-	public static final String windowHeight = "morcego.windowHeight";
-
-	public static final String viewStartX = "morcego.viewStartX";
-	public static final String viewStartY = "morcego.viewStartY";
-	public static final String viewHeight = "morcego.viewHeight";
-
-	public static final String viewWidth = "morcego.viewWidth";
+	public static final String width = "morcego.width";
+	public static final String height = "morcego.height";
 
 	public static final String maxTheta = "morcego.maxTheta";
 	public static final String minTheta = "morcego.minTheta";
@@ -135,13 +129,17 @@ public class Config {
 
 		// Colors and layout settings
 		
+		// Size definition		
+		setValue(width, new Integer(Morcego.getApplication().getBounds().width));
+		setValue(height, new Integer(Morcego.getApplication().getBounds().height));
+		
 		setValue(showMorcegoLogo, new Boolean("true"));
 		setValue(logoX, new Integer(10));
 		setValue(logoY, new Integer(10));
 		
 		setValue(showArcaLogo, new Boolean("true"));
-		setValue(arcaX, new Integer(480));
-		setValue(arcaY, new Integer(460));
+		setValue(arcaX, new Integer(getInteger(width) - 127));
+		setValue(arcaY, new Integer(getInteger(height) - 40));
 		
 		setValue(backgroundColor, new Color(255, 255, 255));
 
@@ -162,17 +160,6 @@ public class Config {
 		setValue(descriptionBackground, new Color(200,200,200));
 		setValue(descriptionBorder, new Color(0,0,0));
 		setValue(descriptionMargin, new Integer(4));
-		
-		
-		// Window definition
-		setValue(windowWidth, new Integer(600));
-		setValue(windowHeight, new Integer(500));
-
-		// View area definition
-		setValue(viewStartX, new Integer(0));
-		setValue(viewStartY, new Integer(0));
-		setValue(viewHeight, getValue(windowHeight));
-		setValue(viewWidth, getValue(windowWidth));
 
 		// Position of the camera
 		setValue(cameraDistance, new Integer(500));

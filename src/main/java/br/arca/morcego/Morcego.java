@@ -76,10 +76,8 @@ public class Morcego extends Applet {
 	public static void setUp() {
 		setCamera(new Camera());
 
-		int originX = Config.getInteger(Config.viewStartX)
-				+ (Config.getInteger(Config.viewWidth) / 2);
-		int originY = Config.getInteger(Config.viewStartY)
-			+ (Config.getInteger(Config.viewHeight) / 2);
+		int originX = Config.getInteger(Config.width) / 2;
+		int originY = Config.getInteger(Config.height) / 2;
 
 		setOrigin(new Point(originX, originY));
 	}
@@ -90,13 +88,13 @@ public class Morcego extends Applet {
 		application = this;
 
 		initConfig();
-
+		
 		this.setSize(
-			Config.getInteger(Config.windowWidth),
-			Config.getInteger(Config.windowHeight));
+			Config.getInteger(Config.width),
+			Config.getInteger(Config.height));
 
-		resize(Config.getInteger(Config.windowWidth),
-				Config.getInteger(Config.windowHeight));
+		resize(Config.getInteger(Config.width),
+				Config.getInteger(Config.height));
 	}
 
 	public void initConfig() {
@@ -134,17 +132,14 @@ public class Morcego extends Applet {
 	public void start() {		
 		bi =
 			new BufferedImage(
-					Config.getInteger(Config.windowWidth),
-					Config.getInteger(Config.windowHeight),
+					Config.getInteger(Config.width),
+					Config.getInteger(Config.height),
 				BufferedImage.TYPE_INT_RGB);
 
 		bg = bi.createGraphics();
 
-		bg.setClip(
-			Config.getInteger(Config.viewStartX),
-			Config.getInteger(Config.viewStartY),
-			Config.getInteger(Config.viewWidth),
-			Config.getInteger(Config.viewHeight));
+		bg.setClip(0, 0, Config.getInteger(Config.width),
+			Config.getInteger(Config.height));
 		
 
 		
@@ -173,6 +168,7 @@ public class Morcego extends Applet {
 		if (Config.getBoolean(Config.showArcaLogo)) {
 			int logoX = Config.getInteger(Config.arcaX);
 			int logoY = Config.getInteger(Config.arcaY);
+			
 			LocalImage arca = new LocalImage("Arca.jpg", logoX, logoY);
 			arca.setVisible(true);
 			addMouseListener(arca);
@@ -257,11 +253,8 @@ public class Morcego extends Applet {
 
 		Graphics2D g = (Graphics2D) g1;
 
-		g.setClip(
-			Config.getInteger(Config.viewStartX),
-			Config.getInteger(Config.viewStartY),
-			Config.getInteger(Config.viewWidth),
-			Config.getInteger(Config.viewHeight));
+		g.setClip(0, 0, Config.getInteger(Config.width),
+			Config.getInteger(Config.height));
 
 		g.setBackground(Config.getColor(Config.backgroundColor));
 
@@ -334,8 +327,8 @@ public class Morcego extends Applet {
 		frame.add(applet);
 		applet.init();
 		applet.start();
-		int width = Config.getInteger(Config.windowWidth);
-		int height = Config.getInteger(Config.windowHeight);
+		int width = Config.getInteger(Config.width);
+		int height = Config.getInteger(Config.height);
 		frame.setSize(width, height);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation(

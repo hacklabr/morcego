@@ -18,6 +18,8 @@ Version 0.6.0
 [NEW] refresh() method to be called by javascript
 [NEW] changeParam() method to be called by javascript (not working yet)
 [MOD] Node properties case insensitive. Most link properties too, just not "from" and "to".
+[MOD] Simpler width and height settings: windowWidth, windowHeight, viewWidth and viewHeight removed; width and height added, default is html element size
+[MOD] Simpler Arca logo positioning, calculated according to window size
 
 Version 0.5.0
 
