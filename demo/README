@@ -1,5 +1,3 @@
-
 Needs some external libs to work. They will be distributed with binary version, but for now you can run ./install_libs.sh to do the job.
 
 Then copy the compiled morcego-0.6.0-dev.jar to here.
-
