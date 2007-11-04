@@ -1,16 +1,15 @@
 <?php
 
 require_once("XML/Server.php");
-require_once("Morcego/Graph.php");
 
 class Morcego_Server extends XML_RPC_Server {
 
     // Morcego_Graph object
     var $graph;
 
-    function Morcego_Server($dataDir) {
+    function Morcego_Server($graph) {
 	
-	$this->graph = new Morcego_Graph($dataDir);
+	$this->graph = $graph;
 
 	$map = array('getSubGraph' => array('function' => array($this, 'getSubGraph')),
 		     'getVersion' => array('function' => array($this, 'getVersion')));

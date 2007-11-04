@@ -2,7 +2,7 @@
 
 require("XML/Parser/Simple.php");
 
-class Morcego_Graph extends XML_Parser_Simple {
+class Morcego_Graph_XML extends XML_Parser_Simple {
 
     // Directory where all xml and html will be stored
 
@@ -24,7 +24,7 @@ class Morcego_Graph extends XML_Parser_Simple {
     // Current node or link being processed, to agregate its properties
     var $currentElementProperties;
 
-    function Morcego_Graph($dataDir) {
+    function Morcego_Graph_XML($dataDir) {
 
 	$this->dataDir = preg_replace("/\/?$/", "/", $dataDir);
 
