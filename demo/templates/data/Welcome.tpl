@@ -1,3 +1,4 @@
+<p>
 <h3>Thanks for downloading Morcego!</h3>
 
 Morcego is this cool concept map software you can see at your left (if you have <a href="http://java.sun.com">java</a> installed).<br /><br />
@@ -10,3 +11,7 @@ Morcego is this cool concept map software you can see at your left (if you have 
   <li>Drag nodes to move them, the graph will balance itself again when you release</li>
   <li>Rotate fast and relase, like throwing, to make it keep spinning</li>
 </ul>
+
+<br /><center><b>More info at <a href="http://morcego.arca.ime.usp.br/">Morcego's website</a></b>
+
+</p>

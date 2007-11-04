@@ -4,6 +4,8 @@ require('setup.php');
 require('xajax_core/xajax.inc.php');
 require('Smarty.class.php');
 
+$startNode = "Welcome";
+
 $xajax = new xajax();
 
 $xajax->registerFunction('loadNode');
@@ -19,7 +21,8 @@ $smarty->assign('xajax_js', $xajax->getJavascript());
 $baseUrl = preg_replace('/\/(index.php.*)?$/','', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 
 $smarty->assign('baseUrl', $baseUrl);
-$smarty->assign('startNode', 'Welcome');
+$smarty->assign('startNode', $startNode);
+$smarty->assign('content', $smarty->fetch("data/$startNode.tpl"));
 
 $smarty->display('index.tpl');
 
@@ -28,10 +31,8 @@ function loadNode($nodeId) {
 
     $smarty = new Smarty();
 
-    $smarty->template_dir = "data";
-
     $objResponse->assign('title', 'innerHTML', $nodeId);
-    $objResponse->assign('content', 'innerHTML', $smarty->fetch("$nodeId.tpl"));
+    $objResponse->assign('content', 'innerHTML', $smarty->fetch("data/$nodeId.tpl"));
 
     return $objResponse;    
     

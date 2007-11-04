@@ -1,14 +1,12 @@
 body
 { 
-  text-align: center;
-  overflow: no-scroll;
  }
 #all
 { 
   position: relative;
   height: 100%;
   width: 90%;
-  
+  left: 5%;
  }
 
 #title
@@ -27,6 +25,7 @@ body
   top: 40px;
   left: 0;
   width: 50%;
+  margin-right: 4%;
   height: 90%;
  }
 
@@ -36,13 +35,13 @@ body
   text-align: left;
   top: 40px;
   right: 0;
-  width: 50%;
+  width: 45%;
   height: 90%;
   overflow: auto;
  }
 
 li
 { 
-  margin: 5px 0 5px 0;
+  margin: 10px 0 10px 0;
  }
 

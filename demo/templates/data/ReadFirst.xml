@@ -4,5 +4,4 @@
     <type>Square</type>
     <onclick>xajax_loadNode('ReadFirst');</onclick>
   </node>
-  <link from="Cool" type="Directional" />
 </morcegoData>
