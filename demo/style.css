@@ -1,5 +1,5 @@
 body
-{ 
+{
  }
 #all
 { 
@@ -7,6 +7,7 @@ body
   height: 100%;
   width: 90%;
   left: 5%;
+  z-index: 1;
  }
 
 #title
@@ -17,31 +18,99 @@ body
   font-family: Arial, sans-serif;
   padding-top: 20px;
   font-size: 18px;
+  z-index: 10;
  }
 
 #morcego
 { 
   position: absolute;
-  top: 40px;
+  top: 12%;
   left: 0;
   width: 50%;
   margin-right: 4%;
   height: 90%;
+  z-index: 1;
+ }
+
+#right-column
+{ 
+  position: absolute;
+  top: 12%;
+  right: 0;
+  width: 50%;
+  height: 78%;
+  z-index: 3;
+ }
+
+#navigation
+{ 
+  position: absolute;
+  top: 12%;
+  right: 0;
+  width: 50%;
+  height: 20px;
+  z-index: 2;
  }
 
 #content
 { 
   position: absolute;
+  top: 12%;
+  padding-top: 20px;
   text-align: left;
-  top: 40px;
-  right: 0;
-  width: 45%;
-  height: 90%;
+  left: 50%;
+  width: 50%;
+  max-height: 78%;
   overflow: auto;
+  z-index: 1;
  }
 
-li
+#arrow-left
 { 
-  margin: 10px 0 10px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+ }
+
+#arrow-right
+{ 
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+ }
+
+#links-from
+{ 
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  padding-top: 25px;
+  z-index: 3;
+  background: url("img/close.gif") no-repeat;
+  
+ }
+
+#links-to
+{ 
+  position: absolute;
+  top: 12%;
+  right: 0;
+  padding-top: 25px;
+  z-index: 3;
+  background: url("img/close.gif") no-repeat;
+  background-position: right top;
+ }
+
+.menu
+{ 
+  position: relative;
+  display: block;
+  padding: 5px;
+  margin-top: -1px;
+  border: 1px solid black;
+  cursor: pointer;
+  background: #DDDDFF;
  }
 

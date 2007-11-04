@@ -5,6 +5,7 @@ require("XML/Parser/Simple.php");
 class Morcego_Graph_XML extends XML_Parser_Simple {
 
     // Directory where all xml and html will be stored
+    var $dataDir;
 
     // Hash containing list of nodes in this graph, indexed by nodeId
     var $nodes;
@@ -44,7 +45,7 @@ class Morcego_Graph_XML extends XML_Parser_Simple {
 	for ($i = 0; $i < $depth && sizeof($queue) > 0; $i++) {
 	    $this->nodeQueue = array();
 	    foreach ($queue as $nodeId) {
-		$this->loadNode($nodeId);
+		$this->_loadNode($nodeId);
 	    }
 	    $queue = $this->nodeQueue;
 	}
@@ -53,7 +54,25 @@ class Morcego_Graph_XML extends XML_Parser_Simple {
 		     'links' => $this->links);
     }
 
-    function loadNode($nodeId) {
+    function getLinks($nodeId) {
+
+	$graph = $this->getSubGraph($nodeId, 3);
+
+	$links = array('to' => array(),
+		       'from' => array());
+
+	foreach ($graph['links'] as $link) {
+	    if ($link['TO'] == $nodeId) {
+		$links['from'][] = $link['FROM'];
+	    } elseif ($link['FROM'] == $nodeId) {
+		$links['to'][] = $link['TO'];
+	    }
+	}
+
+	return $links;
+    }
+
+    function _loadNode($nodeId) {
 	if (!isset($this->nodes[$nodeId])) {
 	    $this->currentNodeId = $nodeId;
 	    $this->setInputFile($this->dataDir . $nodeId . ".xml");

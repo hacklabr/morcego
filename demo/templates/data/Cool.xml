@@ -1,16 +1,17 @@
 <morcegoData>
   <node id="Cool">
-    <color>#00FF00</color>
-    <type>Square</type>
+    <color>#AA00AA</color>
     <onclick>xajax_loadNode('Cool');</onclick>
   </node>
 
-  <node id="Nano's" />
-  <node id="Little" />
-  <node id="Experiment" />
-  <node id="On" />
-  <node id="Balancing" />
-  <node id="Balls" />
+  <node color="#00FF00" id="Nano's" />
+  <node color="#00FF00" id="Little" />
+  <node color="#00FF00" id="Experiment" />
+  <node color="#00FF00" id="On" />
+  <node color="#00FF00" id="Balancing" />
+  <node color="#00FF00" id="Balls" />
+
+  <link from="Welcome" type = "Directional"/>
 
   <link from="Cool" to="Nano's" />
   <link from="Cool" to="Little" />

@@ -4,6 +4,7 @@ RPC_VERSION=1.5.1
 PARSER_VERSION=1.2.8
 XAJAX_VERSION=0.5_beta_4b_Standard
 SMARTY_VERSION=2.6.18
+PROTOTYPE_DATE=2007/10/16
 
 mkdir lib
 cd lib
@@ -37,6 +38,8 @@ wget http://smarty.php.net/do_download.php?download_file=Smarty-$SMARTY_VERSION.
 tar zxf Smarty-$SMARTY_VERSION.tar.gz
 rm Smarty-$SMARTY_VERSION.tar.gz
 mv Smarty-$SMARTY_VERSION Smarty
+
+wget http://www.prototypejs.org/assets/$PROTOTYPE_DATE/prototype.js
 
 echo '*** NOW COPY morcego-0.6.0-dev.jar TO HERE! ***'
 

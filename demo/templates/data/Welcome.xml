@@ -3,6 +3,6 @@
     <color>#0000FF</color>
     <onclick>xajax_loadNode('Welcome');</onclick>
   </node>
-  <link to="ReadFirst" type="Dashed" />
+  <link to="ReadFirst" type="Directional" />
   <link to="Cool" type="Directional" />
 </morcegoData>

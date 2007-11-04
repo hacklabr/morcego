@@ -1,7 +1,8 @@
 <morcegoData>
   <node>
-    <color>#00FF00</color>
-    <type>Square</type>
+    <color>#FF0000</color>
+    <bodyCharge>200</bodyCharge>
     <onclick>xajax_loadNode('ReadFirst');</onclick>
   </node>
+  <link from="Welcome" type="Directional" />
 </morcegoData>

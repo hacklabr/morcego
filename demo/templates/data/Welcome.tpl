@@ -1,4 +1,3 @@
-<p>
 <h3>Thanks for downloading Morcego!</h3>
 
 Morcego is this cool concept map software you can see at your left (if you have <a href="http://java.sun.com">java</a> installed).<br /><br />
@@ -14,4 +13,3 @@ Morcego is this cool concept map software you can see at your left (if you have 
 
 <br /><center><b>More info at <a href="http://morcego.arca.ime.usp.br/">Morcego's website</a></b>
 
-</p>
