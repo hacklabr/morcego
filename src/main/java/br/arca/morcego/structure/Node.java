@@ -98,16 +98,25 @@ public class Node extends GraphElement implements PositionedObject {
 		Hashtable<String, Class> prop = super.availableProperties();
 		prop.put("color", Color.class);
 		prop.put("actionurl", URL.class);
-		prop.put("hierarchy", Integer.class);
 		prop.put("description", String.class);
 		prop.put("title", String.class);
 		prop.put("mass", Float.class);
 		prop.put("charge", Float.class);
+		prop.put("level", Integer.class);
 		return prop;
 	}
 
 	public PunctualBody getBody() {
 		return body;
+	}
+	
+	public int getLevel() {
+		Integer level = (Integer) getProperty("level");
+		if (level == null) {
+			return 0;
+		} else {
+			return level.intValue();
+		}
 	}
 
 	public void setBody(PunctualBody body) {

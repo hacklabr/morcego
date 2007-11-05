@@ -110,11 +110,14 @@ public class Config {
 	public static String loadPageOnCenter = "morcego.loadPageOnCenter";
 
 	public static String centerNodeScale = "morcego.centerNodeScale";
+
 	
 	/*
-	 * v0.5.1 - development
+	 * v0.6 - development
 	 */
 	
+	public static String windIntensity = "morcego.windIntensity";
+
 	
 	
 	/*
@@ -180,6 +183,7 @@ public class Config {
 		setValue(springSize, new Float(100));
 		setValue(nodeMass, new Float(5));
 		setValue(nodeCharge, new Float(1));
+		setValue(windIntensity, new Float(10));
 		
 		// rotation angle limits (mouse sensitiveness)
 		setValue(maxTheta, new Float(20.0f));
@@ -198,7 +202,7 @@ public class Config {
 		setValue(controlWindowName, "morcegoController");
 		
 		// Private configuration vars, set by application
-		setValue(_implementsHierarchy, new Boolean(false));
+		setValue(_implementsHierarchy, new Boolean(true));
 		setValue(_imageLocation, new String("br/arca/morcego/image/"));
 		
 	}

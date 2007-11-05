@@ -87,42 +87,18 @@ public class Balancer implements Runnable {
 
 		PunctualBody body = node.getBody();
 		
-		Vector3D orientation = graph.getOrientation();
-
-		float x = body.getSpeed().getX();
-		float y = body.getSpeed().getY();
-		float z = body.getSpeed().getZ();
-		float a = orientation.getX();
-		float b = orientation.getY();
-		float c = orientation.getZ();
-		Vector3D newSpeed =
-			new Vector3D(
-				b * b * x + c * c * x - a * b * y - a * c * z,
-				-b * a * x + a * a * y + c * c * y - b * c * z,
-				-c * a * x - c * b * y + a * a * z + b * b * z);
+		int levelDifference;
 		
-		//node.addSpeed(newSpeed);
-
-		Node center = graph.getCenterNode();
-
-		Vector3D speed = new Vector3D(a, b, c);
-
-		int relativeHierarchy = 0;
 		try {
-		relativeHierarchy =
-			((Integer) center.getProperty("hierarchy")).intValue()
-				- ((Integer) node.getProperty("hierarchy")).intValue();
+			levelDifference = node.getLevel() - graph.getCenterNode().getLevel();
 		} catch (NullPointerException e) {
-			// TODO change _implementsHierarchy
-			// in fact, this is a server implementation error, maybe we shoud
-			// throw an exception
+			// no center node, happens during unit tests
+			return;
 		}
-
-		speed.resize(100 * relativeHierarchy / speed.module());
-
-		speed.add(new Vector3D(-body.getX(), -body.getY(), -body.getZ()));
-
-		//node.addSpeed(speed);
+		
+		Vector3D wind = graph.getOrientation().multiplyByScalar(Config.getFloat(Config.windIntensity));
+		
+		node.getBody().getInstantForce().add(wind.multiplyByScalar(levelDifference));
 	}
 
 	/*
