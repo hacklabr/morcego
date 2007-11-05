@@ -8,7 +8,8 @@
     {$xajax_js}
 
     <script language="JavaScript" src="lib/prototype.js" />
-
+    <script language="JavaScript" src="morcego.js" />
+    
   </head>
 
   <body>
@@ -47,11 +48,8 @@
 
       </div>
 
-
-
     </div>
   </body>
 
-  <script language="JavaScript" src="morcego.js" />
 
 </html>

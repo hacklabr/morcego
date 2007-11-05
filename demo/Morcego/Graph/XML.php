@@ -1,84 +1,57 @@
 <?php
 
 require("XML/Parser/Simple.php");
+require("Morcego/Graph.php");
 
-class Morcego_Graph_XML extends XML_Parser_Simple {
+class Morcego_Graph_XML extends Morcego_Graph {
+
+    function Morcego_Graph_XML($dataDir) {
+	$this->parser = new Morcego_Graph_XML_parser($dataDir);
+
+	$this->Morcego_Graph();
+
+    }
+
+    function getNode($nodeId) {
+	return $this->parser->getNode($nodeId);
+    }
+
+
+}
+
+class Morcego_Graph_XML_Parser extends XML_Parser_Simple {
 
     // Directory where all xml and html will be stored
     var $dataDir;
 
-    // Hash containing list of nodes in this graph, indexed by nodeId
+    // Hash of nodes, indexed by nodeId, eacho node is a hash of propertiles
     var $nodes;
-
-    // Array containing list of links contained in this graph
     var $links;
-
-    // Hash to keep track of links already stored
-    var $linkTrack;
 
     // Current node being searched
     var $currentNodeId;
 
-    // Queue of neighbour nodes to loaded
-    var $nodeQueue;
-
     // Current node or link being processed, to agregate its properties
     var $currentElementProperties;
 
-    function Morcego_Graph_XML($dataDir) {
+    function Morcego_Graph_XML_Parser($dataDir) {
 
 	$this->dataDir = preg_replace("/\/?$/", "/", $dataDir);
-
 	$this->XML_Parser_Simple();
     }
 
-    // Gets a subgraph containing nodes that distance less than $depth links from nodeId
-    function getSubGraph($nodeId, $depth) {
 
+    function getNode($nodeId) {
 	$this->nodes = array();
 	$this->links = array();
-	$this->linkTrack = array();
-	$this->currentElementProperties = array();
 
-	$queue = array($nodeId);
+	$this->currentNodeId = $nodeId;
 
-	for ($i = 0; $i < $depth && sizeof($queue) > 0; $i++) {
-	    $this->nodeQueue = array();
-	    foreach ($queue as $nodeId) {
-		$this->_loadNode($nodeId);
-	    }
-	    $queue = $this->nodeQueue;
-	}
+	$this->setInputFile($this->dataDir . $nodeId . ".xml");
+	$this->parse();
 
 	return array('nodes' => $this->nodes,
 		     'links' => $this->links);
-    }
-
-    function getLinks($nodeId) {
-
-	$graph = $this->getSubGraph($nodeId, 3);
-
-	$links = array('to' => array(),
-		       'from' => array());
-
-	foreach ($graph['links'] as $link) {
-	    if ($link['TO'] == $nodeId) {
-		$links['from'][] = $link['FROM'];
-	    } elseif ($link['FROM'] == $nodeId) {
-		$links['to'][] = $link['TO'];
-	    }
-	}
-
-	return $links;
-    }
-
-    function _loadNode($nodeId) {
-	if (!isset($this->nodes[$nodeId])) {
-	    $this->currentNodeId = $nodeId;
-	    $this->setInputFile($this->dataDir . $nodeId . ".xml");
-	    $this->parse();
-	    $this->currentNodeId = null;
-	}
     }
 
     // This is to handle elements inside nodes and links, that will be treated as properties
@@ -95,9 +68,11 @@ class Morcego_Graph_XML extends XML_Parser_Simple {
     function handleNode($attribs) {
 	$node = array_merge($this->currentElementProperties, $attribs);
 	
-	if (isset($node['ID'])) {
-	    $nodeId = $node['ID'];
-	    unset($node['ID']);
+	$this->_lowerCase($node);
+	
+	if (isset($node['id'])) {
+	    $nodeId = $node['id'];
+	    unset($node['id']);
 	} else {
 	    $nodeId = $this->currentNodeId;
 	}
@@ -110,23 +85,26 @@ class Morcego_Graph_XML extends XML_Parser_Simple {
     function handleLink($attribs) {
 	$link = array_merge($this->currentElementProperties, $attribs);
 
-	if (!isset($link['FROM'])) {
-	    $link['FROM'] = $this->currentNodeId;
-	}
-	if (!isset($link['TO'])) {
-	    $link['TO'] = $this->currentNodeId;
+	$this->_lowerCase($link);
+
+	if (!isset($link['from'])) {
+	    $link['from'] = $this->currentNodeId;
+	} 
+
+	if (!isset($link['to'])) {
+	    $link['to'] = $this->currentNodeId;
 	}
 
-	if ($link['FROM'] == $link['TO']) {
+	if ($link['from'] == $link['to']) {
 	    // Ignore loops
 	    return;
 	}
 
 
-	if ($link['FROM'] == $this->currentNodeId) {
-	    $neighbour = $link['TO'];
-	} elseif ($link['TO'] == $this->currentNodeId) {
-	    $neighbour = $link['FROM'];
+	if ($link['from'] == $this->currentNodeId) {
+	    $neighbour = $link['to'];
+	} elseif ($link['to'] == $this->currentNodeId) {
+	    $neighbour = $link['from'];
 	}
 
 	if (isset($neighbour) && !isset($this->nodes[$neighbour])) {
@@ -134,17 +112,19 @@ class Morcego_Graph_XML extends XML_Parser_Simple {
 	}
 
 	
-	if (!isset($this->linkTrack[$link['FROM']])) {
-	    $this->linkTrack[$link['FROM']] = array();
-	}
-
-	if (!isset($this->linkTrack[$link['FROM']][$link['TO']])) {
-	    $this->links[] =& $link;
-	    $this->linkTrack[$link['FROM']][$link['TO']] = 1;
-	}
+	$this->links[] =& $link;
 
 	$this->currentElementProperties = array();
 	
+    }
+
+    function _lowerCase(&$ar) {
+	foreach ($ar as $k => $v) {
+	    if ($k != strtolower($k)) {
+		$ar[strtolower($k)] = $v;
+		unset($ar[$k]);
+	    }
+	}
     }
     
 }
