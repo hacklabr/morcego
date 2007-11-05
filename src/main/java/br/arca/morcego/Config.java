@@ -129,9 +129,15 @@ public class Config {
 
 		// Colors and layout settings
 		
-		// Size definition		
-		setValue(width, new Integer(Morcego.getApplication().getBounds().width));
-		setValue(height, new Integer(Morcego.getApplication().getBounds().height));
+		// Size definition. 
+		if (Morcego.getApplication() != null) {
+			setValue(width, new Integer(Morcego.getApplication().getBounds().width));
+			setValue(height, new Integer(Morcego.getApplication().getBounds().height));
+		} else {
+			// This will only happen during unit tests
+			setValue(width, new Integer(100));
+			setValue(height, new Integer(100));
+		}
 		
 		setValue(showMorcegoLogo, new Boolean("true"));
 		setValue(logoX, new Integer(10));
