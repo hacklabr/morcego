@@ -40,7 +40,6 @@ public class Balancer implements Runnable {
 	private boolean balancingLock = false;
 	private Graph graph;
 	private int balancedCount;
-	private boolean implementsHierarchy;
 
 	public Balancer(Graph g) {
 		graph = g;
@@ -181,13 +180,13 @@ public class Balancer implements Runnable {
 	}
 
 	private void checkAllForces() {
-		implementsHierarchy =
-			Config.getBoolean(Config._implementsHierarchy);
+		boolean isTree =
+			Config.getBoolean(Config.graphIsTree);
 
 		for (int j = 0; j < getNodes().size(); j++) {
 			Node node1 = (Node) getNodes().elementAt(j);
 					
-			if (implementsHierarchy) {
+			if (isTree) {
 				blow(node1);
 			}
 

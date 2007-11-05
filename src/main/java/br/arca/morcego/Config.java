@@ -89,8 +89,7 @@ public class Config {
 	public static final String startNode = "morcego.startNode";
 
 	public static String _imageLocation = "morcego._imageLocation";
-	public static final String _implementsHierarchy = "morcego._implementsHierarchy";
-
+	
 	public static String showMorcegoLogo = "morcego.showMorcegoLogo";
 	public static String logoX = "morcego.logoX";
 	public static String logoY = "morcego.logoY";
@@ -116,6 +115,7 @@ public class Config {
 	 * v0.6 - development
 	 */
 	
+	public static String graphIsTree = "morcego.graphIsTree";
 	public static String windIntensity = "morcego.windIntensity";
 
 	
@@ -202,7 +202,7 @@ public class Config {
 		setValue(controlWindowName, "morcegoController");
 		
 		// Private configuration vars, set by application
-		setValue(_implementsHierarchy, new Boolean(true));
+		setValue(graphIsTree, new Boolean(false));
 		setValue(_imageLocation, new String("br/arca/morcego/image/"));
 		
 	}

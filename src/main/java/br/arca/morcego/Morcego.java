@@ -397,6 +397,8 @@ public class Morcego extends Applet {
 	
 	public void refresh() {
 		graph.notifyFeeder();
+		graph.notifyBalancer();
+		renderer.render();
 	}
 	
 	// Does not work yet

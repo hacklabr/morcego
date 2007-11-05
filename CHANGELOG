@@ -15,7 +15,8 @@ Version 0.6.0
 
 [NEW] Better integration with HTML page by generating JS events from Morcego, through "onmouseover", "onmouseout" and "onclick" node properties
 [NEW] Demo php application
-[NEW] Proper visualization for trees, implementation of node hierarchy finally working, defined by node property "level".
+[NEW] Proper visualization for trees, implementation of node hierarchy finally working, defined by node property "level". If new boolean configuration 
+      "graphIsTree" is true, a simulated wind will blow the nodes with intensity according to "windIntensity" and node level. 
 [NEW] Types "Square" and "Triangle" for nodes
 [NEW] refresh() method to be called by javascript
 [NEW] changeParam() method to be called by javascript (not working yet)
