@@ -34,7 +34,7 @@ $xajax->configure('javascript URI', 'lib/xajax');
 $smarty->assign('xajax_js', $xajax->getJavascript());
 
 //Obtain full URL to reach this same dir
-$baseUrl = preg_replace('/\/(index.php.*)?$/','', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+$baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . preg_replace('/\/[^\/]+$/','', $_SERVER['REQUEST_URI']);
 
 $smarty->assign('baseUrl', $baseUrl);
 $smarty->assign('nodeId', $nodeId);

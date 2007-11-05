@@ -4,7 +4,9 @@
     <onclick>xajax_loadNode('Cool');</onclick>
   </node>
 
-  <node color="#00FF00" id="Nano's" />
+  <node color="#AA00AA" id="work" title="Did it work?" />
+
+  <node color="#00FF00" id="Nano" title="Nano's" />
   <node color="#00FF00" id="Little" />
   <node color="#00FF00" id="Experiment" />
   <node color="#00FF00" id="On" />
@@ -13,18 +15,27 @@
 
   <link from="Welcome" type = "Directional"/>
 
-  <link from="Cool" to="Nano's" />
+  <link from="Cool" to="Nano" />
   <link from="Cool" to="Little" />
   <link from="Cool" to="Experiment" />
   <link from="Cool" to="On" />
   <link from="Cool" to="Balancing" />
   <link from="Cool" to="Balls" />
 
-  <link from="Nano's" to="Balls" />
-  <link from="Little" to="Nano's" />
+  <link from="work" to="Nano" />
+  <link from="work" to="Little" />
+  <link from="work" to="Experiment" />
+  <link from="work" to="On" />
+  <link from="work" to="Balancing" />
+  <link from="work" to="Balls" />
+
+  <link from="Nano" to="Balls" />
+  <link from="Little" to="Nano" />
   <link from="Experiment" to="Little" />
   <link from="On" to="Experiment" />
   <link from="Balancing" to="On" />
   <link from="Balls" to="Balancing" />
+
+  
 
 </morcegoData>
