@@ -76,10 +76,7 @@ public class Morcego extends Applet {
 	public static void setUp() {
 		setCamera(new Camera());
 
-		int originX = Config.getInteger(Config.width) / 2;
-		int originY = Config.getInteger(Config.height) / 2;
-
-		setOrigin(new Point(originX, originY));
+		setOrigin(new Point(Config.getInteger(Config.originX), Config.getInteger(Config.originY)));
 	}
 
 	
@@ -396,6 +393,7 @@ public class Morcego extends Applet {
 	}
 	
 	public void refresh() {
+		setUp();
 		graph.notifyFeeder();
 		graph.notifyBalancer();
 		renderer.render();

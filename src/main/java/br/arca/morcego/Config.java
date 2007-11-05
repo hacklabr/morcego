@@ -118,7 +118,8 @@ public class Config {
 	public static String graphIsTree = "morcego.graphIsTree";
 	public static String windIntensity = "morcego.windIntensity";
 
-	
+	public static String originX = "morcego.originX";
+	public static String originY = "morcego.originY";
 	
 	/*
 	 * Sets all configuration, edit here to modify config
@@ -136,10 +137,14 @@ public class Config {
 		if (Morcego.getApplication() != null) {
 			setValue(width, new Integer(Morcego.getApplication().getBounds().width));
 			setValue(height, new Integer(Morcego.getApplication().getBounds().height));
+			setValue(originX, new Integer(getInteger(width) / 2));
+			setValue(originY, new Integer(getInteger(height) / 2));
 		} else {
 			// This will only happen during unit tests
 			setValue(width, new Integer(100));
 			setValue(height, new Integer(100));
+			setValue(originX, new Integer(50));
+			setValue(originY, new Integer(50));
 		}
 		
 		setValue(showMorcegoLogo, new Boolean("true"));
@@ -162,7 +167,7 @@ public class Config {
         setValue(textSize, new Integer(25));
 		setValue(nodeSize, new Integer(15));
 		setValue(minNodeSize, new Integer(0));
-		setValue(centerNodeScale, new Float(2));
+		setValue(centerNodeScale, new Float(1));
 
 		setValue(nodeBorderColor, new Color(0,0,0));
 		setValue(descriptionColor, new Color(40,40,40));
