@@ -1,0 +1,38 @@
+--- lib/tikilib.php	2007-03-20 02:38:03.000000000 -0300
++++ lib/tikilib.php	2007-03-20 02:42:13.000000000 -0300
+@@ -4784,7 +4784,7 @@
+ 		if ($desc = $this->page_exists_desc($pages[1][$i])) {
+ 		    $desc = preg_replace("/([ \n\t\r\,\;]|^)([A-Z][a-z0-9_\-]+[A-Z][a-z0-9_\-]+[A-Za-z0-9\-_]*)($|[ \n\t\r\,\;\.])/s", "$1))$2(($3", $desc);
+ 		    $bestLang = ($feature_multilingual == 'y' && $feature_best_language == 'y')? "&amp;bl" : "";
+-		    $uri_ref = "tiki-index.php?page=" . urlencode($pages[1][$i]).$bestLang;
++		    $uri_ref = "javascript:navigateTo('" . addslashes($pages[1][$i]) . "')";
+ 
+ 			// check to see if desc is blank in ((page|desc))
+ 			if (strlen(trim($text[0])) > 0) {
+@@ -4839,7 +4839,7 @@
+ 		if ($desc = $this->page_exists_desc($page_parse)) {
+ 		    $desc = preg_replace("/([ \n\t\r\,\;]|^)([A-Z][a-z0-9_\-]+[A-Z][a-z0-9_\-]+[A-Za-z0-9\-_]*)($|[ \n\t\r\,\;\.])/s", "$1))$2(($3", $desc);
+ 		    $bestLang = ($feature_multilingual == 'y' && $feature_best_language == 'y')? "&amp;bl" : ""; // to choose the best page language
+-		    $repl = "<a title=\"$desc\" href='tiki-index.php?page=" . urlencode($page_parse).$bestLang. "' class='wiki'>$page_parse</a>";
++		    $repl = "<a title=\"$desc\" href=\"javascript:navigateTo('" . addslashes($page_parse). "')\" class='wiki'>$page_parse</a>";
+ 		} else {
+ 		    $repl = $page_parse.'<a href="tiki-editpage.php?page=' . urlencode($page_parse). '" title="'.tra("Create page:").' '.urlencode($page_parse).'"  class="wiki wikinew">?</a>';
+ 		}
+@@ -4866,7 +4866,7 @@
+ 		if (!array_key_exists($page_parse, $words)) {
+ 		    if ($desc = $this->page_exists_desc($page_parse)) {
+ 			//$desc = preg_replace("/([ \n\t\r\,\;]|^)([A-Z][a-z0-9_\-]+[A-Z][a-z0-9_\-]+[A-Za-z0-9\-_]*)($|[ \n\t\r\,\;\.])/s", "$1))$2(($3", $desc);
+-			$repl = '<a title="' . htmlspecialchars($desc) . '" href="tiki-index.php?page=' . urlencode($page_parse). '" class="wiki">' . $page_parse . '</a>';
++			$repl = '<a title="' . htmlspecialchars($desc) . '" href="javascript:navigateTo(\'' . addslashes($page_parse). '\')" class="wiki">' . $page_parse . '</a>';
+ 		    } elseif ($feature_wiki_plurals == 'y' && $this->get_locale() == 'en_US') {
+ # Link plural topic names to singular topic names if the plural
+ # doesn't exist, and the language is english
+@@ -4882,7 +4882,7 @@
+ 			if($desc = $this->page_exists_desc($plural_tmp)) {
+ 			    // $desc = preg_replace("/([ \n\t\r\,\;]|^)([A-Z][a-z0-9_\-]+[A-Z][a-z0-9_\-]+[A-Za-z0-9\-_]*)($|[ \n\t\r\,\;\.])/s", "$1))$2(($3", $desc);
+ 			    // $repl = "<a title=\"".$desc."\" href=\"tiki-index.php?page=$plural_tmp\" class=\"wiki\" title=\"spanner\">$page_parse</a>";
+-			    $repl = "<a title='".$desc."' href='tiki-index.php?page=$plural_tmp' class='wiki'>$page_parse</a>";
++			    $repl = "<a title='".$desc."' href='javascript:navigateTo(\'$plural_tmp\')' class='wiki'>$page_parse</a>";
+ 			} else {
+ 			    $repl = $page_parse.'<a href="tiki-editpage.php?page='.urlencode($page_parse).'" title="'.tra("Create page:").' '.urlencode($page_parse).'" class="wiki wikinew">?</a>';
+ 			}
