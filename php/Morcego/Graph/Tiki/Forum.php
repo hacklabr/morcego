@@ -1,9 +1,9 @@
 <?php
 
-require("Morcego/Graph/Tikiwiki.php");
+require("Morcego/Graph/Tiki.php");
 require("lib/commentslib.php");
 
-class Morcego_Graph_Tikiwiki_Forum extends Morcego_Graph_Tikiwiki {
+class Morcego_Graph_Tiki_Forum extends Morcego_Graph_Tiki {
 
     // Used to calculate the level
     var $levelCache;
