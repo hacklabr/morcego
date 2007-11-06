@@ -4,11 +4,11 @@ require_once("tiki-setup.php");
 
 require_once("Morcego/Graph.php");
 
-class Morcego_Graph_Tikiwiki extends Morcego_Graph {
+class Morcego_Graph_Tiki extends Morcego_Graph {
 
     var $tiki;
 
-    function Morcego_Graph_Tikiwiki($tiki) {
+    function Morcego_Graph_Tiki($tiki) {
 	$this->tiki =& $tiki;
 	$this->Morcego_Graph();
     }
