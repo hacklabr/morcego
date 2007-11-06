@@ -7,14 +7,25 @@
 
  */
 
-.morcego-float {
+div#morcego-wiki-title 
+{
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  font-family:Arial, Helvetica, sans-serif
+  color: black;
+  height: 50px;
 }
 
-div#morcego-wiki-title {
-	font-weight: bold;
-	font-size: 20px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	color: black;
+div#morcego-wiki-description
+{
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 10px;
+  font-family:Arial, Helvetica, sans-serif
+  color: black;
 }
 
 body {
@@ -28,6 +39,12 @@ body {
 	margin-bottom: 0px;
 	color: black;
 }
+
+.content
+{ 
+  width: 90%;
+  margin-left: 5%;
+ }
 
 ul {
    font-size:12px;
@@ -62,19 +79,71 @@ DIV#tiki-main {
 }
 
 /* This is the header */
-DIV#tiki-top {
-	background-color: #9cba00;
-	background-color: #1c60a8;
-	color: white;
-	padding-right: 0px;
-	font-size: 10px;
+DIV#tiki-top 
+{
+  position: relative;
+  height: 95px;
+  width: 95%;
+  background-color: #FFFFFF;
+  padding-right: 0px;
+  font-size: 12px;
 }
 
+DIV#logo
+{ 
+  position: absolute;
+  top: 5px;
+  left: 5%;
+  width: 400px;
+  padding-top: 10px;
+ }
+
 DIV#tiki-top a {
-	color: white;
 	text-decoration: none;
 	font-size: 10px;
 }
+
+DIV#tiki-top h1 
+{
+  position: absolute;
+  top: -15px;
+  left: 70px;
+}
+
+DIV#tiki-top h2
+{
+  position: absolute;
+  top: 15px;
+  left: 70px;
+}
+
+DIV#login
+{ 
+  position: absolute;
+  top: 5px;
+  right: 10px;
+ }
+
+DIV#morcego-content-window
+{ 
+  position: relative;
+  width: 100%;
+  height: 500px;
+ }
+
+DIV#morcego-applet
+{ 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+ }
+
+DIV#content
+{ 
+  width: 100%;
+ }
 
 /* This is the middle */
 DIV#tiki-mid {
@@ -83,15 +152,6 @@ DIV#tiki-mid {
 	padding-bottom: 0px;
 }
 
-/* And this is the footer */
-DIV#tiki-bot {
-	/* background-color: #f2f6e5; */
-	border: 1px solid #848a00;
-	border: 1px solid #999999;
-	margin-top: 1px;
-	padding-top: 10px;
-	padding-bottom: 15px;
-}
 
 /* The three columns */
 TD#leftcolumn {
@@ -177,7 +237,7 @@ div.box-title {
 	background-color: #1c60a8;
 	border-bottom: 1px solid #999999;
 	color: white;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	font-weight: bold;
@@ -215,7 +275,7 @@ div.box-data {
 	background-color: #f2f6e5;
 	background-color: #cccccc;
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	margin-left: 5px;
 	margin-right: 5px;
@@ -226,7 +286,7 @@ div.box-data {
 /* When modules display a list of items each item is enclosed in a cell with the following style */
 TD.module {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 10px;
 	text-align: left;
 }
@@ -234,14 +294,14 @@ TD.module {
 /* Links in modules */
 .linkmodule {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: none;
 }
 
 .linkmodule:active {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: none;
 }
@@ -249,7 +309,7 @@ TD.module {
 .linkmodule:hover {
 	background-color: #eeeeee;
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: underline;
 }
@@ -274,7 +334,7 @@ div.cbox-title {
 	background-color: #1c60a8; 
 	border-bottom: 1px solid #999999;
 	color: white;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	font-weight: bold;
@@ -292,7 +352,7 @@ div.cbox-title {
 	background-color: #9cba00;
 	background-color: #1c60a8;
 	color: white;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	font-weight: bold;
@@ -303,7 +363,7 @@ div.cbox-title {
 	background-color: #9cba00;
 	background-color: #1c60a8;
 	color: white;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	font-weight: bold;
@@ -314,7 +374,7 @@ div.cbox-title {
 	background-color: #9cba00;
 	background-color: #1c60a8;
 	color: #cccccc;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	font-weight: bold;
@@ -327,7 +387,7 @@ div.cbox-data {
   background-color: white;
   background-color: #dddddd;
   color: black;
-  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif
   font-size: 11px;
   margin-left: 5px;
   margin-right: 5px;
@@ -350,7 +410,7 @@ div.separator {
 	background-color: #bbbbbb;
 	border: 1px solid #999999;
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 10px; 
 	margin-top: 6px;
 	margin-left: 2px;
@@ -365,14 +425,14 @@ div.separator {
 /* Links in menus */
 .linkmenu, .rsslink {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: none;
 }
 
 .linkmenu:active, .rsslink:active {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: none;
 }
@@ -380,7 +440,7 @@ div.separator {
 .linkmenu:hover, .rsslink:hover {
 	background-color: #eeeeee;
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: underline;
 }
@@ -414,21 +474,21 @@ div.separator {
 /* Links to extend/collapse menus */
 .separator {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	/* font-size: 10px; */
 	text-decoration: none;
 }
 
 .separator:active {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	/* font-size: 10px; */
 	text-decoration: none;
 }
 
 .separator:hover {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	/* font-size: 10px; */
 	text-decoration: none;
 }
@@ -436,7 +496,7 @@ div.separator {
 /* Links to collapse menus for example the main menu can be completely collapsed*/
 .flip {
 	color: white;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	text-decoration: none;
@@ -444,7 +504,7 @@ div.separator {
 
 .flip:active {
 	color: white;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	text-decoration: none;
@@ -453,7 +513,7 @@ div.separator {
 .flip:hover {
 	color: white;
 	color: #bbbbbb;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	text-decoration: underline;
@@ -462,21 +522,21 @@ div.separator {
 /* Banners of type text (textadds) are displayed as links using the following style */
 .bannertext {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: none;
 }
 
 .bannertext:active {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: none;
 }
 
 .bannertext:hover {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: none;
 }
@@ -541,7 +601,7 @@ input {
 /* Cells in forms without background color (inside a div for example) */
 TD.form {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-align: left;
 	vertical-align: top;
@@ -551,7 +611,7 @@ TD.form {
 TD.formcolor, td.galform, td.editblogform, td.editfgalform, TD.comform, td.forumform {
 	background-color: #f2f6e4;
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-align: left;
 	vertical-align: top;
@@ -663,7 +723,7 @@ td.findtable {
 
 /* Odd rows in several listings */
 TD.odd, td.gallistnameodd, td.gallistdescriptionodd, td.gallistcreatedodd, td.gallistlastModifodd, td.gallistuserodd, td.gallistimagesodd, td.gallisthitsodd, td.gallistactionsodd, td.listgalidodd, td.listgalnameodd, td.listgalcreatedodd, td.listgalhitsodd, td.listgaluserodd, td.listgalfilesizeodd, td.bloglistnameodd, td.bloglistdescriptionodd, td.bloglistcreatedodd, td.bloglistlastModifodd, td.bloglistuserodd, td.bloglistpublicodd, td.bloglistpostsodd, td.bloglistvisitsodd, td.bloglistactivityodd, td.bloglistactionsodd, td.listfgalnameodd, td.listfgaldescriptionodd, td.listfgalcreatedodd, td.listfgallastModifodd, td.listfgaluserodd, td.listfgalfilesodd, td.listfgalvisitsodd, td.listfgalactionsodd, td.listfilesnameodd, td.listfilesdescriptionodd, td.listfilesidodd, td.listfilesfilenameodd, td.listfilesfilesizeodd, td.listfilescreatedodd, td.listfilesdlsodd, td.listfilesnameodd, td.listfilesuserodd, td.listfilesactionsodd, td.listarttitleodd, td.listarttopicodd, td.listartpublishDateodd, td.listartauthorodd, td.listartreadsodd, td.listarthasimageodd, td.listartuseimageodd, td.listartactionsodd, td.listartsizeodd, td.forumstableodd, td.forumstableinfoodd, td.topictitleodd, td.topicrepliesodd, td.topicreadsodd, td.topicscoreodd, td.topiclastpostodd, td.topicauthorodd {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: Black;
 	background-color: #f2f6e5;
@@ -674,7 +734,7 @@ TD.odd, td.gallistnameodd, td.gallistdescriptionodd, td.gallistcreatedodd, td.ga
 
 /* Even rows in several listings */
 TD.even, td.gallistnameeven, td.gallistdescriptioneven, td.gallistcreatedeven, td.gallistlastModifeven, td.gallistusereven, td.gallistimageseven, td.gallisthitseven, td.gallistactionseven, td.listgalideven, td.listgalnameeven, td.listgalcreatedeven, td.listgalhitseven, td.listgalusereven, td.listgalfilesizeeven, td.bloglistnameeven, td.bloglistdescriptioneven, td.bloglistcreatedeven, td.bloglistlastModifeven, td.bloglistusereven, td.bloglistpubliceven, td.bloglistpostseven, td.bloglistvisitseven, td.bloglistactivityeven, td.bloglistactionseven, td.listfgalnameeven, td.listfgaldescriptioneven, td.listfgalcreatedeven, td.listfgallastModifeven, td.listfgalusereven, td.listfgalfileseven, td.listfgalvisitseven, td.listfgalactionseven, td.listfilesnameeven, td.listfilesdescriptioneven, td.listfilesideven, td.listfilesfilenameeven, td.listfilesfilesizeeven, td.listfilescreatedeven, td.listfilesdlseven, td.listfilesnameeven, td.listfilesusereven, td.listfilesactionseven, td.listarttitleeven, td.listarttopiceven, td.listartpublishDateeven, td.listartauthoreven, td.listartreadseven, td.listarthasimageeven, td.listartuseimageeven, td.listartactionseven, td.listartsizeeven, td.forumstableeven, td.forumstableinfoeven, td.topictitleeven, td.topicreplieseven, td.topicreadseven, td.topicscoreeven, td.topiclastposteven, td.topicauthoreven {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	background-color: white;
 	color: Black;
@@ -683,7 +743,7 @@ TD.even, td.gallistnameeven, td.gallistdescriptioneven, td.gallistcreatedeven, t
 }
 
 TD.third {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: Black;
 	background-color: #9cba00;
@@ -697,14 +757,14 @@ TD.third {
 .pagetitle, .forumspagetitle {
 	font-weight: bold;
 	font-size: 26px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif
 	color: black;
 }
 
 a.pagetitle, a.forumspagetitle {
 	font-weight: bold;
 	font-size: 26px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif
 	text-decoration: none;
 	color: black;
 }
@@ -712,7 +772,7 @@ a.pagetitle, a.forumspagetitle {
 a.pagetitle:hover, a.forumspagetitle:hover {
 	font-weight: bold;
 	font-size: 26px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif
 	text-decoration: underline;
 	color: black;
 }
@@ -721,41 +781,41 @@ a.pagetitle:hover, a.forumspagetitle:hover {
 H1 {
 	font-weight: bold;
 	font-size: 26px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif
 	color: black;
 }
 
 H2 {
 	font-weight: bold;
 	font-size: 22px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif
 	color: black;
 }
 
 H3 {
 	font-weight: bold;
 	font-size: 20px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif
 	color: black;
 }
 
 /* Links where no special link style apply (usually with the general application background) */
 .link, .gallink, .bloglink, .fgallink, .trailer, .opencomlink, .commentslink, .admlink, .forumbutlink {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	text-decoration: underline;
 }
 
 .link:active, .gallink:active, .bloglink:active, .fgallink:active, .trailer:active, .opencomlink:active, .commentslink:active, .admlink:active, .forumbutlink:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	text-decoration: underline;
 }
 
 .link:hover, .gallink:hover, .bloglink:hover, .fgallink:hover, .trailer:hover, .opencomlink:hover, .commentslink:hover, .admlink:hover, .forumbutlink:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	text-decoration: underline;
@@ -763,33 +823,33 @@ H3 {
 
 /* Search results display a date using the following style*/
 div.searchdate {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 10px;
 	color: Black;
 }
 
 /* Pagination for listings */
 .mini {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	color: Black;
 }
 
 /* prev & next buttons in pagination */
 .prevnext, .galprevnext, .blogprevnext, .fgalprevnext, .artprevnext, .forumprevnext {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: black;
 }
 
 .prevnext:active, .galprevnext:active, .blogprevnext:active, .fgalprevnext:active, .artprevnext:active, .forumprevnext:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: black;
 }
 
 .prevnext:hover, .galprevnext:hover, .blogprevnext:hover, .fgalprevnext:hover, .artprevnext:hover, .forumprevnext:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: black;
 	background-color: White;
@@ -817,18 +877,18 @@ div.titlebar {
 	font-size: 12px;
 }
 
-/* The bar where the actions for a page are displayed */
-DIV#page-bar {
-	margin-left: 5px;
-}
-
 /* Wiki action buttons (the buttons displayed at the end of each page to edit/print/remove/etc a page */
-div.button2 {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	color: Black;
-	background-color: white;
-	font-size: 10px;
-	font-weight: bold;
+div.button2 
+{
+  
+  font-family: Arial, Helvetica, sans-serif
+  color: Black;
+  background-color: white;
+  font-size: 10px;
+  font-weight: bold;
+  display: inline;
+  margin: 5px 15px 5px 15px;
+
 	/* 
 	border: 1px solid #999999; 
 	padding-left: 0.1em;
@@ -843,19 +903,21 @@ div.button2 {
 }
 
 /* Links in buttons */
-.linkbut {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: black;
-	background-color: white;
-	text-decoration: none;
-	border: 1px ridge #dddddd; 
-	padding: 1px 1px 1px 1px;
-	margin: 2px 2px 2px 2px;
+.linkbut 
+{
+  font-family: Arial, Helvetica, sans-serif
+  font-size: 11px;
+  color: black;
+  background-color: white;
+  text-decoration: none;
+  border: 1px ridge #dddddd; 
+  padding: 1px 1px 1px 1px;
+  margin: 2px 2px 2px 2px;
+  cursor: pointer;
 }
 
 .linkbut:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	background-color: white;
 	color: black;
@@ -863,7 +925,7 @@ div.button2 {
 }
 
 .linkbut:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	background-color: #dddddd;
@@ -894,21 +956,21 @@ div.cachedpage {
 
 /* When an external link is cached a small link to the cached version (cache) is displayed using this style */
 .wikicache {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	color: #5E4860;
 	text-decoration: none;
 }
 
 .wikicache:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	color: #5E4860;
 	text-decoration: none;
 }
 
 .wikicache:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	color: #5E4860;
 	text-decoration: none;
@@ -923,22 +985,17 @@ td.wikicell {
 }
 
 /* Text in wiki pages is displayed using the following style */
-div.wikitext {
-	background-color: white;
-	background-color: #dddddd;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;  
-	border: 1px solid #999999;
-	padding-left: 25px;
-	padding-right: 15px;
-	padding-top: 9px;
-	padding-bottom: 1px;
-	margin-left: 1px;
-	margin-right: 1px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	width: 95%;
-	clear: both;
+div.wikitext 
+{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif
+  font-size: 11px;  
+  width: 50%;
+  height: 100%;
+  overflow: auto;
 }
 
 /* Links to wiki pages */
@@ -953,12 +1010,42 @@ div.wikitext {
 }
 
 /* Date displayed for last modification date of pages */
-p.editdate {
-	color: black;
-	font-size: smaller;
-	margin-bottom: 0px;
-	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+p#editdate 
+{
+  position: absolute;
+  bottom: 80px;
+  height: 15px;
+  right: 5%;
+  color: black;
+  font-size: 10px;
+  margin-bottom: 0px;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* The bar where the actions for a page are displayed */
+DIV#page-bar 
+{
+  position: absolute;
+  bottom: 60px;
+  width: 90%;
+  text-align: center;
+}
+
+/* And this is the footer */
+DIV#tiki-bot 
+{
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  height: 50px;
+  text-align: center;
+}
+
+DIV#tiki-bot IMG
+{
+  margin: 5px 20px 0 20px;
+}
+
 
 /* The edit-help used to display the wiki syntax when editing a page */
 div.wiki-edithelp {
@@ -1004,7 +1091,7 @@ TD.eventhumb {
 div.gallerytitle {
 	font-weight: bold;
 	font-size: 26px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif
 	color: black;
 }
 
@@ -1057,7 +1144,7 @@ table.imageinfo {
 }
 
 td.imageinfo {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: Black;
 	background-color: #CAD2D5;
@@ -1074,7 +1161,7 @@ div.browseimage {
 div.imagetitle {
 	font-weight: bold;
 	font-size: 26px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif
 	color: black;
 }
 
@@ -1101,7 +1188,7 @@ table.tableinfo {
 }
 
 div.linksinfo {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	color: Black;
 	text-align: center;
@@ -1116,7 +1203,7 @@ div.linksinfo {
 div.posthead {
 	background-color: #9cba00;
 	background-color: #1c60a8;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	color: white;
@@ -1133,7 +1220,7 @@ div.posthead {
 
 /* The font used in the heading of the weblog */
 span.posthead {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 13px;
 	font-size: 12px;
 	font-weight: bold;
@@ -1143,21 +1230,21 @@ span.posthead {
 /* Links in the weblog post heading (edit/remove) */
 /* When there's a link in a cbox-title */
 .blogt {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: white;
 	text-decoration: none;
 }
 
 .blogt:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: white;
 	text-decoration: none;
 }
 
 .blogt:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: white;
 	text-decoration: underline;
@@ -1173,7 +1260,7 @@ div.blogtitle {
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 	margin-top: 10px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 18px;
 	width: 98%;
 	clear: both;
@@ -1185,7 +1272,7 @@ div.postbody {
 	overflow: hidden;
 	background-color: white;
 	border: 1px solid #999999;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: Black;
 	width: 98%;
@@ -1205,7 +1292,7 @@ div.bloginfo, div.blogdesc, div.blogtools, postbody {
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 	margin-bottom: 10px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	width: 98%;
 	clear: both;
@@ -1257,7 +1344,7 @@ div.articleheading {
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 	border-bottom: 0px #999999;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	width: 98%;
 	clear: both;
@@ -1269,7 +1356,7 @@ div.articletrailer {
 	border-bottom: 1px solid #999999;
 	border-top: 1px solid #999999;
 	margin-bottom: 20px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	width: 98%;
 	clear: both;
@@ -1279,7 +1366,7 @@ div.articletrailer {
 
 /* Text in the article heading */
 div.articleheadingtext {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	display: inline;
 }
@@ -1293,7 +1380,7 @@ div.articlebody {
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 	margin: 10px 0px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	width: 98%;
 	clear: both;
@@ -1301,20 +1388,20 @@ div.articlebody {
 
 /* The article title */
 span.titlea {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 18px;
 	font-weight: bold;
 }
 
 /* The author, date and number of reads */
 span.titleb {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 10px;
 }
 
 /* The trailer */
 span.trailer {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 10px;
 	font-weight: bold;
 }
@@ -1323,21 +1410,21 @@ span.trailer {
 
 /* LINKS TO DAYS IN THE CALENDAR */
 .day {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	text-decoration: none;
 	color: black;
 }
 
 .day:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	text-decoration: none;
 	color: black;
 }
 
 .day:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	color: black;
 	background-color: #CCCCCC;
@@ -1345,14 +1432,14 @@ span.trailer {
 }
 
 .day:link {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	text-decoration: none;
 	color: black;
 }
 
 .day:visited {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	text-decoration: none;
 	color: black;
@@ -1360,7 +1447,7 @@ span.trailer {
 
 /* LINKS FOR TODAY */
 .today {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	text-decoration: none;
 	color: black;
@@ -1369,7 +1456,7 @@ span.trailer {
 }
 
 .today:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	text-decoration: none;
 	color: black;
@@ -1378,7 +1465,7 @@ span.trailer {
 }
 
 .today:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	color: black;
 	text-decoration: none;
@@ -1388,7 +1475,7 @@ span.trailer {
 
 /* Links to change month, year or go to today */
 .nav {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	text-decoration: none;
 	color: black;
@@ -1397,7 +1484,7 @@ span.trailer {
 }
 
 .nav:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	text-decoration: none;
 	color: black;
@@ -1406,7 +1493,7 @@ span.trailer {
 }
 
 .nav:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	color: black;
 	text-decoration: none;
@@ -1415,7 +1502,7 @@ span.trailer {
 }
 
 .changedate {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 8px;
 	background-color: white;
 	color: black;
@@ -1423,7 +1510,7 @@ span.trailer {
 }
 
 .date {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 9px;
 	background-color: white;
 	color: Black;
@@ -1488,13 +1575,13 @@ div.commentstoolbar {
 span.commentstitle {
 	font-weight: bold;
 	font-size: 12px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	width: 98%;
 }
 
 /* The comment */
 div.commentscomment {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	margin-bottom: 20px;
 	width: 97%;
@@ -1503,7 +1590,7 @@ div.commentscomment {
 div.commentheader {
 	background-color: #99AAAE;
 	font-size: 11px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	width: 97%;
 }
 
@@ -1511,27 +1598,27 @@ div.commentheader {
 div.commenttext {
 	font-size: 11px;
 	margin-left: 5px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	width: 97%;
 }
 
 /* Links in the comment header */
 .commentshlink {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	text-decoration: none;
 }
 
 .commentshlink:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	text-decoration: none;
 }
 
 .commentshlink:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	text-decoration: underline;
@@ -1546,7 +1633,7 @@ table.chatroom {
 }
 
 td.chatchannels {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	background-color: #EFEFEF;
 	font-size: 11px;
 	color: black;
@@ -1555,7 +1642,7 @@ td.chatchannels {
 td.chatarea {
 	padding-left: 0px;
 	margin-left: 0px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	background-color: white;
@@ -1571,7 +1658,7 @@ table.chatform {
 
 td.tdchatform {
 	color: Black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	background-color: #EFEFEF;
 	font-size: 11px;
 	vertical-align: top;
@@ -1580,13 +1667,13 @@ td.tdchatform {
 
 span.chnormal {
 	color: red;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 }
 
 span.chuser {
 	color: blue;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	font-weight: bold;
 }
@@ -1597,7 +1684,7 @@ div.pollresults {
 	border: 1px solid #999999;
 	width: 98%;
 	margin-top: 5px;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 14px;
 	padding-left: 5px;
 }
@@ -1607,7 +1694,7 @@ table.pollresults {
 }
 
 td.pollr {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 }
@@ -1735,19 +1822,19 @@ td.forumtoolbar {
 
 /* Links to vote */
 .forumvotelink {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: black;
 }
 
 .forumvotelink:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: black;
 }
 
 .forumvotelink:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: black;
 }
@@ -1778,21 +1865,21 @@ td.tdcategpath {
 
 /* Links to up/top categories */
 .categpath {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: #578308;
 	text-decoration: none;
 }
 
 .categpath:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: #578308;
 	text-decoration: none;
 }
 
 .categpath:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	color: #578308;
 	text-decoration: none;
@@ -1817,7 +1904,7 @@ td.tdsubcat {
 
 /* Links to subcategories */
 .categlink {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	text-decoration: none;
@@ -1825,7 +1912,7 @@ td.tdsubcat {
 }
 
 .categlink:active {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	text-decoration: none;
@@ -1833,7 +1920,7 @@ td.tdsubcat {
 }
 
 .categlink:hover {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	color: black;
 	text-decoration: underline;
@@ -1850,34 +1937,34 @@ table.catobjects {
 
 td.categobjectsnameeven, td.categobjectsdataeven {
 	background-color: white;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 }
 
 td.categobjectsnameodd, td.categobjectsdataodd {
 	background-color: #f2f6e5;
 	background-color: #dddddd;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 }
 
 .catname {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: none;
 }
 
 .catname:active {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: none;
 }
 
 .catname:hover {
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	text-decoration: underline;
 }
@@ -1889,7 +1976,7 @@ div.faqlistquestions {
 	background-color: #f2f6e5;
 	border: 1px solid #999999;
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 11px;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -1901,7 +1988,7 @@ div.faqqa {
 	background-color: #f2f6e5;
 	border: 1px solid #999999;
 	color: black;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	margin-bottom: 20px;
 	padding-top: 5px;
@@ -1912,7 +1999,7 @@ div.faqqa {
 
 /* The question */
 div.faqquestion {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	margin-bottom: 5px;
 	width: 97%;
@@ -1920,7 +2007,7 @@ div.faqquestion {
 
 /* The answer */
 div.faqanswer {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	width: 97%;
 }
@@ -1934,21 +2021,21 @@ div.questionblock {
 }
 
 div.quizquestion {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	padding-left: 2px;
 	margin-bottom: 5px;
 }
 
 div.quizoptions {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 }
 
 div.quizdescription {
 	background-color: #f2f6e5;
 	border: 1px solid #999999;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	padding-left: 2px;
 	margin-bottom: 10px;
@@ -1957,7 +2044,7 @@ div.quizdescription {
 div.quizanswer {
 	background-color: white;
 	border: 1px solid #999999;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	padding-left: 2px;
 	margin-bottom: 10px;
@@ -1967,7 +2054,7 @@ div.quizanswer {
 div.shoutboxmsg {
 	border: 1px solid #999999;
 	background-color: white;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 12px;
 	margin-bottom: 0px;
 	padding-left: 2px;
@@ -1976,7 +2063,7 @@ div.shoutboxmsg {
 }
 
 div.shoutboxmodmsg {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif
 	font-size: 10px;
 	margin-bottom: 4px;
 	padding-left: 2px;
@@ -2554,7 +2641,7 @@ div.tocnav {
 
 TD.formcolor, td.galform , td.editblogform, td.editfgalform, TD.comform,td.forumform
 
-{ color: Black; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;  background: #DED6C6; font-size: 11px; vertical-align: top; text-align: left;}
+{ color: Black; font-family: Arial, Helvetica, sans-serif  background: #DED6C6; font-size: 11px; vertical-align: top; text-align: left;}
 
 
 /*************************************************** DIRECTORY ***************************************************/
@@ -2568,12 +2655,12 @@ div.dircategs {
 }
 
 /* Links to categories */
-.dirlink {  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;  font-size: 12px;  color : blue; text-decoration: underline; font-weight: bold;}
-.dirlink:hover {  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;  font-size: 12px;  color : #636363; text-decoration: underline; font-weight: bold;}
+.dirlink {  font-family: Arial, Helvetica, sans-serif  font-size: 12px;  color : blue; text-decoration: underline; font-weight: bold;}
+.dirlink:hover {  font-family: Arial, Helvetica, sans-serif  font-size: 12px;  color : #636363; text-decoration: underline; font-weight: bold;}
 
 /* Links to subcategories */
-.dirsublink {  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;  font-size: 10px;  color : blue; text-decoration: underline;}
-.dirsublink:hover {  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;  font-size: 10px;  color : #636363; text-decoration: underline;}
+.dirsublink {  font-family: Arial, Helvetica, sans-serif  font-size: 10px;  color : blue; text-decoration: underline;}
+.dirsublink:hover {  font-family: Arial, Helvetica, sans-serif  font-size: 10px;  color : #636363; text-decoration: underline;}
 
 
 /* The list of sites in any category */
@@ -2600,8 +2687,8 @@ span.dirsitetrail {font-size: 10px;}
 span.dirsitecats {}
 
 /* Links to sites */
-.dirsitelink {  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;  font-size: 12px;  font-weight: bold; color : blue; text-decoration: underline;}
-.dirsitelink:hover {  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;  font-size: 12px;  color : #636363; text-decoration: underline;}
+.dirsitelink {  font-family: Arial, Helvetica, sans-serif  font-size: 12px;  font-weight: bold; color : blue; text-decoration: underline;}
+.dirsitelink:hover {  font-family: Arial, Helvetica, sans-serif  font-size: 12px;  color : #636363; text-decoration: underline;}
 
 /* Related categories */
 div.dirrelated {
@@ -2639,6 +2726,122 @@ div#ajaxLoading {
 	padding: 3px;
 	font-family: Verdana;
 	font-size: 10px;
+}
+
+/* PHPLAYERS */
+
+.box-data table {
+  width: 100%;
+}
+
+.mdkhorbar      {
+}
+
+.horbar 
+{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-left: 5px;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.horbaritem a 
+{
+  font-family: Verdana, Arial, sans-serif;
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+.harbaritem a:visited {
+  text-decoration: none;
+}
+
+.horbaritem a:hover {
+  text-decoration: none;
+}
+
+.mdkhorbaritem  {
+  float: left;
+  white-space: nowrap;
+}
+
+.mdkhorbaritem a        {
+  display: block;
+  text-decoration: none;
+}
+
+.mdkhorbaritem a:link   {
+}
+
+.mdkhorbaritem a:visited        {
+}
+
+.mdkhorbaritem a:hover  {
+}
+
+.mdkhorbaritem a:active {
+}
+
+.mdkverbar  {
+  margin: 0px;
+}
+
+.mdksubmenu 
+{
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  background: #FFFFFF;
+  visibility: hidden;
+}
+
+.mdksubmenu table {
+  width: auto;
+}
+
+.mdksubframe  
+{
+  z-index: 1000;
+  position: relative;
+  display: block;
+  border: 1px solid #ccc;
+}
+
+.mdkitem  {
+  border-top: 1px solid #white;
+  position: relative;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.mdkitem a  {
+  font-size: 14pt;  
+  padding: 5px 10px;
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: #333;
+}
+
+.mdkitem a:visited  {
+}
+
+.mdkitem a:hover  {
+	background-color: #FAF2E5;
+	color: #9E0000;
+}
+
+.mdkitem a:active {
+  color: #993300;
+}
+
+.mdkitem .mdkfwdarr {
+  position: absolute;
+  top: 5px;
+  right: 12px;
 }
 
 

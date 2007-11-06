@@ -1,13 +1,9 @@
 {* $Header: /cvsroot/tikiwiki/tiki/templates/tiki-page_bar.tpl,v 1.34.2.24 2006/04/23 20:32:47 sylvieg Exp $ *}
 
-<hr/>
 <div id="page-bar">
-  <table>
-    <tr>
 
 {* Check that page is not locked and edit permission granted. SandBox can be edited w/o perm *}
 {if ($editable and ($tiki_p_edit eq 'y' or $page|lower eq 'sandbox')) or $tiki_p_admin_wiki eq 'y'}
-    <td>
       <div class="button2" >
       <a title="{$semUser}" href="javascript:editPage()" class="linkbut">
         {if $beingEdited eq 'y'}
@@ -17,70 +13,67 @@
         {/if}
       </a>
       </div>
-    </td>
 {else}
     {if $feature_history eq 'y' and $tiki_p_wiki_view_history eq 'y'}
-    <td>
       <div class="button2" >
       <a href="javascript:pageHistory()" class="linkbut">
         {tr}source{/tr}
       </a>
       </div>
-    </td>
     {/if}
 {/if}
 
 {if $page|lower ne 'sandbox'}
 
 {if $tiki_p_remove eq 'y' && $editable}
-<td><div class="button2"><a href="javascript:removePage()" class="linkbut">{tr}remove{/tr}</a></div></td>
+<div class="button2"><a href="javascript:removePage()" class="linkbut">{tr}remove{/tr}</a></div>
 {/if}
 {if $tiki_p_rename eq 'y' && $editable}
-<td><div class="button2"><a href="javascript:renamePage()" class="linkbut">{tr}rename{/tr}</a></div></td>
+<div class="button2"><a href="javascript:renamePage()" class="linkbut">{tr}rename{/tr}</a></div>
 {/if}
 {/if}
 {*
 {if $lock and ($tiki_p_admin_wiki eq 'y' or ($user and ($user eq $page_user or $user eq "admin") and ($tiki_p_lock eq 'y') and ($feature_wiki_usrlock eq 'y')))}
-<td><div class="button2"><a href="tiki-index.php?page={$page|escape:"url"}&amp;action=unlock" class="linkbut">{tr}unlock{/tr}</a></div></td>
+<div class="button2"><a href="tiki-index.php?page={$page|escape:"url"}&amp;action=unlock" class="linkbut">{tr}unlock{/tr}</a></div>
 {/if}
 {if !$lock and ($tiki_p_admin_wiki eq 'y' or (($tiki_p_lock eq 'y') and ($feature_wiki_usrlock eq 'y')))}
-<td><div class="button2"><a href="tiki-index.php?page={$page|escape:"url"}&amp;action=lock" class="linkbut">{tr}lock{/tr}</a></div></td>
+<div class="button2"><a href="tiki-index.php?page={$page|escape:"url"}&amp;action=lock" class="linkbut">{tr}lock{/tr}</a></div>
 {/if}
 {if $tiki_p_admin_wiki eq 'y'}
-<td><div class="button2"><a href="tiki-pagepermissions.php?page={$page|escape:"url"}" class="linkbut">{tr}perms{/tr}</a></div></td>
+<div class="button2"><a href="tiki-pagepermissions.php?page={$page|escape:"url"}" class="linkbut">{tr}perms{/tr}</a></div>
 {/if}
 
 {if $feature_history eq 'y' and $tiki_p_wiki_view_history eq 'y'}
-<td><div class="button2"><a href="tiki-pagehistory.php?page={$page|escape:"url"}" class="linkbut">{tr}history{/tr}</a></div></td>
+<div class="button2"><a href="tiki-pagehistory.php?page={$page|escape:"url"}" class="linkbut">{tr}history{/tr}</a></div>
 {/if}
 
 {if $feature_likePages eq 'y'}
-<td><div class="button2"><a href="tiki-likepages.php?page={$page|escape:"url"}" class="linkbut">{tr}similar{/tr}</a></div></td>
+<div class="button2"><a href="tiki-likepages.php?page={$page|escape:"url"}" class="linkbut">{tr}similar{/tr}</a></div>
 {/if}
 {if $feature_wiki_undo eq 'y' and $canundo eq 'y'}
-<td><div class="button2"><a href="tiki-index.php?page={$page|escape:"url"}&amp;undo=1" class="linkbut">{tr}undo{/tr}</a></div></td>
+<div class="button2"><a href="tiki-index.php?page={$page|escape:"url"}&amp;undo=1" class="linkbut">{tr}undo{/tr}</a></div>
 {/if}
 {if $wiki_uses_slides eq 'y'}
 {if $show_slideshow eq 'y'}
-<td><div class="button2"><a href="tiki-slideshow.php?page={$page|escape:"url"}" class="linkbut">{tr}slides{/tr}</a></div></td>
+<div class="button2"><a href="tiki-slideshow.php?page={$page|escape:"url"}" class="linkbut">{tr}slides{/tr}</a></div>
 {elseif $structure eq 'y'}
-<td><div class="button2"><a href="tiki-slideshow2.php?page_ref_id={$page_info.page_ref_id}" class="linkbut">{tr}slides{/tr}</a></div></td>
+<div class="button2"><a href="tiki-slideshow2.php?page_ref_id={$page_info.page_ref_id}" class="linkbut">{tr}slides{/tr}</a></div>
 {/if}
 {/if}
 {if $feature_wiki_export eq 'y' and $tiki_p_admin_wiki eq 'y'}
-<td><div class="button2"><a href="tiki-export_wiki_pages.php?page={$page|escape:"url"}" class="linkbut">{tr}export{/tr}</a></div></td>
+<div class="button2"><a href="tiki-export_wiki_pages.php?page={$page|escape:"url"}" class="linkbut">{tr}export{/tr}</a></div>
 {/if}
 {if $feature_wiki_discuss eq 'y'}
-<td><div class="button2"><a href="tiki-view_forum.php?forumId={$wiki_forum_id}&amp;comments_postComment=post&amp;comments_title={$page|escape:"url"}&amp;comments_data={$wiki_discussion_string|escape:"url"}: {"[tiki-index.php?page="}{$page|escape:"url"}{"|"}{$page|escape:"url"}{"]"}&amp;comment_topictype=n" class="linkbut">{tr}discuss{/tr}</a></div></td>
+<div class="button2"><a href="tiki-view_forum.php?forumId={$wiki_forum_id}&amp;comments_postComment=post&amp;comments_title={$page|escape:"url"}&amp;comments_data={$wiki_discussion_string|escape:"url"}: {"[tiki-index.php?page="}{$page|escape:"url"}{"|"}{$page|escape:"url"}{"]"}&amp;comment_topictype=n" class="linkbut">{tr}discuss{/tr}</a></div>
 {/if}
 *}
 
 {if $edit_page eq 'y'} {* Show this button only in editing mode *}
-  <td>
+  
     <div class="button2">
       <a href="#" onclick="javascript:flip('edithelpzone'); return false;" class="linkbut">{tr}wiki help{/tr}</a>
     </div>
-  </td>
+  
 {/if}
 
 {if $show_page == 'y'} {* Show this buttons only if page view mode *}
@@ -92,7 +85,7 @@
   && $comments_cant != 0)
   ||  $tiki_p_post_comments  == 'y'
   ||  $tiki_p_edit_comments  == 'y')}
-   <td>
+   
     <div class="button2">
       <a href="{if $comments_show ne 'y'}tiki-index.php?page={$page|escape:"url"}&amp;comzone=show#comments{else}tiki-index.php?page={$page|escape:"url"}&amp;comzone=hide{/if}" onclick="javascript:flip('comzone{if $comments_show eq 'y'}open{/if}');{if $comments_show eq 'y'} return false;{/if}"
          class="linkbut">
@@ -105,7 +98,7 @@
         {/if}
       </a>
     </div>
-   </td>
+   
   {/if}
 
   {* don't show attachments button if feature disabled or no corresponding rights or no attached files and r/o*}
@@ -117,7 +110,7 @@
   ||  $tiki_p_wiki_attach_files      == 'y'
   ||  $tiki_p_wiki_admin_attachments == 'y')}
 
-  <td>
+  
     <div class="button2">
       <a href="#attachments" onclick="javascript:flip('attzone');" class="linkbut">
 
@@ -136,17 +129,15 @@
         {/if}
       </a>
     </div>
-  </td>
+  
   {/if}{* attachments *}
 
   {if $feature_multilingual eq 'y' and $tiki_p_edit eq 'y' and !$lock}
-     <td><div class="button2"><a href="tiki-edit_translation.php?page={$page|escape:'url'}" class="linkbut">{tr}translation{/tr}</a></div></td>
+     <div class="button2"><a href="tiki-edit_translation.php?page={$page|escape:'url'}" class="linkbut">{tr}translation{/tr}</a></div>
   {/if}
 
 {/if}
 
-</tr>
-</table>
 </div>
 
 {if $wiki_extras eq 'y' && $feature_wiki_attachments eq 'y' and $tiki_p_wiki_view_attachments eq 'y'}

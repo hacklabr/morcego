@@ -1,13 +1,18 @@
-function morcegoNavigate(frame) {
-    var titl = frame.contentDocument.getElementById('morcego-wiki-title');
-    var desc = frame.contentDocument.getElementById('morcego-wiki-description');
-    var cont = frame.contentDocument.getElementById('morcego-wiki-content');
+var pageId;
 
-    pageId = titl.innerHTML;
-    
-    document.getElementById('morcego-wiki-title').innerHTML = titl.innerHTML;
-    document.getElementById('morcego-wiki-description').innerHTML = desc.innerHTML;
-    document.getElementById('morcego-wiki-content').innerHTML = cont.innerHTML;
+Element.observe(window, 'load', function(e) {
+    $('morcego-applet').absolutize();
+    var appletHeight = Position.positionedOffset($('editdate'))[1] - $('tiki-top').getHeight() - $('morcego-top').getHeight();
+    var contentHeight = appletHeight - $('editdate').getHeight();
+    $('morcego-applet').style.height = appletHeight + "px";
+    $('wiki-content').style.height = contentHeight + "px";
+
+    xajax_loadMorcego(pageId);
+});
+
+function navigateTo(page) {
+    document.morcegoApplet.navigateTo(page);
+    xajax_loadPage(page);
 }
 
 function editPage() {
@@ -26,7 +31,3 @@ function renamePage() {
     document.location.href = "tiki-rename_page.php?page="+escape(pageId);
 }
 
-function navigateTo(page) {
-    applet.document.appletForm.Morcego.navigateTo(page);
-    wiki.document.location.href = "morcego-wikipage.php?page=" + escape(page);
-}
