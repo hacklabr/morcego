@@ -11,8 +11,8 @@ Element.observe(window, 'load', function(e) {
 });
 
 function navigateTo(page) {
-    document.morcegoApplet.navigateTo(page);
     xajax_loadPage(page);
+    document.morcegoApplet.navigateTo(page);
 }
 
 function editPage() {

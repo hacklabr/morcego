@@ -46,6 +46,8 @@ function loadPage($page) {
     $smarty->assign('creator',$wikilib->get_creator($page));
 
     $objResponse->script('pageId = "' . preg_replace('/"/','\"', $page) . '";');
+    $objResponse->assign('morcego-wiki-title', 'innerHTML', $page);
+    $objResponse->assign('morcego-wiki-description', 'innerHTML', $info['description']);
     $objResponse->assign('wiki-content', 'innerHTML', $tikilib->parse_data($info['data'], $info['is_html']));
     $objResponse->assign('editdate', 'innerHTML', $smarty->fetch("tiki-page_editdate.tpl"));
 
