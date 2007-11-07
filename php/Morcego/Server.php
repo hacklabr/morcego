@@ -1,5 +1,7 @@
 <?php
 
+ini_set('display_errors',0);
+
 require_once("XML/Server.php");
 
 class Morcego_Server extends XML_RPC_Server {

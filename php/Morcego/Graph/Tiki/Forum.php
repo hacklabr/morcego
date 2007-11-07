@@ -20,7 +20,7 @@ class Morcego_Graph_Tiki_Forum extends Morcego_Graph_Tiki {
 
 	$this->levelCache = array();
 
-	$this->Morcego_Graph_Tikiwiki(new Comments($dbTiki));
+	$this->Morcego_Graph_Tiki(new Comments($dbTiki));
     }
 
     function getNode($threadId) {
