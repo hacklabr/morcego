@@ -1,4 +1,7 @@
 {include file="header.tpl"}
+ <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="styles/morcego-ie.css" />
+ <![endif]-->
 
 {if $feature_bidi eq 'y'}<table dir="rtl" ><tr><td>{/if}
 
