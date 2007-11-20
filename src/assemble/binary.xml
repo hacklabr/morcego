@@ -13,6 +13,8 @@
         <include>CHANGELOG*</include>
         <include>CREDITS*</include>
         <include>LGPL*</include>
+        <include>demo/*</include>
+        <include>php/*</include>
       </includes>
     </fileSet>
     <fileSet>
