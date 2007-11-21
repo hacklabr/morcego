@@ -37,21 +37,21 @@ import br.arca.morcego.structure.Node;
 public class Animator implements Runnable {
 
 	private Graph graph;
-	private Vector<Node> visible;
+	private Vector visible;
 	
 	/**
 	 *  
 	 */
 	public Animator(Graph g) {
 		graph = g;
-		visible = new Vector<Node>();
+		visible = new Vector();
 	}
 
 	/*
 	 * Takes a vector of nodes to be added and one to be removed
 	 * and notifies thread that is animating.	 
 	 */
-	public void animate(Vector<Node> visible) {
+	public void animate(Vector visible) {
 		synchronized (this) {
 			this.visible = visible;
 			this.notify();
@@ -97,7 +97,7 @@ public class Animator implements Runnable {
 					e1.printStackTrace();
 				}
 			}
-			visible = new Vector<Node>();
+			visible = new Vector();
 		}
 	}
 	

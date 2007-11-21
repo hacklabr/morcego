@@ -72,7 +72,7 @@ import org.xml.sax.SAXException;
 /**
  * A multithreaded, reusable XML-RPC client object. Use this if you
  * need a full-grown HTTP client (e.g. for Proxy and Basic Auth
- * support). If you don't need that, <code>XmlRpcClientLite</code> may
+ * support). If you don't need that, XmlRpcClientLite</code> may
  * work better for you.
  *
  * @author <a href="mailto:hannes@apache.org">Hannes Wallnoefer</a>
@@ -575,7 +575,7 @@ public class XmlRpcAppletClient implements XmlRpcHandler
         {
             System.err.println(x);
             System.err.println("Usage: java org.apache.xmlrpc.XmlRpcClient "
-                    + "<url> <method> <arg> ....");
+                    + "   ....");
             System.err.println("Arguments are sent as integers or strings.");
         }
     }

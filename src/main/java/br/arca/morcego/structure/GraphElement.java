@@ -28,17 +28,17 @@ import br.arca.morcego.physics.VisibleObject;
  */
 public abstract class GraphElement extends Component implements VisibleObject, MouseInputListener{
 	
-	private Hashtable<String, Object> properties;
+	private Hashtable properties;
 	protected Graph graph;
 	
 	protected DescriptionBox description;
 	
 	public GraphElement() {
-		properties = new Hashtable<String, Object>();
+		properties = new Hashtable();
 	}
 	
-	public Hashtable<String, Class> availableProperties() {
-		Hashtable<String, Class> prop = new Hashtable<String,Class>();
+	public Hashtable availableProperties() {
+		Hashtable prop = new Hashtable();
 		prop.put("type", String.class);
 		prop.put("onmouseover", String.class);
 		prop.put("onmouseout", String.class);
@@ -55,19 +55,19 @@ public abstract class GraphElement extends Component implements VisibleObject, M
 		properties.put(name.toLowerCase(), value);
 	}
 	
-	public Hashtable<String, Object> getProperties() {
+	public Hashtable getProperties() {
 		return properties;
 	}
 
-	public void setProperties(Hashtable<String, String> properties) {
+	public void setProperties(Hashtable properties) {
 		
-		Hashtable<String, Class> available = availableProperties();
+		Hashtable available = availableProperties();
 		
-		for (Enumeration<String> eP = properties.keys(); eP.hasMoreElements(); ) {
-			String key = eP.nextElement();
-			Class type = available.get(key.toLowerCase());
+		for (Enumeration eP = properties.keys(); eP.hasMoreElements(); ) {
+			String key = (String) eP.nextElement();
+			Class type = (Class) available.get(key.toLowerCase());
 			if (type != null) {
-				setProperty(key, Config.decode(properties.get(key), type));
+				setProperty(key, Config.decode((String) properties.get(key), type));
 			}
 		}
 	}

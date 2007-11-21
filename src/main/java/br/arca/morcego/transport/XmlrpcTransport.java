@@ -67,7 +67,7 @@ public class XmlrpcTransport implements Transport {
 	 * @param params
 	 * @return
 	 */
-	private Hashtable fetch(String method, Vector<Comparable> params) {
+	private Hashtable fetch(String method, Vector params) {
 		Hashtable result = new Hashtable();
 		try {
 			result = (Hashtable) client.execute(method, params);
@@ -91,20 +91,20 @@ public class XmlrpcTransport implements Transport {
 	}
 	
 	private int fetchVersion() {
-		Integer version;
+		int version;
 		try {
-			version = (Integer) client.execute("getVersion", new Vector());
+			version = ((Integer) client.execute("getVersion", new Vector())).intValue();
 		} catch (XmlRpcException e) {
 			version = 1;
 		} catch (IOException e) {
 			e.printStackTrace();
 			version = 1;
 		}
-		return version.intValue();
+		return version;
 	}
 
 	public Hashtable fetchGraph(String centerId, Integer depth) {
-		Vector<Comparable> params = new Vector<Comparable>();
+		Vector params = new Vector();
 		params.add(centerId);
 		params.add(depth);
 
@@ -118,16 +118,16 @@ public class XmlrpcTransport implements Transport {
 	 */
 	private Hashtable oldFetchGraph(String centerId, Integer depth) {
 		Hashtable graph = fetchGraph(centerId, depth);
-		Hashtable<String, Hashtable> nodes = (Hashtable<String, Hashtable>) graph.get("graph");
-		Vector<Hashtable> links = new Vector<Hashtable>();
+		Hashtable nodes = (Hashtable) graph.get("graph");
+		Vector links = new Vector();
 		
-		for (Enumeration<String> e = nodes.keys(); e.hasMoreElements();) {
-			String nodeId = e.nextElement();
-			Hashtable node = nodes.get(nodeId);
+		for (Enumeration e = nodes.keys(); e.hasMoreElements();) {
+			String nodeId = (String) e.nextElement();
+			Hashtable node = (Hashtable) nodes.get(nodeId);
 			
-			Vector<String> neighbours = (Vector<String>) node.get("neighbours");
-			for (Enumeration<String> eN = neighbours.elements(); eN.hasMoreElements();) {
-				Hashtable<String, String> link = new Hashtable<String, String>();
+			Vector neighbours = (Vector) node.get("neighbours");
+			for (Enumeration eN = neighbours.elements(); eN.hasMoreElements();) {
+				Hashtable link = new Hashtable();
 				link.put("to", nodeId);
 				link.put("from", eN.nextElement());
 				links.add(link);

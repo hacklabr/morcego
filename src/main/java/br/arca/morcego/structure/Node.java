@@ -54,7 +54,7 @@ public class Node extends GraphElement implements PositionedObject {
 
 	// Linked nodes' names as keys in hash for fast searching,
 	// value is not used
-	private Hashtable<String, Link> links;
+	private Hashtable links;
 
 	private boolean isCentered;
 
@@ -74,7 +74,7 @@ public class Node extends GraphElement implements PositionedObject {
 	}
 	
 	public void setup(String name, Graph graph) {
-		links = new Hashtable<String, Link>();
+		links = new Hashtable();
 
 		this.graph = graph;
 
@@ -94,8 +94,8 @@ public class Node extends GraphElement implements PositionedObject {
 		this.graph.addNode(this);
 	}
 	
-	public Hashtable<String, Class> availableProperties() {
-		Hashtable<String, Class> prop = super.availableProperties();
+	public Hashtable availableProperties() {
+		Hashtable prop = super.availableProperties();
 		prop.put("color", Color.class);
 		prop.put("actionurl", URL.class);
 		prop.put("description", String.class);
@@ -198,7 +198,7 @@ public class Node extends GraphElement implements PositionedObject {
 
 
 
-	public Enumeration<Link> getLinks() {
+	public Enumeration getLinks() {
 		return links.elements();
 	}
 
@@ -395,7 +395,7 @@ public class Node extends GraphElement implements PositionedObject {
 	 */
 	public Link getLinkTo(Node node) {
 		if (this.isLinkedTo(node)) {
-			return links.get(node.id);
+			return (Link) links.get(node.id);
 		}
 		return null;
 	}

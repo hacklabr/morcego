@@ -24,7 +24,7 @@ import br.arca.morcego.structure.Node;
  */
 public class DashedLink extends Link {
 
-	private Integer parts = 10;
+	private int parts = 10;
 	
 	public DashedLink() {
 		super();
@@ -48,7 +48,7 @@ public class DashedLink extends Link {
 
 		Vector3D start = new Vector3D(body1.projection.x, body1.projection.y, 0);
 		Vector3D inc = new Vector3D(body2.projection.x, body2.projection.y, 0).getVectorFrom(start);
-		Vector3D end = start.clone();
+		Vector3D end = start.makeClone();
 		
 		inc.resize((float)1/sections);
 		end.add(inc);

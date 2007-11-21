@@ -60,14 +60,14 @@ public class Feeder implements Runnable {
 	public void feed(Hashtable graphData) throws WrongDataFormat {
 		
 		synchronized (graph) {
-			Vector<Node> nodes = extractNodes(graphData);
+			Vector nodes = extractNodes(graphData);
 			extractLinks(graphData);
 			animator.animate(nodes);
 		}
 	}
 	
-	public Vector<Node> extractNodes(Hashtable graphData) throws WrongDataFormat {
-		Vector<Node> nodes = new Vector<Node>();
+	public Vector extractNodes(Hashtable graphData) throws WrongDataFormat {
+		Vector nodes = new Vector();
 		Hashtable nodesData;
 		try {
 			nodesData = (Hashtable) graphData.get("nodes");
@@ -76,8 +76,8 @@ public class Feeder implements Runnable {
 		}
 		for (Enumeration eN = nodesData.keys(); eN.hasMoreElements();) {
 			String nodeId = (String) eN.nextElement();
-			Hashtable<String, String> nodeData = (Hashtable<String, String>) nodesData.get(nodeId);		
-			Node node = GraphElementFactory.createNode(nodeId, graph, nodeData.get("type"));
+			Hashtable nodeData = (Hashtable) nodesData.get(nodeId);		
+			Node node = GraphElementFactory.createNode(nodeId, graph, (String) nodeData.get("type"));
 			node.setProperties(nodeData);
 			node.init();
 			
@@ -97,14 +97,14 @@ public class Feeder implements Runnable {
 		}
 		for (Enumeration eN = linksData.elements(); eN.hasMoreElements();) {
 			
-			Hashtable<String, String> linkData = (Hashtable<String, String>) eN.nextElement();
+			Hashtable linkData = (Hashtable) eN.nextElement();
 			
-			Node node1 = graph.getNodeById(linkData.get("from"));
-			Node node2 = graph.getNodeById(linkData.get("to"));
+			Node node1 = graph.getNodeById((String) linkData.get("from"));
+			Node node2 = graph.getNodeById((String) linkData.get("to"));
 			
 			if (node1 != null && node2 != null) {
 				Link link;
-				link = GraphElementFactory.createLink(node1, node2, linkData.get("type"));				
+				link = GraphElementFactory.createLink(node1, node2, (String) linkData.get("type"));				
 				link.setProperties(linkData);
 				link.init();				
 			}

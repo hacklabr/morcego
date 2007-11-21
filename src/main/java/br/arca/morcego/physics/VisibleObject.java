@@ -30,7 +30,7 @@ import java.util.Hashtable;
  */
 public interface VisibleObject {
 	
-	public Hashtable<String, Class> availableProperties();
+	public Hashtable availableProperties();
 	
 	public boolean visible();
 	

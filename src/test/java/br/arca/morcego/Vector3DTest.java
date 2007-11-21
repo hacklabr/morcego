@@ -87,14 +87,14 @@ public class Vector3DTest extends TestCase {
 	public void testOpposite() {
 		Vector3D o = new Vector3D(35,87,23);
 		Vector3D d = new Vector3D(135,187,123);
-		Vector3D orig = o.clone();
+		Vector3D orig = o.makeClone();
 		
 		o.add(d);
 		o.add(d.opposite());
 
-		assertEquals(o.x, orig.x);
-		assertEquals(o.y, orig.y);
-		assertEquals(o.z, orig.z);
+		assertEquals(o.x, orig.x, 0);
+		assertEquals(o.y, orig.y, 0);
+		assertEquals(o.z, orig.z, 0);
 	}
 	
 	public void testGetVectorFrom() {
@@ -104,9 +104,9 @@ public class Vector3DTest extends TestCase {
 		Vector3D diff = d.getVectorFrom(o);
 		o.add(diff);
 
-		assertEquals(o.x, d.x);
-		assertEquals(o.y, d.y);
-		assertEquals(o.z, d.z);
+		assertEquals(o.x, d.x, 0);
+		assertEquals(o.y, d.y, 0);
+		assertEquals(o.z, d.z, 0);
 		
 
 	}

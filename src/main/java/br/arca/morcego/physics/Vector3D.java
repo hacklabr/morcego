@@ -47,7 +47,7 @@ public class Vector3D implements PositionedObject {
 		this.y = y;
 	}
 	
-	public Vector3D clone() {
+	public Vector3D makeClone() {
 		Vector3D v = new Vector3D(x, y, z);
 		v.proj();
 		return v;

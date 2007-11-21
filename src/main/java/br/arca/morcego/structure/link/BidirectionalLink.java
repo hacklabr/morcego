@@ -44,7 +44,7 @@ public class BidirectionalLink extends Link {
 		Vector3D start = new Vector3D(body1.projection.x, body1.projection.y, 0);
 		Vector3D inc = new Vector3D(body2.projection.x, body2.projection.y, 0).getVectorFrom(start);
 		start.add(inc.multiplyByScalar((float)0.1));
-		Vector3D end = start.clone();
+		Vector3D end = start.makeClone();
 		end.add(inc.multiplyByScalar((float)0.8));
 		
 		g.drawLine((int)start.x, (int)start.y, (int)end.x, (int)end.y);

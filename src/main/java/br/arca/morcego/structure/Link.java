@@ -76,8 +76,8 @@ import br.arca.morcego.physics.Vector3D;
 			
 		}
 		
-		public Hashtable<String, Class> availableProperties() {
-			Hashtable<String, Class> prop = super.availableProperties();
+		public Hashtable availableProperties() {
+			Hashtable prop = super.availableProperties();
 			prop.put("color", Color.class);
 			prop.put("description", String.class);
 			prop.put("springsize", Float.class);

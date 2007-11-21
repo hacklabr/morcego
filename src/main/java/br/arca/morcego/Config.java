@@ -36,7 +36,7 @@ import br.arca.morcego.structure.Node;
  */
 public class Config {
 
-	private static Hashtable<String, Object> config = new Hashtable<String, Object>();
+	private static Hashtable config = new Hashtable();
 	
 	/*
 	 * For documentation purpose, keep development version variables separated
@@ -295,7 +295,7 @@ public class Config {
 	 * Tests if a given config var exists, needs introspection
 	 */
 	public static boolean exists(String varName) {
-		Class<?> configClass;
+		Class configClass;
 		try {
 			configClass = Class.forName("br.arca.morcego.Config");
 		} catch (ClassNotFoundException e) {

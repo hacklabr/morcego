@@ -21,7 +21,7 @@ import br.arca.morcego.structure.node.RoundNode;
 public class GraphElementFactory {
 	
 	// Holds type names with hashtable of properties
-	private static Hashtable<String, Hashtable> types = new Hashtable<String, Hashtable>();
+	private static Hashtable types = new Hashtable();
 	
 	public static void defineType(String type, Hashtable properties) {
 		types.put(type,properties);
