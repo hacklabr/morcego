@@ -120,6 +120,8 @@ public class Config {
 
 	public static String originX = "morcego.originX";
 	public static String originY = "morcego.originY";
+
+	public static String cameraDepth = "morcego.cameraDepth";
 	
 	/*
 	 * Sets all configuration, edit here to modify config
@@ -177,6 +179,7 @@ public class Config {
 
 		// Position of the camera
 		setValue(cameraDistance, new Integer(500));
+		setValue(cameraDepth, new Integer(150));
 		setValue(minCameraDistance, new Integer(150));
 		setValue(fieldOfView, new Integer(250));
 

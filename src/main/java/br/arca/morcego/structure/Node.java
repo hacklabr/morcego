@@ -401,8 +401,7 @@ public class Node extends GraphElement implements PositionedObject {
 	}
 
 	public boolean visible() {
-		float scale = getBody().getScale();
-		return true || (scale > 0 && scale < 0.9);
+		return true;
 	}
 	
 	public float getScale() {

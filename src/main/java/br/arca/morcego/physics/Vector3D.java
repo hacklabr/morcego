@@ -90,19 +90,22 @@ public class Vector3D implements PositionedObject {
 		}
 		
 		scale = camera.getDistanceTo(new Vector3D(0,0,z));
+		
 		if (scale > 0) {
 			scale = FOV / scale;
 
-			int depth = (int) (camera.getDistanceTo(this));
-
-			if (Math.abs(depth) < 1) 
-				depth = 1;
-	
-			float u = Morcego.getOrigin().x + FOV * x / depth;
-			float v = Morcego.getOrigin().y + FOV * y / depth;
+			int depth = Config.getInteger(Config.cameraDepth);
+			float dist =  Morcego.getCamera().z;
+			
+			float u = Morcego.getOrigin().x + x * depth / (depth + dist - z);
+			float v = Morcego.getOrigin().y + y * depth / (depth + dist - z);
 	
 			projection.x = new Float(u).intValue();
 			projection.y = new Float(v).intValue();
+			
+			/*if (u > Config.getInteger(Config.width) || v > Config.getInteger(Config.height) || u < 0 || v < 0) {
+				scale = 0;
+			}*/
 
 		} else {
 			scale = 0;
@@ -110,13 +113,13 @@ public class Vector3D implements PositionedObject {
 	}
 
 	public Vector3D unproj(float dx, float dy) {
-		int depth = (int) (Morcego.getCamera().getDistanceTo(this));
-
-		float xi = (dx - Morcego.getOrigin().x) * depth / FOV;
-		float yi = (dy - Morcego.getOrigin().y) * depth / FOV;
-		float zi = z;
-
-		return new Vector3D(xi, yi, zi);
+		int depth = Config.getInteger(Config.cameraDepth);
+		float dist =  Morcego.getCamera().z;
+		
+		float xi = (dx - Morcego.getOrigin().x) * (depth + dist - z) / depth;
+		float yi = (dy - Morcego.getOrigin().y) * (depth + dist - z) / depth;
+		
+		return new Vector3D(xi, yi, z);
 
 	}
 

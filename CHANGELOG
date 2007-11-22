@@ -16,15 +16,19 @@ Version 0.6.0
 [NEW] Better integration with HTML page by generating JS events from Morcego, through "onmouseover", "onmouseout" and "onclick" node properties
 [NEW] Demo php application
 [NEW] Proper visualization for trees, implementation of node hierarchy finally working, defined by node property "level". If new boolean configuration 
-      "graphIsTree" is true, a simulated wind will blow the nodes with intensity according to "windIntensity" and node level. 
+      "graphIsTree" is true, a simulated wind will blow the nodes with intensity according to "windIntensity" and node level.
+[NEW] Camera algorithm rewriten, peripherical distortion avoided (and so part of graph may get out of sight) 
 [NEW] refresh() method to be called by javascript
+[MOD] Lower minimum java version requirement, now compatible with XXX (can anyone confirm the minimum version?)
 [NEW] changeParam() method to be called by javascript (not working yet)
 [NEW] Types "Square" and "Triangle" for nodes
 [NEW] Center node position is configurable through "originX" and "originY" configuration vars
 [MOD] Node properties case insensitive. Most link properties too, just not "from" and "to".
 [MOD] Simpler width and height settings: windowWidth, windowHeight, viewWidth and viewHeight removed; width and height added, default is html element size
 [MOD] Simpler Arca logo positioning, calculated according to window size
-[MOD] Default center node size proportion is now 1, because the scale was messing with depthness perception 
+[MOD] Default center node size proportion is now 1, because the scale was messing with depthness perception
+ 
+
 
 Version 0.5.0
 
