@@ -134,7 +134,6 @@ public class Balancer extends ControlledRunnable {
 
 			}
 		} catch (InterruptedException e) {
-			System.out.println("Balancing interrupted");
 		}
 
 	}

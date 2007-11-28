@@ -138,8 +138,6 @@ public class Feeder extends ControlledRunnable {
 					}
 					shouldWait = true;
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 					break;
 				}
 			}

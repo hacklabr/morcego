@@ -83,7 +83,7 @@ public class Renderer extends ControlledRunnable {
 			try {
 				Thread.sleep(Config.getInteger(Config.renderingFrameInterval));
 			} catch (InterruptedException e) {
-				// Keep rendering
+				break;
 			}
 
 		}
