@@ -82,7 +82,7 @@ public class Balancer extends ControlledRunnable {
 	/*
 	 *  
 	 */
-	public void blow(Node node) {
+	private void blow(Node node) {
 
 		PunctualBody body = node.getBody();
 		
@@ -95,9 +95,12 @@ public class Balancer extends ControlledRunnable {
 			return;
 		}
 		
-		Vector3D wind = graph.getOrientation().multiplyByScalar(Config.getFloat(Config.windIntensity));
 		
-		node.getBody().getInstantForce().add(wind.multiplyByScalar(levelDifference));
+		float windIntensity = levelDifference*Config.getFloat(Config.springSize) - graph.getOrientation().scalarProduct(body);
+		
+		Vector3D wind = graph.getOrientation().multiplyByScalar(windIntensity * Config.getFloat(Config.windIntensity));
+		
+		node.getBody().getInstantForce().add(wind);
 	}
 
 	/*
