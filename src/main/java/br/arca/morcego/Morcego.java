@@ -193,6 +193,8 @@ public class Morcego extends Applet {
 	//Stop the applet
 
 	public void stop() {
+		renderer.finish();
+		graph.finish();
 	}
 	//Destroy the applet
 	

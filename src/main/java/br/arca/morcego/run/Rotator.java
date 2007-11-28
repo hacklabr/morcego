@@ -27,7 +27,7 @@ import br.arca.morcego.structure.Graph;
  * To change the template for this generated type comment go to Window -
  * Preferences - Java - Code Generation - Code and Comments
  */
-public class Rotator implements Runnable {
+public class Rotator extends ControlledRunnable {
 
 	private Graph graph;
 
@@ -86,7 +86,9 @@ public class Rotator implements Runnable {
 
 		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
 
-		while (true) {
+		running = true;
+		
+		while (running) {
 			while (!isSpinning()) {
 				synchronized (this) {
 					try {

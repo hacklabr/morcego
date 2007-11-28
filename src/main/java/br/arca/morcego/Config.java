@@ -179,7 +179,7 @@ public class Config {
 
 		// Position of the camera
 		setValue(cameraDistance, new Integer(500));
-		setValue(cameraDepth, new Integer(150));
+		setValue(cameraDepth, new Integer(250));
 		setValue(minCameraDistance, new Integer(150));
 		setValue(fieldOfView, new Integer(250));
 

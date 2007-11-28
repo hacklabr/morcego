@@ -36,7 +36,7 @@ import br.arca.morcego.transport.Transport;
  * Feeder runs in a thread and will retrieve graph data whenever needed, then
  * pass new and old nodes to animator to put them in graph in a fancy way.
  */
-public class Feeder implements Runnable {
+public class Feeder extends ControlledRunnable {
 
 	private Graph graph;
 
@@ -115,6 +115,7 @@ public class Feeder implements Runnable {
 		shouldWait = false;
 		this.notify();
 	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -126,8 +127,10 @@ public class Feeder implements Runnable {
 
 		Thread animationThread = new Thread(animator);
 		animationThread.start();
+		
+		running = true;
 
-		while (true) {
+		while (running) {
 			synchronized (this) {
 				try {
 					if (shouldWait) {
@@ -137,6 +140,7 @@ public class Feeder implements Runnable {
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					break;
 				}
 			}
 

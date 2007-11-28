@@ -34,7 +34,7 @@ import br.arca.morcego.structure.Node;
  * Balancer is responsible for calculating the forces over each node and
  * setting node speed to get the graph balanced.
  */
-public class Balancer implements Runnable {
+public class Balancer extends ControlledRunnable {
 
 	private boolean balancing = true;
 	private boolean balancingLock = false;
@@ -114,7 +114,9 @@ public class Balancer implements Runnable {
 
 			int cycleCount = 0;
 			
-			while (true) {
+			running = true;
+			
+			while (running) {
 
 				waitUntilBalancingIsNeeded();
 

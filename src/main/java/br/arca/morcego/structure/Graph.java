@@ -46,7 +46,6 @@ public class Graph extends Component implements MouseInputListener,
 	 * 
 	 */
 	private static final long serialVersionUID = -4592004647118214474L;
-
 	
 	private Vector visibleNodes;
 	private Vector visibleLinks;
@@ -77,7 +76,7 @@ public class Graph extends Component implements MouseInputListener,
 	private GraphElement focus;
 
 	private int previousX, previousY;
-
+	
 	private final class RenderingStrategy implements Comparator {
 		public int compare(Object o1, Object o2) {
 			if (((GraphElement) o1).getDepth() > ((GraphElement) o2).getDepth()) {
@@ -479,7 +478,12 @@ public class Graph extends Component implements MouseInputListener,
 		feedingThread.start();
 		spinningThread.start();
 		balanceThread.start();
-
+	}
+	
+	public void finish() {
+		if (feeder != null)	feeder.finish();
+		if (balancer != null) balancer.finish();
+		if (rotator != null) rotator.finish();
 	}
 
 	/**

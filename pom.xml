@@ -4,8 +4,7 @@
   <artifactId>morcego</artifactId>
   <name>morcego</name>
   <version>0.6.0-dev</version>
-  <description>Morcego 3D network browser is a java application to view graphs and networks in a 3D environment. 
-	It's currently integrated to TikiWiki to view the wiki structure.</description>
+  <description>Morcego 3D Network Browser is a mind-map application to view graphs and networks online in a 3D environment.</description>
   <url>http://morcego.arca.ime.usp.br/</url>
   
   <dependencies>

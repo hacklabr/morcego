@@ -28,7 +28,7 @@ import br.arca.morcego.Morcego;
  * 
  * Thread that keeps rendering graph in screen
  */
-public class Renderer implements Runnable {
+public class Renderer extends ControlledRunnable {
 
 	private Morcego applet;
 
@@ -71,7 +71,9 @@ public class Renderer implements Runnable {
 	 */
 	public void run() {
 
-		while (true) {
+		running = true;
+		
+		while (running) {
 			if (render) {
 				synchronized (this) {
 					applet.repaint();
