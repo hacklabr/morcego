@@ -203,7 +203,7 @@ public class Config {
 		
 		setValue(transport,"Xmlrpc");
 		setValue(feedAnimationInterval, new Integer(100));
-		setValue(loadPageOnCenter, new Boolean(true)); // will get obsolete with onNavigateJSFunction
+		setValue(loadPageOnCenter, new Boolean(false)); 
 		setValue(navigationDepth, new Integer(3));
 
 		// Name of window in which URLs should be loaded

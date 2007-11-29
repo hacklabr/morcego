@@ -379,6 +379,13 @@ public class Morcego extends Applet {
 		return origin;
 	}
 
+	public static void JSCall(String jsCommand) {
+		JSObject win = JSObject.getWindow(application);
+		if (win != null) {
+			win.eval(jsCommand);
+		}
+	}
+
 	/*
 	 * Public interface for javascript access
 	 */
@@ -387,13 +394,7 @@ public class Morcego extends Applet {
 		graph.navigateTo(graph.getNodeById(nodeId));
 	}
 	
-	public static void JSCall(String jsCommand) {
-		JSObject win = JSObject.getWindow(application);
-		if (win != null) {
-			win.eval(jsCommand);
-		}
-	}
-	
+
 	public void refresh() {
 		setUp();
 		graph.notifyFeeder();
