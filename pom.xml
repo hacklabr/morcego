@@ -3,7 +3,7 @@
   <groupId>br.arca.morcego</groupId>
   <artifactId>morcego</artifactId>
   <name>morcego</name>
-  <version>0.6.0-RC1</version>
+  <version>0.6.0RC1</version>
   <description>Morcego 3D Network Browser is a mind-map application to view graphs and networks online in a 3D environment.</description>
   <url>http://morcego.arca.ime.usp.br/</url>
   
