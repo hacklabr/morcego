@@ -13,8 +13,52 @@
         <include>CHANGELOG*</include>
         <include>CREDITS*</include>
         <include>LGPL*</include>
+
+<!-- Below is paste from package.sh results -->
         <include>demo/*</include>
+        <include>demo/img/*</include>
+        <include>demo/lib/*</include>
+        <include>demo/lib/XML/*</include>
+        <include>demo/lib/XML/tests/*</include>
+        <include>demo/lib/XML/Parser/*</include>
+        <include>demo/lib/XML/examples/*</include>
+        <include>demo/lib/xajax/*</include>
+        <include>demo/lib/xajax/xajax_js/*</include>
+        <include>demo/lib/xajax/tests/*</include>
+        <include>demo/lib/xajax/tests/legacy_tests/*</include>
+        <include>demo/lib/xajax/tests/suite/*</include>
+        <include>demo/lib/xajax/xajax_plugins/*</include>
+        <include>demo/lib/xajax/xajax_plugins/request/*</include>
+        <include>demo/lib/xajax/xajax_plugins/response/*</include>
+        <include>demo/lib/xajax/examples/*</include>
+        <include>demo/lib/xajax/examples/xul/*</include>
+        <include>demo/lib/xajax/examples/multiply/*</include>
+        <include>demo/lib/xajax/examples/thewall/*</include>
+        <include>demo/lib/xajax/examples/signup/*</include>
+        <include>demo/lib/xajax/xajax_core/*</include>
+        <include>demo/lib/xajax/xajax_core/plugin_layer/*</include>
+        <include>demo/lib/xajax/xajax_core/plugin_layer/support/*</include>
+        <include>demo/lib/xajax/xajax_controls/*</include>
+        <include>demo/lib/Smarty/*</include>
+        <include>demo/lib/Smarty/demo/*</include>
+        <include>demo/lib/Smarty/demo/configs/*</include>
+        <include>demo/lib/Smarty/demo/templates_c/*</include>
+        <include>demo/lib/Smarty/demo/templates/*</include>
+        <include>demo/lib/Smarty/libs/*</include>
+        <include>demo/lib/Smarty/libs/plugins/*</include>
+        <include>demo/lib/Smarty/libs/internals/*</include>
+        <include>demo/lib/Smarty/misc/*</include>
+        <include>demo/lib/Smarty/unit_test/*</include>
+        <include>demo/lib/Smarty/unit_test/configs/*</include>
+        <include>demo/lib/Smarty/unit_test/templates/*</include>
+        <include>demo/templates/*</include>
+        <include>demo/templates/data/*</include>
         <include>php/*</include>
+        <include>php/Morcego/*</include>
+        <include>php/Morcego/Graph/*</include>
+        <include>php/Morcego/Graph/Tiki/*</include>
+<!-- package.sh paste end -->
+
       </includes>
     </fileSet>
     <fileSet>

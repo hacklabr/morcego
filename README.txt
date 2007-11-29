@@ -79,7 +79,9 @@ on your technical skills and time available. You can:
 If you don't have much technical skills, but would like to make an online mind map, you can do one
 by editing some XMl files and putting a simple application in a webserver with PHP:
 
-* Copy demo/ to a directory in your web server
+* Copy demo/ to a directory in your web server, let's say /var/www/morcego_demo for example.
+* Copy morcego-$VERSION.jar and php/Morcego to /var/www/morcego_demo
+* Give permission to your web user to write to /var/www/morcego_demo/templates_c
 * Open a browser and check the results
 * Take a look at the XML files under templates/data directory. Edit them to customize the mindmap.
 * Check also the .tpl files at templates/ dir. Modify those to customize the layout. For help on that, check http://smarty.php.net

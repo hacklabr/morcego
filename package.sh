@@ -1,10 +1,24 @@
 #!/bin/bash
 
+##
+#
+# Backup demo, so that we restore it after packing
+# 
+
+cp -a demo demo_bak
+
+##
+# 
+# Download the libs necessary to demo applicatoin
+#
+
 RPC_VERSION=1.5.1
 PARSER_VERSION=1.2.8
 XAJAX_VERSION=0.5_beta_4b_Standard
 SMARTY_VERSION=2.6.18
 PROTOTYPE_DATE=2007/10/16
+
+cd demo
 
 mkdir lib
 cd lib
@@ -41,5 +55,35 @@ mv Smarty-$SMARTY_VERSION Smarty
 
 wget http://www.prototypejs.org/assets/$PROTOTYPE_DATE/prototype.js
 
-echo '*** NOW COPY morcego-0.6.0-dev.jar TO HERE! ***'
+cd ../..
+
+##
+#
+# Get Morcego version from pom.xml and update demo application
+#
+
+VERSION=`perl -e 'print $1 if \`cat pom.xml\` =~ m|<version>\s*(.+?)\s*</version>|s'`
+
+find demo -type f -exec perl -pi -e "s/\\$\{VERSION\}/$VERSION/g" {} \;
+
+##
+#
+# Generate a piece of src/assemble/binary.xml according to libraries downloaded
+#
+
+echo "PLEASE UPDATE src/assemble/binary.xml TO CONTAIN FOLLOWING FILES, ctrl+d to continue\n";
+
+find demo php -type d | grep -v \.svn |perl -ple 'chomp; s|^(.+)$|        <include>$1/*</include>|'
+
+cat;
+
+##
+#
+# Pack everything according to src/assemble/*.xml and cleanup
+#
+
+mvn assembly:assembly
+
+rm -rf demo
+mv demo_bak demo
 

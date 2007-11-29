@@ -19,7 +19,8 @@
 
       <div id="morcego">
         <form name="appletForm">
-	  <applet ID="morcegoApplet" archive="morcego-0.6.0-dev.jar" code="br.arca.morcego.Morcego" width="100%" height="100%" MAYSCRIPT>
+	  {* Note that ${VERSION} will be substituted by correct version by package.sh *}
+	  <applet ID="morcegoApplet" archive="morcego-${VERSION}.jar" code="br.arca.morcego.Morcego" width="100%" height="100%" MAYSCRIPT>
             <param name="serverUrl" value="{$baseUrl}/server.php">
             <param name="startNode" value="{$nodeId}">
             <param name="showArcaLogo" value="true">
