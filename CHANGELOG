@@ -4,7 +4,7 @@ Morcego Changelog
 All developers are invited to add relevant changes in this file as they
 apply them to the SVN source. You can optionally include an identifer
 for the origin of the change (author, submitter, anyone involved) but
-that's not so useful as the cvs log knows who adds what when.
+that's not so useful as the svn log knows who adds what when.
 
 Use the following tags to distinguish changes :
 * [NEW] apply if something new was added in morcego
@@ -13,6 +13,18 @@ Use the following tags to distinguish changes :
 
 Version 0.6.0
 
+In v0.6 the long hours developers have invested in making xmlrpc servers won't be necessary
+anymore. It comes with a demo application, with PHP classes ready to use, ajax methods to 
+dinamically load content (using xajax) and content controlled by xml files, so anyone is now able
+to make a static Morcego application by just editing these xml files.
+
+The most significant change in v0.6 is javascript communication: now nodes and links can have
+"onmouseover", "onmouseout" and "onclick" javascript events. It's a simple modification, but
+now Morcego can be really embbeded instead of being an external browser. Other important improvement
+is the camera, that does not distort border of big graphs anymore. Besides that, there are some new
+node types (Square and Triangle), link types (DashedDirectional and Invisible), applet is more stable
+and configuration is simpler.
+
 [NEW] Better integration with HTML page by generating JS events from Morcego, through "onmouseover", "onmouseout" and "onclick" node properties
 [NEW] Demo php application
 [NEW] Proper visualization for trees, implementation of node hierarchy finally working, defined by node property "level". If new boolean configuration 
@@ -20,16 +32,16 @@ Version 0.6.0
 [NEW] Camera algorithm rewriten, peripherical distortion avoided (and so part of graph may get out of sight). New configuration "cameraDepth",
       the distance between the view area and the focus point behind it. 
 [NEW] refresh() method to be called by javascript
-[MOD] Lower minimum java version requirement, now compatible with XXX (can anyone confirm the minimum version?)
 [NEW] changeParam() method to be called by javascript (not working yet)
+[MOD] Lower minimum java version requirement, now compatible with XXX (can anyone confirm the minimum version?)
 [NEW] Types "Square" and "Triangle" for nodes; "DashedDirectional" and "Invisible" for links
 [NEW] Center node position is configurable through "originX" and "originY" configuration vars
 [MOD] Node properties case insensitive. Most link properties too, just not "from" and "to".
 [MOD] Simpler width and height settings: windowWidth, windowHeight, viewWidth and viewHeight removed; width and height added, default is html element size
 [MOD] Simpler Arca logo positioning, calculated according to window size
-[MOD] Default center node size proportion is now 1, because the scale was messing with depthness perception
+[MOD] Default center node size proportion is now 1, because the scale was messing with depth perception
 [FIX] proper thread control, threads now stop with the applet instead of becoming ghosts and hanging browser
- 
+[FIX] synchronization control that would break applet
 
 
 Version 0.5.0
