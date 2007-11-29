@@ -187,32 +187,34 @@ public class Balancer extends ControlledRunnable {
 		boolean isTree =
 			Config.getBoolean(Config.graphIsTree);
 
-		for (int j = 0; j < getNodes().size(); j++) {
-			Node node1 = (Node) getNodes().elementAt(j);
-					
-			if (isTree) {
-				blow(node1);
-			}
-
-			for (int k = j + 1; k < getNodes().size(); k++) {
-				Node node2 = (Node) getNodes().elementAt(k);
-				Vector3D force = node1.getBody().repel(node2.getBody());
-				node1.getBody().getInstantForce().add(force);
-				node2.getBody().getInstantForce().add(force.opposite());
-			}
-			
-		}
+		synchronized(graph) {
+			for (int j = 0; j < getNodes().size(); j++) {
+				Node node1 = (Node) getNodes().elementAt(j);
+						
+				if (isTree) {
+					blow(node1);
+				}
 	
-		for (int j = 0; j < getLinks().size(); j++) {
-			Link link = (Link) getLinks().elementAt(j);
-			Vector3D force = link.getSpring().strech();
-			link.getNode1().getBody().getInstantForce().add(force);
-			link.getNode2().getBody().getInstantForce().add(force.opposite());
-		}
+				for (int k = j + 1; k < getNodes().size(); k++) {
+					Node node2 = (Node) getNodes().elementAt(k);
+					Vector3D force = node1.getBody().repel(node2.getBody());
+					node1.getBody().getInstantForce().add(force);
+					node2.getBody().getInstantForce().add(force.opposite());
+				}
+				
+			}
 		
+			for (int j = 0; j < getLinks().size(); j++) {
+				Link link = (Link) getLinks().elementAt(j);
+				Vector3D force = link.getSpring().strech();
+				link.getNode1().getBody().getInstantForce().add(force);
+				link.getNode2().getBody().getInstantForce().add(force.opposite());
+			}
 			
-		for (int j = 0; j < getNodes().size(); j++) {
-			((Node)getNodes().elementAt(j)).getBody().applyForce();
+				
+			for (int j = 0; j < getNodes().size(); j++) {
+				((Node)getNodes().elementAt(j)).getBody().applyForce();
+			}
 		}
 	}
 
