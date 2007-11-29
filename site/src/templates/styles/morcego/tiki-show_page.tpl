@@ -1,11 +1,10 @@
 {* $Header: /cvsroot/tikiwiki/tiki/templates/tiki-show_page.tpl,v 1.74.2.23 2005/06/21 19:57:40 rlpowell Exp $ *}
 
 <script language="JavaScript">
-  var pageId = '{$page|escape}';
+  var pageId = "{$page|escape}";
 </script>
 <script language="JavaScript" src="lib/js/prototype.js"></script>
 <script language="JavaScript" src="lib/js/morcego.js"></script>
-<script language="JavaScript">pageId = "{$page|escape}";</script>
 
 {$xajax_js}
 
