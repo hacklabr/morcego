@@ -40,11 +40,50 @@ The possible actions:
 
 2- EMBEDDING APPLET IN APPLICATION
 
-For integrating Morcego applet in your web application, a server must be implemented
-to feed the applet with graph data. Although v0.5.0 has a modular transport layer to
-communicate with server, currently only XmlRpc is supported. If you don't know XMLRPC
-check http://www.xmlrpc.com. If you don't like using XmlRpc you're not alone in this
-world, your help in implementing new transport layer is welcome.
+For integrating Morcego applet in your web application, you need an special Morcego server
+to feed the applet with graph data. This is usually done with XMLRPC, the only transport
+way available until now (check section 2.4 on how to implement other ways).
+
+Implementing this used to be a tough task, but since v0.6 Morcego comes with a demo application
+and a set of PHP classes for integration with other softwares. You have several options, depending
+on your technical skills and time available. You can:
+
+* Make a static mindmap website by editing some XML data files and templates
+* Implement your own server in PHP to make a dynamic map, by extending a PHP class
+* Develop a XMLRPC server that implements Morcego's protocol in any language you wish
+* Make a new transport layer in java, by extending a java class and creating a server to feed it.
+
+2.1 - Making a static mindmap
+
+If you don't have much technical skills, but would like to make an online mind map, you can do one
+by editing some XMl files and putting a simple application in a webserver with PHP:
+
+* Copy demo/ to a directory in your web server
+* Open a browser and check the results
+* Take a look at the XML files under templates/data directory. Edit them to customize the mindmap.
+* Check also the .tpl files at templates/ dir. Modify those to customize the layout. For help on that, check http://smarty.php.net
+
+2.2 - Integrating to your PHP application
+
+Morcego also comes with a set of PHP classes to make your own server. You'll need two files: your server (let's call it server.php),
+a php file available through HTTP, and a subclass of Morcego_Graph (let's call it MyGraph)
+
+* server.php
+
+Very simple, check demo/server.php on how to do that. All you need to do is create a Morcego_Graph object (note that Morcego_Graph is an
+abstract class and must be subclassed) and use it to instantiate a Morcego_Server object.
+
+* MyGraph
+
+This is the core of your server. You must implement the method getNode($nodeId), that takes the nodeId and returns a data structure
+containing all relevant data about node with id $nodeId and the links it has to/from other nodes.
+
+The data structure has the exact same format of the getSubGraph() method (explained below at 2.3), but you usually want to return
+only one node in "nodes" section. I say usually, because it might be useful to return a bigger set of nodes and links, for example
+in raw XMl server used by the demo: you might want to defined many nodes in one XML files to make your job easier (note that in the
+demo you can't start your navigation in some of the nodes that doesn't have it's own XMl file). 
+
+2.3 - Developing your own XMLRPC server
 
 The XMLRPC server should implement two methods:
 
@@ -53,12 +92,12 @@ The XMLRPC server should implement two methods:
 This method returns the XMLRPC protocol version. Current version is 2, so if you're
 implementing the server according to instructions below, this method should return "2".
 In case this method is not present, version 1 is assumed, and so data structure for 
-old versions of Morcego will be expected.
+older versions of Morcego (0.4 and below) will be expected.
 
- * struct getSubGraph(string nodeName, int depth)
+ * struct getSubGraph(string nodeId, int depth)
 
-This method returns a part of the graph containing the node named
-nodeName and all nodes with distance lesser or equal than depth.
+This method returns a part of the graph containing the node with id
+nodeId and all nodes with distance lesser or equal than depth.
 The returned struct must be as follow, {} indicates structs and []
 arrays, fields marked with * are optional
 
