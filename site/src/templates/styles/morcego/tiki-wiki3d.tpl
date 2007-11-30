@@ -1,4 +1,4 @@
-    <applet ID="morcegoApplet" codebase="./lib/wiki3d" archive="morcego-0.6.0-dev.jar" code="br.arca.morcego.Morcego" width="100%" height="100%" MAYSCRIPT>
+    <applet ID="morcegoApplet" codebase="./lib/wiki3d" archive="morcego-0.6.0RC1.jar" code="br.arca.morcego.Morcego" width="100%" height="100%" MAYSCRIPT>
       <param name="serverUrl" value="{$baseUrl}/morcego-wiki3d_xmlrpc.php">
       <param name="startNode" value="{$page}">
       <param name="windowWidth" value="{$wiki_3d_width}">
