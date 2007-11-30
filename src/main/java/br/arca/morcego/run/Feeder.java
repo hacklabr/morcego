@@ -116,6 +116,11 @@ public class Feeder extends ControlledRunnable {
 		this.notify();
 	}
 	
+	public void finish() {
+		super.finish();
+		animator.finish();
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 

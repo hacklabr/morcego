@@ -34,7 +34,7 @@ import br.arca.morcego.structure.Node;
  * Takes from Feeder a list of nodes that should become visible and show them in a 
  * fancy way
  */
-public class Animator implements Runnable {
+public class Animator extends ControlledRunnable {
 
 	private Graph graph;
 	private Vector visible;
@@ -70,7 +70,9 @@ public class Animator implements Runnable {
 
 		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
 
-		while (true) {
+		running = true;
+		
+		while (running) {
 			try {
 				if (visible.isEmpty()) {
 					synchronized (this) {
@@ -78,7 +80,7 @@ public class Animator implements Runnable {
 					}
 				}
 			} catch (InterruptedException e2) {				
-				e2.printStackTrace();
+				break;
 			}
 			
 			graph.calculateDistances();
