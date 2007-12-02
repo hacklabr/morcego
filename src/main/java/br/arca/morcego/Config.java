@@ -283,7 +283,12 @@ public class Config {
 		} else if (type.equals(Boolean.class)) {
 			return new Boolean(value);
 		} else if (type.equals(Color.class)) {
-			return Color.decode(value);
+			try {
+				return Color.decode(value);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return Color.decode("#000000");
+			}
 		} else if (type.equals(URL.class)) {
 			try {
 				return new URL(value);
