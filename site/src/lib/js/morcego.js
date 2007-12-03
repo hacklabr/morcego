@@ -7,6 +7,13 @@ Element.observe(window, 'load', function(e) {
     $('morcego-applet').style.height = appletHeight + "px";
     $('wiki-content').style.height = contentHeight + "px";
 
+    $('wiki-content').descendants().each(function(el) {
+	if (el.href != null && el.href.match(/tiki-index.php/)) {
+	    el.href = el.href.replace(/^.+tiki-index.php\?page=(.+)/, "javascript:navigateTo('$1')");
+	}
+    });
+
+
     xajax_loadMorcego(pageId);
 });
 
