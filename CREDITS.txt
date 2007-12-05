@@ -4,10 +4,12 @@ This software is developed mainly by Arca (http://arca.ime.usp.br), a Free Softw
 development group from Brazil:
   - Luis Fagundes, developer and mantainer
   - Alexandre Freire and Christian Asmussen, the java masters! :-)
-  - Fernando Freire, physical modeling 
+  - Fernando Freire, physical modeling
+  - Rodrigo Sampaio Primo, website mantainance
   - David Horat developed image nodes
   - Renato Lopes designed the logo
   - Pedro Saito designed the Morcego poster for Wikimania 2005
+  - Kevin Scannel reported how to make accents work on all plataforms
   - Fabio Mathias helped me fix a bug
   - Everybody from Arca who tests the software and sends sugestions
   
@@ -20,4 +22,5 @@ There were also hired developers from www.rentacoder.com:
  Sponsors
  - Carlos Seabra paid the initial code example from Devapi D.
  - Sight Educacao & Comunicacao sponsored most of the development of version 0.3
+ - Politica do Impossivel sponsored v0.6 development
   
