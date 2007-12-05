@@ -9,6 +9,22 @@ class Morcego_Server extends XML_RPC_Server {
     // Morcego_Graph object
     var $graph;
 
+    // Using for string encoding in Macintoshs
+    var $_macCharTable = array("C1" => "E7",
+			       "C9" => "83",
+			       "CD" => "EA",
+			       "D3" => "EE",
+			       "DA" => "F2",
+			       "E1" => "87",
+			       "E9" => "8E",
+			       "ED" => "92",
+			       "F3" => "97",
+			       "FA" => "9C");
+
+    var $win = false;
+    var $mac = false;
+
+
     function Morcego_Server($graph) {
 	
 	$this->graph = $graph;
@@ -16,6 +32,9 @@ class Morcego_Server extends XML_RPC_Server {
 	$map = array('getSubGraph' => array('function' => array($this, 'getSubGraph')),
 		     'getVersion' => array('function' => array($this, 'getVersion')));
 
+	$this->win = preg_match("/Windows/", $_SERVER['HTTP_USER_AGENT']);
+	$this->mac = preg_match("/Macintosh/", $_SERVER['HTTP_USER_AGENT']);
+	
 	$this->XML_RPC_Server($map);
     }
 
@@ -53,10 +72,29 @@ class Morcego_Server extends XML_RPC_Server {
 	$encoded = array();
 
 	foreach ($structure as $key => $value) {
-	    $encoded[strtolower($key)] = new XML_RPC_Value($value, "string");
+	    $encoded[strtolower($key)] = new XML_RPC_Value($this->_recodeString($value), "string");
 	}
 	
 	return new XML_RPC_Value($encoded, "struct");
+    }
+
+    function _recodeString($str) {
+
+	if ($this->win) {
+	    return utf8_decode($str);
+	}
+
+	if ($this->mac) {
+	    $str = utf8_decode($str);
+
+	    foreach ($this->_macCharTable as $from => $to) {
+		$str = preg_replace("/".chr(hexdec($from))."/", chr(hexdec($to)), $str);
+	    }
+
+	    return $str;
+	}
+
+	return $str;
     }
 
 }
