@@ -40,6 +40,7 @@ and configuration is simpler.
 [MOD] Simpler width and height settings: windowWidth, windowHeight, viewWidth and viewHeight removed; width and height added, default is html element size
 [MOD] Simpler Arca logo positioning, calculated according to window size
 [MOD] Default center node size proportion is now 1, because the scale was messing with depth perception
+[FIX] Proper encoding, accents now work on Linux, Windows and Mac (the implementation is in server though, it works on this php server)
 [FIX] Proper thread control, threads now stop with the applet instead of becoming ghosts and hanging browser
 [FIX] Synchronization control that would break applet
 [FIX] Applet don't die when a color configuration is malformed
