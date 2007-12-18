@@ -96,7 +96,7 @@ public class Balancer extends ControlledRunnable {
 		}
 		
 		
-		float windIntensity = levelDifference*Config.getFloat(Config.springSize) - graph.getOrientation().scalarProduct(body);
+		float windIntensity = levelDifference * Config.getFloat(Config.springSize) - graph.getOrientation().scalarProduct(body);
 		
 		Vector3D wind = graph.getOrientation().multiplyByScalar(windIntensity * Config.getFloat(Config.windIntensity));
 		
