@@ -402,19 +402,8 @@ public class Morcego extends Applet {
 		renderer.render();
 	}
 	
-	// Does not work yet
 	public void changeParam(String varName, String value) {
-		if (value != null && Config.exists(varName)) {
-
-			Class type = Config.getValue(varName).getClass();
-
-			try {
-				Config.setValue(varName, Config.decode(value, type));
-			} catch (Exception e) {
-				// Ignore malformed parameters
-			}
-		}
-		refresh();
+		Config.change(varName, value);
 	}
 
 

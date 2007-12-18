@@ -244,8 +244,9 @@ Besides the JS calls from applet shown above, you can use javascript to call the
 
 * refresh() - reloads applet data from server
 
-* changeParam(varName, value) - dinamically changes one of applet's param (APPARENTLY NOT WORKING YET,
-                                ask the developers to give special attention to this if you need it ;-) )
+* changeParam(varName, value) - dinamically changes one of applet's parameter.
+                                Remember to call refresh() after it (it's not done automatically, because you
+                                might like to change several parameters before doing it). 
                             
 2.4 - APPLET CONFIGURATION
 

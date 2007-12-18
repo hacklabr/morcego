@@ -300,30 +300,22 @@ public class Config {
 	}
 
 	/*
-	 * Tests if a given config var exists, needs introspection
+	 * Changes a configuration variable from a string, needs introspection
+	 *  
 	 */
-	public static boolean exists(String varName) {
+	public static void change(String varName, String value) {
 		Class configClass;
 		try {
 			configClass = Class.forName("br.arca.morcego.Config");
-		} catch (ClassNotFoundException e) {
-			// SHOULD NEVER HAPPEN
-			e.printStackTrace();
-			return false;
-		}
-		
-		Field field;
-		
-		try {
+			Field field;
 			field = configClass.getDeclaredField(varName);
+			String realName = (String) field.get(null);
+			Class type = config.get(realName).getClass();
+			Config.setValue(realName, Config.decode(value, type));
 		} catch (Exception e) {
-			return false;
-		} 
-				
-		try {
-			return config.contains(field.get(null));
-		} catch (Exception e) {
-			return false;
+			e.printStackTrace();
+			return;
 		}
+		
 	}
 }

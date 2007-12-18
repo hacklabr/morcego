@@ -32,7 +32,7 @@ and configuration is simpler.
 [NEW] Camera algorithm rewriten, peripherical distortion avoided (and so part of graph may get out of sight). New configuration "cameraDepth",
       the distance between the view area and the focus point behind it. 
 [NEW] refresh() method to be called by javascript
-[NEW] changeParam() method to be called by javascript (not working yet)
+[NEW] changeParam() method to be called by javascript 
 [MOD] Lower minimum java version requirement, now compatible with XXX (can anyone confirm the minimum version?)
 [NEW] Types "Square" and "Triangle" for nodes; "DashedDirectional" and "Invisible" for links
 [NEW] Center node position is configurable through "originX" and "originY" configuration vars
