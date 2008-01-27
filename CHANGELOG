@@ -26,6 +26,7 @@ node types (Square and Triangle), link types (DashedDirectional and Invisible), 
 and configuration is simpler.
 
 [NEW] Better integration with HTML page by generating JS events from Morcego, through "onmouseover", "onmouseout" and "onclick" node properties
+[NEW] Set of easily extendable php classes to interact with XML files, Tikiwiki's wiki and Wordnet 3.0
 [NEW] Demo php application
 [NEW] Proper visualization for trees, implementation of node hierarchy finally working, defined by node property "level". If new boolean configuration 
       "graphIsTree" is true, a simulated wind will blow the nodes with intensity according to "windIntensity" and node level.
